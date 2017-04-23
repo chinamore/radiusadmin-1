@@ -9,21 +9,21 @@ gulp.task( "vendor", function() {
 
     var filesFonts = [
 
-        "assets/private/bower_components/bootstrap/dist/fonts/*"
+        "assets/private/bower_components/locawebstyle/dist/stylesheets/fonts/*"
     ];
 
     var filesJS = [
 
         "assets/private/bower_components/jquery/dist/jquery.js",    
-        "assets/private/bower_components/bootstrap/dist/js/bootstrap.js"
+        "assets/private/bower_components/locawebstyle/dist/javascripts/locastyle.js"
     ];
 
     var filesCSS = [
     
-        "assets/private/bower_components/bootstrap/dist/css/bootstrap.min.css"
+        "assets/private/bower_components/locawebstyle/dist/stylesheets/locastyle.css"
     ];
 
-    var folderFonts = "assets/public/fonts/";
+    var folderFonts = "assets/public/css/fonts/";
     var folderJS = "assets/public/js/";
     var folderCSS = "assets/public/css/";
 

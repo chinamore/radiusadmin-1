@@ -1,7 +1,7 @@
 {
-    "name": "radiusadmin",
-    "description": "",
-    "dependencies": {
-        "bootstrap": "^3.3.7"
-    }
+  "name": "radiusadmin",
+  "description": "",
+  "dependencies": {
+    "locawebstyle": "^3.10.0"
+  }
 }
