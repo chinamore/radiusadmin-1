@@ -6,6 +6,7 @@ https://twig.sensiolabs.org/
 
 https://laravel.com/docs/5.4/eloquent
 
+http://opensource.locaweb.com.br
 
 Required npm, bower, gulp and composer.
 
