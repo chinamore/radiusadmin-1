@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <meta name="description" content="">
+            <meta name="author" content="">
+
+            <title>Skeleton Slim PHP</title>
+
+        <link href="{{pathAssets}}/css/vendor.css" rel="stylesheet"/>
+            <link href="{{pathAssets}}/css/app.css" rel="stylesheet"/>
+      </head>
+
+    <body>
+
+            <div class="site-wrapper">
+
+                  <div class="site-wrapper-inner">
+
+                    <div class="cover-container">
+
+                          <div class="masthead clearfix">
+                                <div class="inner">
+                                      <h3 class="masthead-brand">Skeleton Slim PHP</h3>
+                                      <nav>
+                                        <ul class="nav masthead-nav">
+                                              <li><a href="#">Link1</a></li>
+                                              <li><a href="#">Link2</a></li>
+                                              <li><a href="#">Link3</a></li>
+                                        </ul>
+                                      </nav>
+                                </div>
+                          </div>
+
+                          <div class="inner cover">
+                                
+                            {% block content %}
+                            {% endblock %}
+                          </div>
+
+                          <div class="mastfoot">
+                                <div class="inner">
+                                      <p>
+                                            <p></p>
+                            </p>
+                                </div>
+                          </div>
+                    </div>
+            </div>
+        </div>
+
+            <script src="{{pathAssets}}/js/vendor.js"></script>
+    </body>
+</html>

@@ -1,0 +1,5 @@
+assets/private/bower_components/
+assets/public/
+cache/
+node_modules/
+vendor/
