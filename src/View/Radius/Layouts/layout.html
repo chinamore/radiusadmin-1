@@ -7,7 +7,7 @@
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     
-        <link href="{{pathAssets}}/css/vendor.css" rel="stylesheet"/>
+        <link href="{{dir}}/assets/public/css/vendor.css" rel="stylesheet"/>
     </head>
 
     <body>
@@ -48,7 +48,7 @@
             <!-- Nome do produto/marca com sidebar -->
             <h1 class="ls-brand-name">
                 <a href="home" class="ls-ico-earth">
-                    <small>webgui freeradius</small>
+                    <small>freeradius interface</small>
                     Radius Admin
                 </a>
             </h1>
@@ -65,13 +65,30 @@
 
                 <nav class="ls-menu">
                     <ul>
-                        <li><a href="#link1" class="ls-ico-dashboard">Link1</a></li>
+                        <li><a href="{{dir}}/" class="ls-ico-home">Inicio</a></li>
                         <li>
-                            <a href="#link2" class="ls-ico-cog">Link2</a>
+                            <a href="#" class="ls-ico-user">Usuários</a>
                             <ul>
-                                <li><a href="#sublink1">Sub-Link1</a></li>
+                                <li><a href="{{dir}}/usuarios/listar">Listar</a></li>
+                                <li><a href="{{dir}}/usuarios/criar">Novo</a></li>
+                            </ul>
+                        </li>                        
+                        <li>
+                            <a href="#" class="ls-ico-users">Grupos</a>
+                            <ul>
+                                <li><a href="{{dir}}/grupos/listar">Listar</a></li>
+                                <li><a href="{{dir}}/grupos/criar">Novo</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{dir}}/estatisticas/" class="ls-ico-stats">Estatísticas</a></li>
+                        <li>
+                            <a href="#" class="ls-ico-ftp">Clientes ( NAS )</a>
+                            <ul>
+                                <li><a href="{{dir}}/clientes/listar">Listar</a></li>
+                                <li><a href="{{dir}}/clientes/criar">Novo</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
             </div>
@@ -105,6 +122,6 @@
             </nav>
         </aside>
 
-        <script src="{{pathAssets}}/js/vendor.js"></script>
+        <script src="{{dir}}/assets/public/js/vendor.js"></script>
     </body>
 </html>

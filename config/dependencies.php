@@ -16,7 +16,7 @@ $container["view"] = function ($container) {
 
     $env = $view->getEnvironment();
 
-    $env->addGlobal( "pathAssets", "/radiusadmin/assets/public" );
+    $env->addGlobal( "dir", "/radiusadmin" );
 
     return $view;
 };
