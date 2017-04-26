@@ -4,7 +4,7 @@ namespace Tests\Functional;
 
 class AppControllerTest extends BaseTestCase {
  
-    public function testIndex() {
+    public function testActionIndex() {
 
         $response = $this->runApp('GET', '/');
 
