@@ -109,9 +109,7 @@
         <label class="ls-label col-md-12">
             <b class="ls-label-text">Description</b>
             <p class="ls-label-info"></p>
-            <textarea name="nas[description]" rows="4" data-ls-module="charCounter" maxlength="200">
-                {{nas["description"]}}
-            </textarea>
+            <textarea name="nas[description]" rows="4" data-ls-module="charCounter" maxlength="200">{{nas["description"]}}</textarea>
 
             {% if errors["description"] is not empty %}
                 <p class="ls-error">

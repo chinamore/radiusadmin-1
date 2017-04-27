@@ -22,6 +22,7 @@ class ClientControllerTest extends BaseTestCase {
                 "type"=>"other",
                 "ports"=>"50",
                 "secret"=>"secret",
+                "server"=>"server",
                 "community"=>"public",
                 "description"=>"description"
         ]]);
