@@ -6,7 +6,7 @@
         <label class="ls-label col-md-4">
             <b class="ls-label-text">IP</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[nasname]" value="{{nas['nasname']}}" placeholder="" />
+            <input type="text" name="nas[nasname]" value="{{nas['nasname']}}" placeholder="" required />
 
             {% if errors["nasname"] is not empty %}
                 <p class="ls-error">
