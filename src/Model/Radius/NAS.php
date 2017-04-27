@@ -10,7 +10,20 @@ class NAS extends Model {
 
     protected $table = "nas";
     
+    protected $fillable = [
+        "id",
+        "nasname",
+        "shortname",
+        "type",
+        "ports",
+        "secret",
+        "server",
+        "community",
+        "description"
+    ];
+
     protected $connection = "radius";
+
 
     public function __construct() {
 

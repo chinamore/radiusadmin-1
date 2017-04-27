@@ -51,8 +51,24 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase {
         // Set up a response object
         $response = new Response();
 
-        // Use the application settings
-        $settings = require __DIR__ . '/../../config/settings.php';
+        
+        $settings = [
+            "settings" => [
+                "determineRouteBeforeAppMiddleware" => false,
+                "displayErrorDetails" => true,
+                "debug"=>true,
+                "db" => [
+                    "driver" => "mysql",
+                    "host" => "localhost",
+                    "database" => "radius_test",
+                    "username" => "root",
+                    "password" => "root",
+                    "charset"   => "utf8",
+                    "collation" => "utf8_unicode_ci",
+                    "prefix"    => "",
+                ]
+            ],
+        ];
 
         // Instantiate the application
         $app = new App($settings);

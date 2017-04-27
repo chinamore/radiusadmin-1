@@ -1,0 +1,66 @@
+<div class="ls-box ls-lg-space">
+
+    <form action="" method="POST" class="ls-form ls-form-horizontal row">
+
+
+        <label class="ls-label col-md-4">
+            <b class="ls-label-text">IP</b>
+            <p class="ls-label-info"></p>
+            <input type="text" name="nas[nasname]" placeholder="" required />
+        </label>
+
+        <label class="ls-label col-md-4">
+            <b class="ls-label-text">Short Name</b>
+            <p class="ls-label-info"></p>
+            <input type="text" name="nas[shortname]" placeholder="" required />
+        </label>
+
+        <label class="ls-label col-md-2">
+            <b class="ls-label-text">Type</b>
+            <p class="ls-label-info"></p>
+            <div class="ls-custom-select">
+                <select name="nas[type]" class="ls-select">
+                    <option value="other">Other</option>
+                    <option value="cisco">Cisco</option>
+                </select>
+            </div>
+        </label>
+
+        <label class="ls-label col-md-2">
+            <b class="ls-label-text">Ports</b>
+            <p class="ls-label-info"></p>
+            <input type="text" name="nas[ports]" required />
+        </label>
+
+        <label class="ls-label col-md-4">
+            <b class="ls-label-text">Secret</b>
+            <p class="ls-label-info"></p>
+            <input type="text" name="nas[secret]" placeholder="" required />
+        </label>
+
+        <label class="ls-label col-md-4">
+            <b class="ls-label-text">Server</b>
+            <p class="ls-label-info"></p>
+            <input type="text" name="nas[server]" placeholder="" required />
+        </label>
+
+        <label class="ls-label col-md-4">
+            <b class="ls-label-text">Community</b>
+            <p class="ls-label-info"></p>
+            <input type="text" name="nas[community]" placeholder="" required />
+        </label>
+
+        <label class="ls-label col-md-12">
+            <b class="ls-label-text">Description</b>
+            <p class="ls-label-info"></p>
+            <textarea name="nas[description]" rows="4" data-ls-module="charCounter" maxlength="200"></textarea>
+        </label>
+
+        <div class="ls-actions-btn">
+       
+            <button type="submit" class="ls-btn-dark ls-btn-lg">Salvar</button>
+        </div>
+    </form>
+
+</div>
+

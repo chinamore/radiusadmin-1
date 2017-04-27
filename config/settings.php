@@ -7,10 +7,10 @@ return [
         "debug"=>true,
         "db" => [
             "driver" => "mysql",
-            "host" => "localhot",
-            "database" => "db",
+            "host" => "localhost",
+            "database" => "radius",
             "username" => "root",
-            "password" => "",
+            "password" => "root",
             "charset"   => "utf8",
             "collation" => "utf8_unicode_ci",
             "prefix"    => "",

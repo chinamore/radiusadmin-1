@@ -10,29 +10,31 @@ class ClientControllerTest extends BaseTestCase {
 
         $response = $this->runApp( "GET", "/clientes/criar");
         $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "cliente criar", (string) $response->getBody());
-        $this->assertNotContains( "cliente ver", (string)$response->getBody());
+        $this->assertContains( "Criar cliente", (string) $response->getBody());
+        $this->assertNotContains( "Ver cliente", (string)$response->getBody());
 
         $response = $this->runApp( "POST", "/clientes/criar", [
             
-            "nasname"=>"192.168.0.10",
-            "shortname"=>"adm",
-            "type"=>"other",
-            "ports"=>"50",
-            "secret"=>"secret",
-            "community"=>"public",
-            "description"=>"description"
-        ]);
+            "nas"=>[
+
+                "nasname"=>"192.168.0.10",
+                "shortname"=>"adm",
+                "type"=>"other",
+                "ports"=>"50",
+                "secret"=>"secret",
+                "community"=>"public",
+                "description"=>"description"
+        ]]);
 
         $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "cliente ver", (string) $response->getBody() );
-        $this->assertNotContains( "cliente criar", (string) $response->getBody() );
+        $this->assertContains( "Ver cliente", (string) $response->getBody() );
+        $this->assertNotContains( "Criar cliente", (string) $response->getBody() );
 
         $response = $this->runApp( "POST", "/clientes/criar", [] );
 
         $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "cliente criar", (string) $response->getBody() );
-        $this->assertNotContains( "cliente ver", (string) $response->getBody() );
+        $this->assertContains( "Criar cliente", (string) $response->getBody() );
+        $this->assertNotContains( "Ver cliente", (string) $response->getBody() );
     }
 
 }
