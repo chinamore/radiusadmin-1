@@ -28,6 +28,7 @@ $app->group("/estatisticas", function () {
 $app->group("/clientes", function () {
 
     $this->map( ["GET"], "/[listar]", App\Controller\Radius\ClientController::class . ":actionList" );
+    $this->map( ["GET"], "/armazenar", App\Controller\Radius\ClientController::class . ":actionStore" );
 
     $this->map( ["GET", "POST"], "/criar", App\Controller\Radius\ClientController::class . ":actionCreate" );
     $this->map( ["GET", "POST"], "/alterar", App\Controller\Radius\ClientController::class . ":actionUpdate" );
