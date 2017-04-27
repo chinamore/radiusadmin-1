@@ -2,6 +2,6 @@
   "name": "radiusadmin",
   "description": "",
   "dependencies": {
-  "locawebstyle": "^3.10.0",
+  "locawebstyle": "^3.10.0"
   }
 }
