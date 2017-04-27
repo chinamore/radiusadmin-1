@@ -2,7 +2,47 @@
 
 
 {% block content %}
+ 
+<h1 class="ls-title-intro ls-ico-ftp">Ver cliente</h1>
+
+<div class="ls-box ls-lg-space">
+
+    <table class="ls-table ls-md-space">
     
-    <h1 class="ls-title-intro ls-ico-ftp">Ver cliente</h1>
+        <tr>
+            <td>IP</td><td>{{client.nasname}}</td>
+        </tr>
+          
+        <tr>
+            <td>Short Name</td><td>{{client.shortname}}</td>
+        </tr>
+
+        <tr>
+            <td>Type</td><td>{{client.type}}</td>
+        </tr>
+
+        <tr>
+            <td>Ports</td><td>{{client.ports}}</td>
+        </tr>
+   
+        <tr>
+            <td>Secret</td><td>{{client.secret}}</td>
+        </tr>
+   
+        <tr>
+            <td>Server</td><td>{{client.server}}</td>
+        </tr>
+   
+        <tr>
+            <td>Community</td><td>{{client.community}}</td>
+        </tr>
+   
+        <tr>
+            <td>Description</td><td>{{client.description}}</td>
+        </tr>
+
+    </table>
+
+</div>
 
 {% endblock %}
