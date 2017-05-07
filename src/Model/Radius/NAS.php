@@ -24,7 +24,6 @@ class NAS extends Model {
 
     protected $connection = "radius";
 
-
     public function __construct() {
 
         parent::__construct();

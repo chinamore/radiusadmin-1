@@ -43,7 +43,7 @@ class ClientController extends Controller {
             "description"=>"maxlength(200)"
         ]);
 
-        if( $validator->validate( $nas) ) {
+        if( $validator->validate( $nas ) ) {
         
             $client = new NAS();
 

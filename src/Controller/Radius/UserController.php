@@ -4,6 +4,9 @@ namespace App\Controller\Radius;
 
 use App\Controller\Controller;
 
+use App\Model\Radius\User;
+use App\Model\Radius\Group;
+
 class UserController extends Controller {
     
     public function __construct( $container ) {
@@ -12,7 +15,7 @@ class UserController extends Controller {
     }
 
     public function actionCreate( $request, $response ) {
-
+    
         return $this->view->render( $response, "Radius/User/create.html");
     }
    
@@ -30,5 +33,21 @@ class UserController extends Controller {
 
         return $this->view->render( $response, "Radius/User/delete.html");
     }
+
+    private function getAttributesCheck( $userName = null) {
+    
+        $attributes = [];
+
+      
+        
+
+        
+    }
+
+
+
+
+
+
 
 }
