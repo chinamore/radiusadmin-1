@@ -1,1 +1,18 @@
 /* css */
+
+.ls-btn-primary-danger{ 
+    background:#db6664;
+    border-color:#df7775;
+    color:white;
+}
+
+.ls-btn-primary-danger:hover, .ls-btn-primary-danger .ls-active {
+
+    background:#ac4442;
+    border-color:#963b3a;
+    -moz-box-shadow:inset 0 3px 5px rgba(0,0,0,0.05);
+    -webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.05);
+    box-shadow:inset 0 3px 5px rgba(0,0,0,0.05);
+    color:white
+ }
+

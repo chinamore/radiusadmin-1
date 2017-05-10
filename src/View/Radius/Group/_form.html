@@ -1,0 +1,62 @@
+
+<form action="{{dir}}/usuarios/armazenar" method="POST" class="ls-form">
+
+    <ul class="ls-tabs-nav">
+        <li class="ls-active"><a data-ls-module="tabs" href="#form-general">Geral</a></li>
+        <li><a data-ls-module="tabs" href="#form-checks">Atributos de verificação</a></li>
+        <li><a data-ls-module="tabs" href="#form-replies">Atributos de resposta</a></li>
+    </ul>
+    
+    <div class="ls-tabs-container">
+ 
+        <div id="form-general" class="ls-tab-content ls-active">
+
+            <div class="row">
+
+                <label class="ls-label col-md-4">
+                    <b class="ls-label-text">Nome</b>
+                    <p class="ls-label-info"></p>
+                    <input type="text" name="group[name]" value="{{group.name}}" placeholder="" required />
+
+                    {% if errors["name"] is not empty %}
+                        <p class="ls-error">
+                            {% for error in errors["name"] %}
+                                    <small class="ls-help-message">{{error}}</small>
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                </label>
+            </div>
+             
+        </div>
+
+       
+    
+        <div id="form-checks" class="ls-tab-content">
+            
+            <div class="row">
+                <div class="col-md-10">
+ 
+                    {% include "Radius/Attribute/_form_check.html" with { } %}
+                </div>
+            </div>
+
+        </div>
+   
+        <div id="form-replies" class="ls-tab-content">
+             <div class="row">
+                <div class="col-md-10">
+
+                    {% include "Radius/Attribute/_form_reply.html" with { } %}
+                </div>
+            </div>
+
+
+        </div>
+
+       <button type="submit" class="ls-btn-dark ls-btn-lg">Salvar</button>
+
+    </div>
+
+</form>
+

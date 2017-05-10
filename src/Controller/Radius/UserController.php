@@ -6,6 +6,7 @@ use App\Controller\Controller;
 
 use App\Model\Radius\User;
 use App\Model\Radius\Group;
+use App\Model\Radius\RadCheck;
 
 class UserController extends Controller {
     
@@ -15,8 +16,16 @@ class UserController extends Controller {
     }
 
     public function actionCreate( $request, $response ) {
-    
-        return $this->view->render( $response, "Radius/User/create.html");
+ 
+        $groups = Group::getAll();
+
+        $operators = RadCheck::getOperators();
+
+        return $this->view->render( $response, "Radius/User/create.html", [
+
+            "groups" => $groups,
+            "operators"=>$operators
+        ]);
     }
    
     public function actionList( $request, $response ) {
@@ -26,7 +35,18 @@ class UserController extends Controller {
 
     public function actionUpdate( $request, $response ) {
 
-        return $this->view->render( $response, "Radius/User/update.html");
+        $groups = Group::getAll();
+
+        $user = User::get( "paulo" );
+
+        $operators = Radcheck::getOperators();
+
+        return $this->view->render( $response, "Radius/User/update.html", [
+            
+            "user"=>$user,
+            "groups" => $groups,
+            "operators"=>$operators
+        ]);
     }
 
     public function actionDelete( $request, $response ) {

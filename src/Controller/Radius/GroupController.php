@@ -3,6 +3,8 @@
 namespace App\Controller\Radius;
 
 use App\Controller\Controller;
+use App\Model\Radius\Group;
+use App\Model\Radius\RadCheck;
 
 class GroupController extends Controller {
     
@@ -13,7 +15,12 @@ class GroupController extends Controller {
 
     public function actionCreate( $request, $response ) {
 
-        return $this->view->render( $response, "Radius/Group/create.html");
+        $operators = RadCheck::getOperators();
+
+        return $this->view->render( $response, "Radius/Group/create.html", [
+ 
+            "operators"=>$operators
+        ]);
     }
    
     public function actionList( $request, $response ) {
@@ -23,7 +30,15 @@ class GroupController extends Controller {
 
     public function actionUpdate( $request, $response ) {
 
-        return $this->view->render( $response, "Radius/Group/update.html");
+        $group = Group::get( "grupo1" );
+
+        $operators = RadCheck::getOperators();
+
+        return $this->view->render( $response, "Radius/Group/update.html", [
+ 
+            "group"=>$group,
+            "operators"=>$operators
+        ]);
     }
 
     public function actionDelete( $request, $response ) {

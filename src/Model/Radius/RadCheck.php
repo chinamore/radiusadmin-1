@@ -17,4 +17,24 @@ class RadCheck extends Model {
         parent::__construct();
     }
 
+    public static function getOperators() {
+    
+        return [
+            "=",
+            ":=",
+            "==",
+            "+=",
+            "!=",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "=~",
+            "!~",
+            "=*",
+            "!*"
+        ];
+    }
+
+
 }

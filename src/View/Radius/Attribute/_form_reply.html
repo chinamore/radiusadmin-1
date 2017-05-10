@@ -1,0 +1,72 @@
+
+<table class="ls-table">
+    <thead>
+        <tr>
+            <th>Atributo</th>
+            <th>Operador</th>
+            <th>Valor</th>
+            <th></th>
+        </tr>
+    </thead>
+                    
+    <tbody>
+
+        {% for attribute in user.attributesRaply %}
+   
+            <tr>
+                <td>
+                    <input type="text" name="reply-attribute[]" value="{{attribute['attribute']}}" placeholder=""/>
+                </td>
+                
+                <td>
+
+                    <div class="ls-custom-select">
+                        
+                        <select name="reply-operator[]" class="ls-select">
+                            {% for operator in operators %}                           
+                                <option value="{{operator}}">{{operator}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                                
+                <td>
+                    <input type="text" name="reply-value[]" value="{{attribute['value']}}" placeholder="" />
+                </td> 
+                
+                <td>
+                    <button class="ls-btn ls-ico-remove"></button>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        <tr>
+            <td>
+                <input type="text" id="new-attribute-reply" value="" placeholder=""/>
+            </td>
+
+            <td>
+                <div class="ls-custom-select">
+                        
+                    <select id="new-operator-reply" class="ls-select">
+                        {% for operator in operators %}                           
+                            <option value="{{operator}}">{{operator}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </td>
+                                
+            <td>
+                <input type="text" id="new-value-reply" value="" placeholder="" />
+            </td> 
+                                
+            <td>
+                <button class="ls-btn"> Adicionar</button>
+            </td>
+
+        </tr>
+                            
+    </tbody>
+</table>
+
