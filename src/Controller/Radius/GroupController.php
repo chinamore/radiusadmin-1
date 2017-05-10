@@ -42,7 +42,9 @@ class GroupController extends Controller {
 
     public function actionUpdate( $request, $response ) {
 
-        $group = Group::get( "grupo1" );
+        $name = $request->getQueryParam( "name", "" );
+        
+        $group = Group::get( $name );
 
         $operators = RadCheck::getOperators();
 
