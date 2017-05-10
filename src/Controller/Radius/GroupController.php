@@ -25,6 +25,18 @@ class GroupController extends Controller {
    
     public function actionList( $request, $response ) {
 
+        $name = $request->getQueryParam( "name", "" );
+
+        $attribute = $request->getQueryParam( "attribute", "" );
+
+        $groups = Group::find( $name, $attribute );
+
+
+        return $this->view->render( $response, "Radius/Group/list.html", [
+        
+            "groups"=>$groups
+        ]);
+
         return $this->view->render( $response, "Radius/Group/list.html");
     }
 

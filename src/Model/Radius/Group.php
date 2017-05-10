@@ -101,6 +101,36 @@ class Group {
         return $attributes;
     }
 
+    public static function find( $name, $attribute = "" ) {
+        
+        $groups = [];
+
+        $name = "%" . $name . "%";
+
+        $attribute = "%" . $attribute . "%";
+
+        $attributesCheck = RadGroupCheck::where( "groupname", "like", $name  )
+            ->where( "attribute", "like", $attribute )
+            ->get();
+ 
+        $attributesReply = RadGroupReply::where( "groupname", "like", $name )
+            ->where( "attribute", "like", $attribute )
+            ->get();
+
+        $attributes = self::sortByName( $attributesCheck, $attributesReply );
+
+        foreach( $attributes as $groupName => $attribute ) {
+        
+            $checks = ( isset( $attribute[ "check" ] ) ) ? $attribute[ "check" ] : [];
+            $replies = ( isset( $attribute[ "reply" ] ) ) ? $attribute[ "reply" ] : [];
+
+            $groups[] = new Group( $groupName, $checks, $replies );
+        }
+        
+        return $groups;
+    }
+
+
 
     public static function getAll() {
     

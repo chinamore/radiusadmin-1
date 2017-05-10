@@ -30,14 +30,26 @@ class UserController extends Controller {
    
     public function actionList( $request, $response ) {
 
-        return $this->view->render( $response, "Radius/User/list.html");
+        $name = $request->getQueryParam( "name", "" );
+
+        $attribute = $request->getQueryParam( "attribute", "" );
+
+        $users = User::find( $name, $attribute );
+
+        return $this->view->render( $response, "Radius/User/list.html", [
+        
+            "users"=>$users
+        ]);
     }
 
     public function actionUpdate( $request, $response ) {
 
+
+        $name = $request->getQueryParam( "name", "" );
+
         $groups = Group::getAll();
 
-        $user = User::get( "paulo" );
+        $user = User::get( $name );
 
         $operators = Radcheck::getOperators();
 

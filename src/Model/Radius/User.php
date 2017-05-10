@@ -122,6 +122,36 @@ class User {
         return $attributes;
     }
 
+    public static function find( $name, $attribute = "" ) {
+        
+        $users = [];
+
+        $name = "%" . $name . "%";
+
+        $attribute = "%" . $attribute . "%";
+
+        $attributesCheck = RadCheck::where( "username", "like", $name  )
+            ->where( "attribute", "like", $attribute )
+            ->get();
+ 
+        $attributesReply = RadReply::where( "username", "like", $name )
+            ->where( "attribute", "like", $attribute )
+            ->get();
+
+        $attributes = self::sortByName( $attributesCheck, $attributesReply );
+
+        foreach( $attributes as $userName => $attribute ) {
+        
+            $checks = ( isset( $attribute[ "check" ] ) ) ? $attribute[ "check" ] : [];
+            $replies = ( isset( $attribute[ "reply" ] ) ) ? $attribute[ "reply" ] : [];
+
+            $users[] = new User( $userName, $checks, $replies );
+        }
+        
+        return $users;
+    }
+
+
     public static function get( $name ) {
     
         $checks = RadCheck::where( "username", $name )->get();
