@@ -33,9 +33,9 @@
 
                     <select name="user[grupos][]" multiple size=5 class="ls-input-text">
     
-                        {% for group in groups %}
+                        {% for group in user.groups %}
+
                             <option value="{{group.name}}">{{group.name}}</option>        
-            
                         {% endfor %}
 
                     </select>
