@@ -1,0 +1,250 @@
+{% extends "Radius/Layouts/layout.html" %} 
+
+{% block content %}
+
+    <h1 class="ls-title-intro ls-ico-user">Estatisticas usuário</h1>
+
+    <div class="ls-box-filter">
+        
+        <form action="{{dir}}/usuarios/listar" class="ls-form ls-form-inline">
+            
+            
+            <input type="hidden" name="page" value="{{page}}" />
+
+            <label class="ls-label col-lg-3 col-md-6 col-sm-12">
+                <b class="ls-label-text">Período</b>
+                <div class="ls-custom-select">
+                    <select name="period" id="select_period" class="ls-select">
+                        <option>Hoje</option>
+                        <option>Ontem</option>
+                        <option>Última semana</option>
+                        <option>Últimos 30 dias</option>
+                        <option>Últimos 6 meses</option>
+                        <option>Últimos 12 meses</option>
+                        <option>Personalizado</option>
+                    </select>
+                </div>
+            </label>
+
+            <label class="ls-label col-lg-2 col-md-3 col-sm-12">
+                <div class="ls-prefix-group">
+                    
+                    <span id="new_feature_custom_filter_2" 
+                        data-ls-module="popover" 
+                        data-content="Escolha o período desejado e clique em 'Filtrar'.">
+                    </span>
+                    
+                    <input type="text" 
+                        name="range_start" 
+                        class="datepicker ls-daterange" 
+                        placeholder="aaaa/mm/dd" 
+                        id="datepicker1" 
+                        data-ls-daterange="#datepicker2"
+                        data-format="aaaa/mm/dd"/>
+                    
+                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker1" href="#"></a>
+                </div>
+            </label>
+
+            <label class="ls-label col-lg-2 col-md-3 col-sm-12">
+                <div class="ls-prefix-group">
+                    
+                    <span id="new_feature_custom_filter_2" 
+                        data-ls-module="popover" 
+                        data-content="Escolha o período desejado e clique em 'Filtrar'.">
+                    </span>
+                    
+                    <input type="text" 
+                        name="range_start" 
+                        class="datepicker ls-daterange" 
+                        placeholder="aaaa/mm/dd" 
+                        id="datepicker2" />
+                    
+                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker2" href="#"></a>
+                </div>
+            </label>
+
+
+            <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
+        </form>
+    </div>
+
+
+    <h2 class="ls-title-4 ls-md-margin-top">{{user.name}}</h2>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <p>Resumo conexões do usuário por período.</p>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <p class="ls-float-right ls-float-none-xs">
+                Período selecionado: <strong>15/06/2015 à 22/06/2015</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="ls-clearfix"></div>
+
+    <div class="ls-board-box">
+        <div id="sending-stats" class="row">
+    
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Conexões</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+                        <strong>1234</strong>
+                        <small>Conexões</small>
+                    </div>
+            
+                    <div class="ls-box-footer"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Dispositivos</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+                        <strong>5</strong>
+                        <small>Dispositivos diferentes</small>
+                    </div>
+            
+                    <div class="ls-box-footer"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Tempo médio</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+                        <strong>60</strong>
+                        <small>Segundos</small>
+                    </div>
+            
+                    <div class="ls-box-footer"></div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Comsumo médio</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+
+                        <div class="ls-half-board-data">
+                            
+                            <canvas id="chart-down-up"></canvas>
+                        </div>
+
+                        <div class="ls-half-board-data">
+                            <strong class="ls-color-theme">300</strong>
+                            <small>Download</small>
+                            <strong class="ls-color-danger">500</strong>
+                            <small>Upload</small>
+                        </div>
+
+
+                    </div>
+            
+                    <div class="ls-box-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row ls-md-margin-top">
+        <div class="col-md-12">
+    
+            <table class="ls-table">
+                
+                <thead>
+                    <tr>
+                        <th class="ls-text-sm">IP</th>
+                        <th class="ls-text-sm">Dispositivo</th>
+                        <th class="ls-text-sm">Inicio</th>
+                        <th class="ls-text-sm">Duração</th>
+                        <th class="ls-text-sm">Down</th>
+                        <th class="ls-text-sm">Up</th>
+                        <th class="ls-text-sm">NAS</th>
+                        <th class="ls-text-sm"></th>
+                    </tr>
+                </thead>
+                    
+                <tbody>
+
+                {% for acct in radAccts %}
+                    <tr>                        
+                        <td class="ls-text-xs">{{acct.framedipaddress}}</td>
+                        <td class="ls-text-xs">{{acct.callingstationid}}</td>
+                        <td class="ls-text-xs">{{acct.acctstarttime}}</td>
+                        <td class="ls-text-xs">{{acct.acctsessiontime}}</td>
+                        <td class="ls-text-xs">{{acct.acctinputoctets}}</td>
+                        <td class="ls-text-xs">{{acct.acctoutputoctets}}</td>
+                        <td class="ls-text-xs">{{acct.nasipaddress}}</td>
+                        <td class="ls-float-right">
+                            <a href="#" class="ls-btn ls-ico-zoomin">Mais</a>      
+                        </td>
+                    </tr>
+
+                {% else %}
+                    <tr>
+                        <td colspan=8>Nenhum registro para exibir</td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <ul class="ls-pager">
+
+                {% if page - 1 >= 0 %}
+
+                    <li>
+                        <a href="{{dir}}/usuarios/estatisticas?nome={{name}}&pagina={{page - 1}}">
+                            &laquo; Anterior
+                        </a>
+                    </li>
+                {% endif %}
+
+                    <li class="counter">
+                        Pág. {{page + 1}}
+                    </li>
+
+                {% if users is not empty %}
+                
+                    <li>
+                        <a href="{{dir}}/usuarios/listar?nome={{name}}&pagina={{page + 1}}">
+                            Próximo &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

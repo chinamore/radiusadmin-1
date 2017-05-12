@@ -15,7 +15,8 @@ gulp.task( "vendor", function() {
     var filesJS = [
 
         "assets/private/bower_components/jquery/dist/jquery.js",    
-        "assets/private/bower_components/locawebstyle/dist/javascripts/locastyle.js"
+        "assets/private/bower_components/locawebstyle/dist/javascripts/locastyle.js",
+        "assets/private/bower_components/chart.js/dist/Chart.min.js"
     ];
 
     var filesCSS = [

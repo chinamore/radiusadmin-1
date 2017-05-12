@@ -7,9 +7,12 @@ use App\Controller\Controller;
 use App\Model\Radius\User;
 use App\Model\Radius\Group;
 use App\Model\Radius\RadCheck;
+use App\Model\Radius\RadAcct;
 
 class UserController extends Controller {
     
+
+
     public function __construct( $container ) {
     
         parent::__construct( $container );
@@ -81,20 +84,31 @@ class UserController extends Controller {
         return $this->view->render( $response, "Radius/User/delete.html");
     }
 
-    private function getAttributesCheck( $userName = null) {
-    
-        $attributes = [];
-
-      
+    public function actionStatistic( $request, $response ) {
+ 
+        $name = $request->getQueryParam( "nome", "" );
         
+        $page = $request->getQueryParam( "pagina", 0 );
+            
+        $user = User::get( $name );
 
-        
+        $take = 50;
+
+        $skip = $take * $page; 
+
+        $radAccts = RadAcct::where( "username", $name )
+            ->orderBy( "acctstarttime", "desc" )
+            ->skip( $skip )
+            ->take( $take )
+            ->get();
+
+        return $this->view->render( $response, "Radius/User/statistic.html", [
+
+            "user"=>$user,
+            "page"=>$page,
+            "radAccts"=>$radAccts
+
+        ]);
     }
-
-
-
-
-
-
 
 }
