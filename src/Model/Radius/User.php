@@ -2,6 +2,8 @@
 
 namespace App\Model\Radius;
 
+use Illuminate\Database\Capsule\Manager;
+
 class User {
 
     private $properties = [
@@ -122,7 +124,7 @@ class User {
         return $attributes;
     }
 
-    public static function find( $name, $attribute = "" ) {
+    public static function find( $name, $attribute = "", $skip = null, $take = 10 ) {
         
         $users = [];
 
@@ -130,12 +132,34 @@ class User {
 
         $attribute = "%" . $attribute . "%";
 
-        $attributesCheck = RadCheck::where( "username", "like", $name  )
+        $queryRadcheck = RadCheck::select( "username" )
+            ->where( "username", "like", $name )
             ->where( "attribute", "like", $attribute )
+            ->distinct();
+
+        $query = RadReply::select( "username" )
+            ->where( "username", "like", $name )
+            ->where( "attribute", "like", $attribute )
+            ->union( $queryRadcheck )
+            ->distinct()
+            ->orderBy( "username", "asc" );
+           
+        if( $skip != null ) {
+        
+            $query = $query->skip( $skip );
+        }
+    
+        if( $take != null ) {
+            
+            $query = $query->take( $take );
+        }
+
+        $names = $query->get();
+
+        $attributesCheck = RadCheck::whereIn( "username", $names  )
             ->get();
  
-        $attributesReply = RadReply::where( "username", "like", $name )
-            ->where( "attribute", "like", $attribute )
+        $attributesReply = RadReply::whereIn( "username", $names )
             ->get();
 
         $attributes = self::sortByName( $attributesCheck, $attributesReply );

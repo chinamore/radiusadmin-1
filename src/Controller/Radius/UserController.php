@@ -30,15 +30,29 @@ class UserController extends Controller {
    
     public function actionList( $request, $response ) {
 
-        $name = $request->getQueryParam( "name", "" );
+        $name = $request->getQueryParam( "nome", "" );
 
-        $attribute = $request->getQueryParam( "attribute", "" );
+        $attribute = $request->getQueryParam( "atributo", "" );
 
-        $users = User::find( $name, $attribute );
+        $page = ( int ) $request->getQueryParam( "pagina", 0 );
+    
+        if( $page < 0 ) {
+                     
+            $page = 0;
+        }
+
+        $take = 50;
+
+        $skip = $take * $page; 
+
+        $users = User::find( $name, $attribute, $skip, $take );
 
         return $this->view->render( $response, "Radius/User/list.html", [
         
-            "users"=>$users
+            "users"=>$users,
+            "name"=>$name,
+            "attribute"=>$attribute,
+            "page"=>$page,
         ]);
     }
 

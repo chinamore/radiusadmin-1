@@ -8,15 +8,25 @@
         
         <form action="{{dir}}/usuarios/listar" class="ls-form ls-form-inline">
             
-            <label class="ls-label col-md-4 col-sm-4">
+            
+            <input type="hidden" name="page" value="{{page}}" />
+
+
+            <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Nome</b>
-                <input type="text" name="name" required />
+                <input type="text" name="nome" value="{{name}}" required />
             </label>
 
-            <label class="ls-label col-md-4 col-sm-4">
+            <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Atributo</b>
-                <input type="text" name="name" />
+                <input type="text" name="atributo" value="{{attribute}}" />
             </label>
+
+            <label class="ls-label col-md-3 col-sm-3">
+                <b class="ls-label-text">Grupo</b>
+                <input type="text" name="grupo" value="{{group}}" />
+            </label>
+
 
             <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
         </form>
@@ -44,16 +54,48 @@
 
                             <a href="#" class="ls-btn ls-ico-stats">Estatisticas</a>
                     
-                            <a href="{{dir}}/usuarios/alterar?name={{user.name}}" class="ls-btn ls-ico-edit-admin">Alterar</a>
+                            <a href="{{dir}}/usuarios/alterar?nome={{user.name}}" class="ls-btn ls-ico-edit-admin">Alterar</a>
                     
-                            <a href="{{dir}}/usuarios/apagar?name={{user.name}}" class="ls-btn ls-ico-remove">Remover</a>
+                            <a href="{{dir}}/usuarios/apagar?nome={{user.name}}" class="ls-btn ls-ico-remove">Remover</a>
                         </td>
+                    </tr>
+
+                {% else %}
+                    <tr>
+                        <td colspan=2>Nenhum registro para exibir</td>
                     </tr>
 
                 {% endfor %}
 
                 </tbody>
             </table>
+
+            <ul class="ls-pager">
+
+                {% if page - 1 >= 0 %}
+
+                    <li>
+                        <a href="{{dir}}/usuarios/listar?nome={{name}}&atributo={{attribute}}&pagina={{page - 1}}">
+                            &laquo; Anterior
+                        </a>
+                    </li>
+                {% endif %}
+
+                    <li class="counter">
+                        Pág. {{page}}
+                    </li>
+
+                {% if users is not empty %}
+                
+                    <li>
+                        <a href="{{dir}}/usuarios/listar?nome={{name}}&atributo={{attribute}}&pagina={{page + 1}}">
+                            Próximo &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+
+
         </div>
     </div>
 

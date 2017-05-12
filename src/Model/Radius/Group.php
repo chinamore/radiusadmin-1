@@ -101,7 +101,7 @@ class Group {
         return $attributes;
     }
 
-    public static function find( $name, $attribute = "" ) {
+    public static function find( $name, $attribute = "", $skip = null, $take = null ) {
         
         $groups = [];
 
@@ -109,12 +109,34 @@ class Group {
 
         $attribute = "%" . $attribute . "%";
 
-        $attributesCheck = RadGroupCheck::where( "groupname", "like", $name  )
+        $queryRadGroupCheck = RadGroupCheck::select( "groupname" )
+            ->where( "groupname", "like", $name )
             ->where( "attribute", "like", $attribute )
+            ->distinct();
+
+        $query = RadGroupReply::select( "groupname" )
+            ->where( "groupname", "like", $name )
+            ->where( "attribute", "like", $attribute )
+            ->union( $queryRadGroupCheck )
+            ->distinct()
+            ->orderBy( "groupname", "asc" );
+           
+        if( $skip != null ) {
+        
+            $query = $query->skip( $skip );
+        }
+    
+        if( $take != null ) {
+            
+            $query = $query->take( $take );
+        }
+
+        $names = $query->get();
+
+        $attributesCheck = RadGroupCheck::whereIn( "groupname", $names  )
             ->get();
  
-        $attributesReply = RadGroupReply::where( "groupname", "like", $name )
-            ->where( "attribute", "like", $attribute )
+        $attributesReply = RadGroupReply::whereIn( "groupname", $names )
             ->get();
 
         $attributes = self::sortByName( $attributesCheck, $attributesReply );
@@ -126,12 +148,10 @@ class Group {
 
             $groups[] = new Group( $groupName, $checks, $replies );
         }
-        
+
         return $groups;
     }
-
-
-
+   
     public static function getAll() {
     
         $groups = [];

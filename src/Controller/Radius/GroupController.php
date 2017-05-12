@@ -25,19 +25,30 @@ class GroupController extends Controller {
    
     public function actionList( $request, $response ) {
 
-        $name = $request->getQueryParam( "name", "" );
+        $name = $request->getQueryParam( "nome", "" );
 
-        $attribute = $request->getQueryParam( "attribute", "" );
+        $attribute = $request->getQueryParam( "atributo", "" );
 
-        $groups = Group::find( $name, $attribute );
+        $page = ( int ) $request->getQueryParam( "pagina", 0 );
+    
+        if( $page < 0 ) {
+                     
+            $page = 0;
+        }
 
+        $take = 50;
+
+        $skip = $take * $page; 
+
+        $groups = Group::find( $name, $attribute, $skip, $take );
 
         return $this->view->render( $response, "Radius/Group/list.html", [
         
-            "groups"=>$groups
+            "groups"=>$groups,
+            "name"=>$name,
+            "attribute"=>$attribute,
+            "page"=>$page,
         ]);
-
-        return $this->view->render( $response, "Radius/Group/list.html");
     }
 
     public function actionUpdate( $request, $response ) {
