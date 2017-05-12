@@ -59,11 +59,12 @@ class UserController extends Controller {
     public function actionUpdate( $request, $response ) {
 
 
-        $name = $request->getQueryParam( "name", "" );
+        $name = $request->getQueryParam( "nome", "" );
 
         $groups = Group::getAll();
 
         $user = User::get( $name );
+
 
         $operators = Radcheck::getOperators();
 

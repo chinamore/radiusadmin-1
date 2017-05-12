@@ -16,7 +16,7 @@
                 <label class="ls-label col-md-4">
                     <b class="ls-label-text">Nome</b>
                     <p class="ls-label-info"></p>
-                    <input type="text" name="user[name]" value="{{user.name}}" placeholder="" required />
+                    <input type="text" name="usuario[nome]" value="{{user.name}}" placeholder="" required />
 
                     {% if errors["name"] is not empty %}
                         <p class="ls-error">
@@ -31,7 +31,7 @@
                     <b class="ls-label-text">Grupos</b>
                     <p class="ls-label-info"></p>
 
-                    <select name="user[grupos][]" multiple size=5 class="ls-input-text">
+                    <select name="grupos[]" multiple size=5 class="ls-input-text">
     
                         {% for group in user.groups %}
 

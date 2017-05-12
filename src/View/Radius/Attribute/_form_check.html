@@ -15,14 +15,14 @@
    
             <tr>
                 <td>
-                    <input type="text" name="check-attribute[]" value="{{attribute['attribute']}}" placeholder=""/>
+                    <input type="text" name="atributo-verificacao[]" value="{{attribute['attribute']}}" placeholder=""/>
                 </td>
                 
                 <td>
 
                     <div class="ls-custom-select">
                         
-                        <select name="check-operator[]" class="ls-select">
+                        <select name="operador-verificacao[]" class="ls-select">
                             {% for operator in operators %}                           
                                 <option value="{{operator}}">{{operator}}</option>
                             {% endfor %}
@@ -31,7 +31,7 @@
                 </td>
                                 
                 <td>
-                    <input type="text" name="check-value[]" value="{{attribute['value']}}" placeholder="" />
+                    <input type="text" name="valor-verificacao[]" value="{{attribute['value']}}" placeholder="" />
                 </td> 
                 
                 <td>
@@ -43,13 +43,13 @@
 
         <tr>
             <td>
-                <input type="text" id="new-attribute-check" value="" placeholder=""/>
+                <input type="text" id="atributo-verificacao-novo" value="" placeholder=""/>
             </td>
 
             <td>
                 <div class="ls-custom-select">
                         
-                    <select id="new-operator-check" class="ls-select">
+                    <select id="operador-verificacao-novo" class="ls-select">
                         {% for operator in operators %}                           
                             <option value="{{operator}}">{{operator}}</option>
                         {% endfor %}
@@ -58,7 +58,7 @@
             </td>
                                 
             <td>
-                <input type="text" id="new-value-check" value="" placeholder="" />
+                <input type="text" id="valor-verificacao-novo" value="" placeholder="" />
             </td> 
                                 
             <td>

@@ -11,18 +11,18 @@
                     
     <tbody>
 
-        {% for attribute in user.attributesRaply %}
+        {% for attribute in user.attributesReply %}
    
             <tr>
                 <td>
-                    <input type="text" name="reply-attribute[]" value="{{attribute['attribute']}}" placeholder=""/>
+                    <input type="text" name="atributo-resposta[]" value="{{attribute['attribute']}}" placeholder=""/>
                 </td>
                 
                 <td>
 
                     <div class="ls-custom-select">
                         
-                        <select name="reply-operator[]" class="ls-select">
+                        <select name="operador-resposta[]" class="ls-select">
                             {% for operator in operators %}                           
                                 <option value="{{operator}}">{{operator}}</option>
                             {% endfor %}
@@ -31,7 +31,7 @@
                 </td>
                                 
                 <td>
-                    <input type="text" name="reply-value[]" value="{{attribute['value']}}" placeholder="" />
+                    <input type="text" name="valor-resposta[]" value="{{attribute['value']}}" placeholder="" />
                 </td> 
                 
                 <td>
@@ -43,13 +43,13 @@
 
         <tr>
             <td>
-                <input type="text" id="new-attribute-reply" value="" placeholder=""/>
+                <input type="text" id="atributo-verificacao-novo" value="" placeholder=""/>
             </td>
 
             <td>
                 <div class="ls-custom-select">
                         
-                    <select id="new-operator-reply" class="ls-select">
+                    <select id="operador-verificacao-novo" class="ls-select">
                         {% for operator in operators %}                           
                             <option value="{{operator}}">{{operator}}</option>
                         {% endfor %}
@@ -58,7 +58,7 @@
             </td>
                                 
             <td>
-                <input type="text" id="new-value-reply" value="" placeholder="" />
+                <input type="text" id="valor-verificacao-novo" value="" placeholder="" />
             </td> 
                                 
             <td>
