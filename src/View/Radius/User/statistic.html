@@ -6,61 +6,53 @@
 
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/usuarios/listar" class="ls-form ls-form-inline">
+        <form action="{{dir}}/usuarios/estatistica" class="ls-form ls-form-inline">
             
-            
-            <input type="hidden" name="page" value="{{page}}" />
+            <input type="hidden" name="nome" value="{{user.name}}" />           
 
-            <label class="ls-label col-lg-3 col-md-6 col-sm-12">
-                <b class="ls-label-text">Período</b>
+            <label class="ls-label col-md-3 col-sm-3">
+                <b class="ls-label-text">Dispositivo</b>
                 <div class="ls-custom-select">
-                    <select name="period" id="select_period" class="ls-select">
-                        <option>Hoje</option>
-                        <option>Ontem</option>
-                        <option>Última semana</option>
-                        <option>Últimos 30 dias</option>
-                        <option>Últimos 6 meses</option>
-                        <option>Últimos 12 meses</option>
-                        <option>Personalizado</option>
+                    <select name="mac" class="ls-select">
+                        <option value="">Todos</option>
                     </select>
                 </div>
             </label>
 
+            <label class="ls-label col-md-3 col-sm-3">
+                <b class="ls-label-text">NAS</b>
+                <div class="ls-custom-select">
+                    <select name="nas" class="ls-select">
+                        <option value="">Todos</option>
+                    </select>
+                </div>
+            </label>
             <label class="ls-label col-lg-2 col-md-3 col-sm-12">
                 <div class="ls-prefix-group">
                     
-                    <span id="new_feature_custom_filter_2" 
-                        data-ls-module="popover" 
-                        data-content="Escolha o período desejado e clique em 'Filtrar'.">
-                    </span>
-                    
                     <input type="text" 
-                        name="range_start" 
+                        name="data1" 
                         class="datepicker ls-daterange" 
-                        placeholder="aaaa/mm/dd" 
-                        id="datepicker1" 
-                        data-ls-daterange="#datepicker2"
-                        data-format="aaaa/mm/dd"/>
+                        placeholder="Data inicio" 
+                        id="date1" 
+                        value="{{date1}}"
+                        data-ls-daterange="#date2"/>
                     
-                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker1" href="#"></a>
+                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#date1" href="#"></a>
                 </div>
             </label>
 
             <label class="ls-label col-lg-2 col-md-3 col-sm-12">
                 <div class="ls-prefix-group">
-                    
-                    <span id="new_feature_custom_filter_2" 
-                        data-ls-module="popover" 
-                        data-content="Escolha o período desejado e clique em 'Filtrar'.">
-                    </span>
-                    
+                   
                     <input type="text" 
-                        name="range_start" 
+                        name="data2" 
                         class="datepicker ls-daterange" 
-                        placeholder="aaaa/mm/dd" 
-                        id="datepicker2" />
+                        placeholder="Data final" 
+                        id="date2" 
+                        value="{{date2}}"/>
                     
-                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#datepicker2" href="#"></a>
+                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#date2" href="#"></a>
                 </div>
             </label>
 
@@ -77,9 +69,13 @@
             <p>Resumo conexões do usuário por período.</p>
         </div>
         <div class="col-md-6 col-sm-6">
-            <p class="ls-float-right ls-float-none-xs">
-                Período selecionado: <strong>15/06/2015 à 22/06/2015</strong>
-            </p>
+
+                <p class="ls-float-right ls-float-none-xs">
+                    Período selecionado: 
+                    <strong>
+                        {{ date1 ?: '' }} até {{ date2 ?: 'Agora' }}
+                    </strong>
+                </p>
         </div>
     </div>
 
@@ -96,7 +92,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong>1234</strong>
+                        <strong class="ls-color-theme">{{qtAccts}}</strong>
                         <small>Conexões</small>
                     </div>
             
@@ -112,7 +108,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong>5</strong>
+                        <strong class="ls-color-theme">{{qtMacs}}</strong>
                         <small>Dispositivos diferentes</small>
                     </div>
             
@@ -128,7 +124,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong>60</strong>
+                        <strong class="ls-color-theme">{{timeAvg|round}}</strong>
                         <small>Segundos</small>
                     </div>
             
@@ -152,9 +148,9 @@
                         </div>
 
                         <div class="ls-half-board-data">
-                            <strong class="ls-color-theme">300</strong>
+                            <strong class="ls-color-theme">{{downloadAvg|round}}</strong>
                             <small>Download</small>
-                            <strong class="ls-color-danger">500</strong>
+                            <strong class="ls-color-danger">{{uploadAvg|round}}</strong>
                             <small>Upload</small>
                         </div>
 
@@ -194,13 +190,13 @@
                     <tr>                        
                         <td class="ls-text-xs">{{acct.framedipaddress}}</td>
                         <td class="ls-text-xs">{{acct.callingstationid}}</td>
-                        <td class="ls-text-xs">{{acct.acctstarttime}}</td>
+                        <td class="ls-text-xs">{{acct.acctstarttime | date( "d/m/Y H:i:s" )}}</td>
                         <td class="ls-text-xs">{{acct.acctsessiontime}}</td>
                         <td class="ls-text-xs">{{acct.acctinputoctets}}</td>
                         <td class="ls-text-xs">{{acct.acctoutputoctets}}</td>
                         <td class="ls-text-xs">{{acct.nasipaddress}}</td>
                         <td class="ls-float-right">
-                            <a href="#" class="ls-btn ls-ico-zoomin">Mais</a>      
+                            <a href="#" class="ls-btn ls-ico-zoomin"></a>      
                         </td>
                     </tr>
 
@@ -219,7 +215,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/usuarios/estatisticas?nome={{name}}&pagina={{page - 1}}">
+                        <a href="{{dir}}/usuarios/estatisticas?nome={{user.name}}&pagina={{page - 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -232,7 +228,8 @@
                 {% if users is not empty %}
                 
                     <li>
-                        <a href="{{dir}}/usuarios/listar?nome={{name}}&pagina={{page + 1}}">
+
+                        <a href="{{dir}}/usuarios/estatisticas?nome={{user.name}}&pagina={{page + 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
                             Próximo &raquo;
                         </a>
                     </li>
@@ -243,8 +240,11 @@
         </div>
     </div>
 
+{% endblock %}
 
+{% block js %}
 
-
+    <script type="text/javascript" src="{{dir}}/assets/public/js/user/user-statistic.js"></script>
 
 {% endblock %}
+ 

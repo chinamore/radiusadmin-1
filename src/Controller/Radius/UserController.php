@@ -9,10 +9,10 @@ use App\Model\Radius\Group;
 use App\Model\Radius\RadCheck;
 use App\Model\Radius\RadAcct;
 
+use \DateTime;
+
 class UserController extends Controller {
     
-
-
     public function __construct( $container ) {
     
         parent::__construct( $container );
@@ -88,27 +88,84 @@ class UserController extends Controller {
  
         $name = $request->getQueryParam( "nome", "" );
         
+        $mac = $request->getQueryParam( "mac", "" );
+        
+        $nas = $request->getQueryParam( "nas", "" );
+        
         $page = $request->getQueryParam( "pagina", 0 );
-            
+        
+        $date1 = $request->getQueryParam( "data1", null );
+        
+        $date2 = $request->getQueryParam( "data2", null );
+        
         $user = User::get( $name );
 
         $take = 50;
 
         $skip = $take * $page; 
 
-        $radAccts = RadAcct::where( "username", $name )
+        $radAccts = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
             ->orderBy( "acctstarttime", "desc" )
             ->skip( $skip )
             ->take( $take )
             ->get();
 
+        $qtAccts = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
+            ->count();
+    
+        $qtMacs = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
+            ->distinct()
+            ->count(  "callingstationid"  );
+        
+        $timeAvg = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
+            ->avg( "acctsessiontime" );
+
+        $uploadAvg = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
+            ->avg( "acctinputoctets" );
+
+        $downloadAvg = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
+            ->avg( "acctoutputoctets" );
+
+
         return $this->view->render( $response, "Radius/User/statistic.html", [
 
             "user"=>$user,
+            "mac"=>$mac,
+            "nas"=>$nas,
+            "date1"=>$date1,
+            "date2"=>$date2,
             "page"=>$page,
+            "qtAccts"=>$qtAccts,
+            "qtMacs"=>$qtMacs,
+            "timeAvg"=>$timeAvg,
+            "uploadAvg"=>$uploadAvg,
+            "downloadAvg"=>$downloadAvg,
             "radAccts"=>$radAccts
 
         ]);
+    }
+
+    private function getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 ) {
+    
+         $query = RadAcct::where( "username", $name )
+            ->where( "callingstationid", "like", "%$mac%" )
+            ->where( "nasipaddress", "like", "%$nas%" );
+
+        if( !empty( $date1 ) ) {
+ 
+            $date = DateTime::createFromFormat( "d/m/Y", $date1 );
+
+            $query = $query->where( "acctstarttime", ">=", $date->format( "Y-m-d" ) );
+        }
+
+        if( !empty( $date2 ) ) {
+         
+            $date = DateTime::createFromFormat( "d/m/Y", $date2 );
+
+            $query = $query->where( "acctstarttime", "<=", $date->format( "Y-m-d" ) );
+        }
+  
+        return $query;
     }
 
 }

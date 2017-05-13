@@ -44,31 +44,34 @@ gulp.task( "vendor", function() {
 });
 
 gulp.task("app", function() {
-    
+ 
     var filesJS = [
 
-        "assets/private/js/*"
+        ["assets/private/js/*js", "assets/public/js/" ],
+        ["assets/private/js/user/*js", "assets/public/js/user/" ],
     ];
-    
+                                                                
     var filesCSS = [
 
-        "assets/private/css/*"
+        ["assets/private/css/*css", "assets/public/css/" ]
     ];
 
-    var folderJS = "assets/public/js/";
-    var folderCSS = "assets/public/css/";
+    filesJS.forEach( function( js, indice ) {
 
-    gulp.src( filesJS )
-        .pipe( concat( "app.js" ) )
-        .pipe( uglify() )
-        .pipe( gulp.dest( folderJS ) );
+        gulp.src( js[0] )
+            .pipe( uglify() )
+            .pipe( gulp.dest( js[1] ) );
+    });
 
-    gulp.src( filesCSS )
-        .pipe( concat( "app.css" ) )
-        .pipe( minCSS() )
-        .pipe( gulp.dest( folderCSS ) );
+    filesCSS.forEach( function( css, indice ) {
+
+        gulp.src( css[0] )
+            .pipe( minCSS() )
+            .pipe( gulp.dest( css[1] ) );
+    });
 
 });
+  
 
 gulp.task( "default", function() {
 

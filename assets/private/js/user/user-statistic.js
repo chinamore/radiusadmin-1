@@ -1,3 +1,5 @@
+
+
         var data = {
             labels: [
                 "Red", "Blue"
@@ -38,4 +40,8 @@
 
             }
         });
+
+
+
+
 
