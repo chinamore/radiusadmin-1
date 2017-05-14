@@ -33,6 +33,8 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Atributos de verificação</th>
+                        <th>Atributos de resposta</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -42,14 +44,40 @@
                 {% for group in groups %}
                     <tr>
                         <td>{{group.name}}</td>
-                    
-                        <td class="ls-float-right">
 
-                            <a href="#" class="ls-btn ls-ico-stats">Estatisticas</a>
+                        <td>
+                            <div class="ls-custom-select">
+                                <select class="ls-select">
+                                    {% for radCheck in group.attributesCheck %}
+
+                                        <option>{{radCheck.attribute}}</option>
+                                    {% else %}
+                                    
+                                        <option>Nenhum</option>
+                                    {% endfor %}
+                                </select>
+                             </div>
+                        </td>
+
+                         <td>
+                            <div class="ls-custom-select">
+                                <select class="ls-select">
+                                    {% for radReply in group.attributesReply %}
+
+                                        <option>{{radReply.attribute}}</option>
+                                    {% else %}
+                                    
+                                        <option>Nenhum</option>
+                                    {% endfor %}
+                                </select>
+                             </div>
+                        </td>
+
+                        <td>
                     
-                            <a href="{{dir}}/grupos/alterar?nome={{group.name}}" class="ls-btn ls-ico-edit-admin">Alterar</a>
+                            <a href="{{dir}}/grupos/alterar?nome={{group.name}}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                            <a href="{{dir}}/grupos/apagar?nome={{group.name}}" class="ls-btn ls-ico-remove">Remover</a>
+                            <a href="{{dir}}/grupos/apagar?nome={{group.name}}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 

@@ -33,13 +33,18 @@
     </div>
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
     
+            <div class="table-responsive">
+
             <table class="ls-table">
                 
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Atributos de Verificação</th>
+                        <th>Atributos de Resposta</th>
+                        <th>Grupos</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -48,27 +53,72 @@
 
                 {% for user in users %}
                     <tr>
+                        
                         <td>{{user.name}}</td>
-                    
-                        <td class="ls-float-right">
 
-                            <a href="{{dir}}/usuarios/estatistica?nome={{user.name}}" class="ls-btn ls-ico-stats">Estatisticas</a>
+                        <td>
+                            <div class="ls-custom-select">
+                                <select class="ls-select">
+                                    {% for radCheck in user.attributesCheck %}
+
+                                        <option value="1">{{radCheck.attribute}}</option>
+                                    {% else %}
+
+                                        <option>Nenhum</option>
+                                    {% endfor %}
+                                </select>
+                             </div>
+                        </td>
+
+                        <td>
+                            <div class="ls-custom-select">
+                                <select class="ls-select">
+                                    {% for radReply in user.attributesReply %}
+
+                                        <option>{{radReply.attribute}}</option>
+                                    {% else %}
+                                    
+                                        <option>Nenhum</option>
+                                    {% endfor %}
+                                </select>
+                             </div>
+                        </td>
+
+                        <td>
+                            <div class="ls-custom-select">
+                                <select class="ls-select">
+                                    {% for group in user.groups %}
+
+                                        <option>{{group.name}}</option>
+                                    {% else %}
+                                    
+                                        <option>Nenhum</option>
+                                    {% endfor %}
+                                </select>
+                             </div>
+                        </td>
+
+                        <td>
+
+                            <a href="{{dir}}/usuarios/estatistica?nome={{user.name}}" class="ls-btn ls-ico-stats"></a>
                     
-                            <a href="{{dir}}/usuarios/alterar?nome={{user.name}}" class="ls-btn ls-ico-edit-admin">Alterar</a>
+                            <a href="{{dir}}/usuarios/alterar?nome={{user.name}}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                            <a href="{{dir}}/usuarios/apagar?nome={{user.name}}" class="ls-btn ls-ico-remove">Remover</a>
+                           <a href="{{dir}}/usuarios/apagar?nome={{user.name}}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 
                 {% else %}
                     <tr>
-                        <td colspan=2>Nenhum registro para exibir</td>
+                        <td colspan=5>Nenhum registro para exibir</td>
                     </tr>
 
                 {% endfor %}
 
                 </tbody>
             </table>
+
+            </div>
 
             <ul class="ls-pager">
 
