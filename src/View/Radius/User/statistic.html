@@ -8,13 +8,22 @@
         
         <form action="{{dir}}/usuarios/estatistica" class="ls-form ls-form-inline">
             
-            <input type="hidden" name="nome" value="{{user.name}}" />           
+            <input type="hidden" name="nome" value="{{userName}}" />           
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Dispositivo</b>
                 <div class="ls-custom-select">
                     <select name="mac" class="ls-select">
+
                         <option value="">Todos</option>
+
+                        {% for device in devices %}
+                            
+                            <option value="{{device.mac}}" {{ device.mac == mac ? 'selected' : '' }} >
+                                {{device.mac}}
+                            </option>
+                        {% endfor %}
+
                     </select>
                 </div>
             </label>
@@ -23,7 +32,16 @@
                 <b class="ls-label-text">NAS</b>
                 <div class="ls-custom-select">
                     <select name="nas" class="ls-select">
+
                         <option value="">Todos</option>
+                    
+                        {% for client in clients %}
+                            
+                            <option value="{{client.nasipaddress}}" {{ client.nasipaddress == nas ? 'selected' : '' }} >
+                                {{client.nasipaddress}}
+                            </option>
+                        {% endfor %}
+
                     </select>
                 </div>
             </label>
@@ -62,7 +80,7 @@
     </div>
 
 
-    <h2 class="ls-title-4 ls-md-margin-top">{{user.name}}</h2>
+    <h2 class="ls-title-4 ls-md-margin-top">{{userName}}</h2>
 
     <div class="row">
         <div class="col-md-6 col-sm-6">
@@ -84,7 +102,7 @@
     <div class="ls-board-box">
         <div id="sending-stats" class="row">
     
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
                 <div class="ls-box">
                    
                     <div class="ls-box-head">
@@ -100,23 +118,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-3">
-                <div class="ls-box">
-                   
-                    <div class="ls-box-head">
-                        <h6 class="ls-title-4">Dispositivos</h6>
-                    </div>
-                   
-                   <div class="ls-box-body">
-                        <strong class="ls-color-theme">{{qtMacs}}</strong>
-                        <small>Dispositivos diferentes</small>
-                    </div>
-            
-                    <div class="ls-box-footer"></div>
-                </div>
-            </div>
-
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
                 <div class="ls-box">
                    
                     <div class="ls-box-head">
@@ -133,7 +135,7 @@
             </div>
 
 
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
                 <div class="ls-box">
                    
                     <div class="ls-box-head">
@@ -215,7 +217,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/usuarios/estatisticas?nome={{user.name}}&pagina={{page - 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
+                        <a href="{{dir}}/usuarios/estatistica?nome={{userName}}&pagina={{page - 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -225,11 +227,11 @@
                         Pág. {{page + 1}}
                     </li>
 
-                {% if users is not empty %}
+                {% if radAccts is not empty %}
                 
                     <li>
 
-                        <a href="{{dir}}/usuarios/estatisticas?nome={{user.name}}&pagina={{page + 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
+                        <a href="{{dir}}/usuarios/estatistica?nome={{userName}}&pagina={{page + 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
                             Próximo &raquo;
                         </a>
                     </li>

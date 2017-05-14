@@ -86,7 +86,7 @@ class UserController extends Controller {
 
     public function actionStatistic( $request, $response ) {
  
-        $name = $request->getQueryParam( "nome", "" );
+        $userName = $request->getQueryParam( "nome", "" );
         
         $mac = $request->getQueryParam( "mac", "" );
         
@@ -98,50 +98,53 @@ class UserController extends Controller {
         
         $date2 = $request->getQueryParam( "data2", null );
         
-        $user = User::get( $name );
+        $devices = RadAcct::select(  "callingstationid as mac"  )
+            ->where( "username", $userName )
+            ->distinct()
+            ->get();
+ 
+        $clients = RadAcct::select(  "nasipaddress"  )
+            ->where( "username", $userName )
+            ->distinct()
+            ->get();
+ 
+        $qtAccts = $this->getQueryBaseUserStatistic( $userName, $mac, $nas, $date1, $date2 )
+            ->count();
+
+        $timeAvg = $this->getQueryBaseUserStatistic( $userName, $mac, $nas, $date1, $date2 )
+            ->avg( "acctsessiontime" );
+
+        $uploadAvg = $this->getQueryBaseUserStatistic( $userName, $mac, $nas, $date1, $date2 )
+            ->avg( "acctinputoctets" );
+
+        $downloadAvg = $this->getQueryBaseUserStatistic( $userName, $mac, $nas, $date1, $date2 )
+            ->avg( "acctoutputoctets" );
 
         $take = 50;
 
         $skip = $take * $page; 
 
-        $radAccts = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
+        $radAccts = $this->getQueryBaseUserStatistic( $userName, $mac, $nas, $date1, $date2 )
             ->orderBy( "acctstarttime", "desc" )
             ->skip( $skip )
             ->take( $take )
             ->get();
 
-        $qtAccts = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
-            ->count();
-    
-        $qtMacs = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
-            ->distinct()
-            ->count(  "callingstationid"  );
-        
-        $timeAvg = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
-            ->avg( "acctsessiontime" );
-
-        $uploadAvg = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
-            ->avg( "acctinputoctets" );
-
-        $downloadAvg = $this->getQueryBaseUserStatistic( $name, $mac, $nas, $date1, $date2 )
-            ->avg( "acctoutputoctets" );
-
-
         return $this->view->render( $response, "Radius/User/statistic.html", [
 
-            "user"=>$user,
+            "userName"=>$userName,
             "mac"=>$mac,
             "nas"=>$nas,
             "date1"=>$date1,
             "date2"=>$date2,
             "page"=>$page,
             "qtAccts"=>$qtAccts,
-            "qtMacs"=>$qtMacs,
+            "devices"=>$devices,
+            "clients"=>$clients,
             "timeAvg"=>$timeAvg,
             "uploadAvg"=>$uploadAvg,
             "downloadAvg"=>$downloadAvg,
             "radAccts"=>$radAccts
-
         ]);
     }
 

@@ -87,6 +87,16 @@ class User {
         RadUserGroup::where( "groupname", $this->name )->delete();  
     }
 
+    public static function exists( $name ) {
+    
+        $qtChecks = RadCheck::where( "username", $name )->count();
+        
+        $qtReplies = RadReply::where( "username", $name )->count();
+        
+        return ( $qtChecks + $qtReplies ) > 0 ;
+    }    
+
+
     private static function sortByName( $attributesCheck, $attributesReply ) {
     
         $attributes = [];
