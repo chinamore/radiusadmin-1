@@ -21,3 +21,10 @@
     margin-right: 15px;
     margin-left: 15px;
 }
+
+.ls-board-box .ls-box {
+
+    background-color: #fff;
+    border: 1px solid #eee;
+}
+

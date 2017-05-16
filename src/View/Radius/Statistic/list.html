@@ -3,6 +3,289 @@
 {% block content %}
     
     <h1 class="ls-title-intro ls-ico-stats">Estatísticas</h1>
-    
 
+    <div class="ls-box-filter">
+        
+        <form action="{{dir}}/usuarios/estatistica" class="ls-form ls-form-inline">
+
+            <label class="ls-label col-md-3 col-sm-3">
+                <b class="ls-label-text">NAS</b>
+                <div class="ls-custom-select">
+                    <select name="nas" class="ls-select">
+
+                        <option value="">Todos</option>
+                    
+                        {% for client in clients %}
+                            
+                            <option value="{{client.nasipaddress}}" {{ client.nasipaddress == nas ? 'selected' : '' }} >
+                                {{client.nasipaddress}}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+            </label>
+ 
+            <label class="ls-label col-lg-2 col-md-3 col-sm-12">
+                <div class="ls-prefix-group">
+                    
+                    <input type="text" 
+                        name="data1" 
+                        class="datepicker ls-daterange" 
+                        placeholder="Data inicio" 
+                        id="date1" 
+                        value="{{date1}}"
+                        data-ls-daterange="#date2"/>
+                    
+                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#date1" href="#"></a>
+                </div>
+            </label>
+
+            <label class="ls-label col-lg-2 col-md-3 col-sm-12">
+                <div class="ls-prefix-group">
+                   
+                    <input type="text" 
+                        name="data2" 
+                        class="datepicker ls-daterange" 
+                        placeholder="Data final" 
+                        id="date2" 
+                        value="{{date2}}"/>
+                    
+                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#date2" href="#"></a>
+                </div>
+            </label>
+
+
+            <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
+        </form>
+    </div>
+
+    <h2 class="ls-title-4 ls-md-margin-top">{{userName}}</h2>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <p>Resumo conexões do usuário por período.</p>
+        </div>
+        <div class="col-md-6 col-sm-6">
+
+                <p class="ls-float-right ls-float-none-xs">
+                    Período selecionado: 
+                    <strong>
+                        {{ date1 ?: '' }} até {{ date2 ?: 'Agora' }}
+                    </strong>
+                </p>
+        </div>
+    </div>
+
+    <div class="ls-clearfix"></div>
+
+    <div class="ls-board-box">
+        <div id="sending-stats" class="row">
+    
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Conexões</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+                        <strong class="ls-color-theme">2340</strong>
+                        <small>Conexões</small>
+                    </div>
+            
+                    <div class="ls-box-footer"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Usuários</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+                        <strong class="ls-color-theme">245</strong>
+                        <small>Usuários</small>
+                    </div>
+            
+                    <div class="ls-box-footer"></div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Tempo médio</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+                        <strong class="ls-color-theme">{{timeAvg|round}}</strong>
+                        <small>Segundos</small>
+                    </div>
+             
+                    <div class="ls-box-footer"></div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6 col-md-3">
+                <div class="ls-box">
+                   
+                    <div class="ls-box-head">
+                        <h6 class="ls-title-4">Comsumo médio</h6>
+                    </div>
+                   
+                   <div class="ls-box-body">
+
+                        <div class="ls-half-board-data">
+                            
+                            <canvas id="chart-down-up"></canvas>
+                        </div>
+
+                        <div class="ls-half-board-data">
+                            <strong class="ls-color-theme">{{downloadAvg|round}}</strong>
+                            <small>Download</small>
+                            <strong class="ls-color-danger">{{uploadAvg|round}}</strong>
+                            <small>Upload</small>
+                        </div>
+
+
+                    </div>
+            
+                    <div class="ls-box-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ls-board-box">
+
+        <div class="row" >
+
+            <div class="col-md-6">
+                <div class="ls-box">
+
+                        <h6 class="ls-title-4">Resumo conexões</h6>
+                
+                        <canvas id="canvas-chart-connection" height=100px></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ls-board-box">
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="ls-box">
+
+                    
+                <h6 class="ls-title-4">Ultimos logins realizados</h6>
+
+                <table class="ls-table ls-sm-space">
+                    <thead>
+                        <tr>
+                            <th>Data e hora</th>
+                            <th>Usuário</th>
+                            <th>Nas</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="ls-box">
+
+                    
+                <h6 class="ls-title-4">Ultimos logins rejeitados</h6>
+
+                <table class="ls-table ls-sm-space">
+                    <thead>
+                        <tr>
+                            <th>Data e hora</th>
+                            <th>Usuário</th>
+                            <th>Nas</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+                        <tr>
+                            <td>10/01/2017 09:00:01</td>
+                            <td>paulo</td>
+                            <td>parada_uniandrade</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+{% block js %}
+
+    <script type="text/javascript" src="{{dir}}/assets/public/js/statistic/list.js"></script>
 {% endblock %}
