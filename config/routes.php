@@ -19,6 +19,7 @@ $app->group("/grupos", function () {
     $this->map( ["GET", "POST"], "/criar", App\Controller\Radius\GroupController::class . ":actionCreate" );
     $this->map( ["GET", "POST"], "/alterar", App\Controller\Radius\GroupController::class . ":actionUpdate" );
     $this->map( ["GET", "POST"], "/apagar", App\Controller\Radius\GroupController::class . ":actionDelete" );
+    $this->map( ["GET", "POST"], "/json[/]", App\Controller\Radius\GroupController::class . ":actionJSON" );
 });
 
 $app->group("/estatisticas", function () {

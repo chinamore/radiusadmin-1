@@ -16,12 +16,14 @@ gulp.task( "vendor", function() {
 
         "assets/private/bower_components/jquery/dist/jquery.js",    
         "assets/private/bower_components/locawebstyle/dist/javascripts/locastyle.js",
-        "assets/private/bower_components/chart.js/dist/Chart.min.js"
+        "assets/private/bower_components/chart.js/dist/Chart.min.js",
+        "assets/private/bower_components/jquery-autocompleter/jquery.autocompleter.js"
     ];
 
     var filesCSS = [
     
-        "assets/private/bower_components/locawebstyle/dist/stylesheets/locastyle.css"
+        "assets/private/bower_components/locawebstyle/dist/stylesheets/locastyle.css",
+        "assets/private/bower_components/jquery-autocompleter/jquery.autocompleter.css",
     ];
 
     var folderFonts = "assets/public/css/fonts/";

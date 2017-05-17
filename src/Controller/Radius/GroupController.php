@@ -5,6 +5,7 @@ namespace App\Controller\Radius;
 use App\Controller\Controller;
 use App\Model\Radius\Group;
 use App\Model\Radius\RadCheck;
+use \StdClass;
 
 class GroupController extends Controller {
     
@@ -64,6 +65,27 @@ class GroupController extends Controller {
             "group"=>$group,
             "operators"=>$operators
         ]);
+    }
+
+    public function actionJSON( $request, $response ) {
+        
+        $json = [];
+
+        $query = $request->getQueryParam( "query", "" );
+
+            
+            $groups = Group::find( $query, "", 0, 10 );
+        
+            foreach( $groups as $group ) {
+        
+                $obj = new StdClass();
+                $obj->label = $group->name;
+                $obj->value = $group->name;
+            
+                $json[] = $obj;
+            }
+
+        $response->getBody()->write(  json_encode( $json ) );
     }
 
     public function actionDelete( $request, $response ) {
