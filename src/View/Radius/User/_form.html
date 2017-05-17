@@ -32,8 +32,8 @@
                     <p class="ls-label-info"></p>
                     
                     <div class="ls-prefix-group">
-                        <input type="text" class="search-groups" />
-                        <a href="" class="ls-label-text-prefix ls-bg-white">+</a>
+                        <input type="text" id="input-add-group" />
+                        <a href="" id="btn-add-group" class="ls-label-text-prefix ls-bg-white">+</a>
                     </div>
 
                 </label>
@@ -43,7 +43,7 @@
                     <b class="ls-label-text">Grupos</b>
                     <p class="ls-label-info"></p>
 
-                    <select name="grupos[]" multiple size=5 class="ls-input-text">
+                    <select id="select-groups" name="grupos[]" multiple size=5 class="ls-input-text">
     
                         {% for group in user.groups %}
 
