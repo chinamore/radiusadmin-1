@@ -180,6 +180,11 @@ class Group {
         
         $attributesReply = RadGroupReply::where( "groupname", $name )->get();
        
+        if( count( $attributesCheck ) <= 0 && count( $attributesReply ) <= 0 ) {
+        
+            return null;
+        } 
+
         return new Group( $name, $attributesCheck, $attributesReply );
     }
 

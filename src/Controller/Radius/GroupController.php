@@ -67,25 +67,42 @@ class GroupController extends Controller {
         ]);
     }
 
-    public function actionJSON( $request, $response ) {
+    public function actionListJSON( $request, $response ) {
         
         $json = [];
 
         $query = $request->getQueryParam( "query", "" );
-
-            
-            $groups = Group::find( $query, "", 0, 10 );
+   
+        $groups = Group::find( $query, "", 0, 10 );
         
-            foreach( $groups as $group ) {
+        foreach( $groups as $group ) {
         
-                $obj = new StdClass();
-                $obj->label = $group->name;
-                $obj->value = $group->name;
+            $obj = new StdClass();
+            $obj->label = $group->name;
+            $obj->value = $group->name;
             
-                $json[] = $obj;
-            }
+            $json[] = $obj;
+        }
 
         $response->getBody()->write(  json_encode( $json ) );
+    }
+
+    public function actionExistJSON( $request, $response ) {
+        
+        $name = $request->getQueryParam( "nome", "" );
+        
+        $group = Group::get( $name );
+
+        $obj = new StdClass();
+        
+        $obj->result = true;
+
+        if( $group == null ) {
+            
+            $obj->result = false;
+        }
+
+        $response->getBody()->write(  json_encode( $obj ) );
     }
 
     public function actionDelete( $request, $response ) {

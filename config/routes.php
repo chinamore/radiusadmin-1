@@ -19,7 +19,6 @@ $app->group("/grupos", function () {
     $this->map( ["GET", "POST"], "/criar", App\Controller\Radius\GroupController::class . ":actionCreate" );
     $this->map( ["GET", "POST"], "/alterar", App\Controller\Radius\GroupController::class . ":actionUpdate" );
     $this->map( ["GET", "POST"], "/apagar", App\Controller\Radius\GroupController::class . ":actionDelete" );
-    $this->map( ["GET", "POST"], "/json[/]", App\Controller\Radius\GroupController::class . ":actionJSON" );
 });
 
 $app->group("/estatisticas", function () {
@@ -37,3 +36,10 @@ $app->group("/clientes", function () {
     $this->map( ["GET", "POST"], "/apagar", App\Controller\Radius\ClientController::class . ":actionDelete" );
 });
 
+$app->group("/json", function () {
+
+    $this->group("/grupos", function () {
+        $this->map( ["GET", "POST"], "/[listar]", App\Controller\Radius\GroupController::class . ":actionListJSON" );
+        $this->map( ["GET", "POST"], "/existe", App\Controller\Radius\GroupController::class . ":actionExistJSON" );
+    });
+});

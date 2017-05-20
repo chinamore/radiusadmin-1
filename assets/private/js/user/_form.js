@@ -1,8 +1,10 @@
 
 $("#input-add-group").autocompleter({ 
     
-    source: dir + "/grupos/json",
+    source: dir + "/json/grupos/",
+    minChars: 3,
 });
+
 
 $("#btn-add-group").on( "click", function() { 
 
@@ -15,15 +17,24 @@ $("#btn-add-group").on( "click", function() {
         return;
     }
 
-    var groups = $.map( $("#select-groups option") ,function(option) {
+    var groupsSelect = $.map( $("#select-groups option") ,function(option) {
         return option.value;
     });
 
-    if( $.inArray( group, groups ) === -1) {
-        
-        $("#select-groups").append( "<option value='" + group + "'>" + group + "</option>" );
-    
-        $("#input-add-group").focus();
+    if( $.inArray( group, groupsSelect ) === -1 ) {
+         
+        $.ajax({
+            url: dir + "/json/grupos/existe?nome=" + group,
+            dataType: "json",
+            success: function(data) {
+
+                if( data.result ) {
+                
+                    $("#select-groups").append( "<option value='" + group + "'>" + group + "</option>" );
+                }
+            }
+        });
+      
     }
 
 });

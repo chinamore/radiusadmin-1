@@ -28,4 +28,25 @@ class GroupControllerTest extends BaseTestCase {
         $this->assertNotContains( "grupo2", (string) $response->getBody() );
     }
 
+    public function testActionExistJSON() {
+
+        $response = $this->runApp( "GET", "/json/grupos/existe?nome=grupo1");
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "true", (string) $response->getBody());
+        $this->assertNotContains( "false", (string) $response->getBody());
+
+        $response = $this->runApp( "GET", "/json/grupos/existe?nome=grupoQueNaoExiste" );
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "false", (string) $response->getBody() );
+        $this->assertNotContains( "true", (string) $response->getBody() );
+
+        $response = $this->runApp( "GET", "/json/grupos/existe" );
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "false", (string) $response->getBody() );
+        $this->assertNotContains( "true", (string) $response->getBody() );
+    }
+
 }
