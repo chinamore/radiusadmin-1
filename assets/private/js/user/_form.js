@@ -5,6 +5,13 @@ $("#input-add-group").autocompleter({
     minChars: 3,
 });
 
+$("#btn-remove-group").on( "click", function() { 
+
+    $("#select-groups option:selected").each( function() {
+    
+        $(this).remove();
+    });
+});
 
 $("#btn-add-group").on( "click", function() { 
 

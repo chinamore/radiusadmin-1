@@ -43,7 +43,7 @@
                     <b class="ls-label-text">Grupos</b>
                     <p class="ls-label-info"></p>
 
-                    <select id="select-groups" name="grupos[]" multiple size=5 class="ls-input-text">
+                    <select id="select-groups" name="grupos[]" size=5 class="ls-input-text">
     
                         {% for group in user.groups %}
 
@@ -62,9 +62,9 @@
 
                     
                     <p style="margin-top: 10px;">
-                        <a class="ls-btn ls-ico-shaft-up"></a>
-                        <a class="ls-btn ls-ico-shaft-down"></a>
-                        <a class="ls-btn ls-ico-remove"></a>
+                        <a id="btn-up-group" class="ls-btn ls-ico-shaft-up"></a>
+                        <a id="btn-down-group" class="ls-btn ls-ico-shaft-down"></a>
+                        <a id="btn-remove-group" class="ls-btn ls-ico-remove"></a>
                     </p>
 
                 </label>
