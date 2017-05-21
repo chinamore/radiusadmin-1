@@ -1,8 +1,33 @@
 
 $("#input-add-group").autocompleter({ 
     
-    source: dir + "/json/grupos/",
-    minChars: 3,
+    source: dir + "/json/grupos/"
+});
+
+$("#btn-up-group").on( "click", function() { 
+
+    $("#select-groups option").each( function( index, option ) {
+    
+        if( option.selected && index > 0 ) {
+            
+            var prevIndex = index - 1;
+
+            $( option ).insertBefore( $("#select-groups option:eq(" + prevIndex + ")" ) );
+        }
+    });
+});
+
+$("#btn-down-group").on( "click", function() { 
+
+    $("#select-groups option").each( function( index, option ) {
+    
+        if( option.selected && index < ( $("#select-groups option").length - 1 ) ) {
+            
+            var nextIndex = index + 1;
+
+            $( option ).insertAfter( $("#select-groups option:eq(" + nextIndex + ")" ) );
+        }
+    });
 });
 
 $("#btn-remove-group").on( "click", function() { 
