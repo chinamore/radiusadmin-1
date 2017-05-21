@@ -7,10 +7,7 @@ $("#input-add-group").autocompleter({
 
 $("#btn-remove-group").on( "click", function() { 
 
-    $("#select-groups option:selected").each( function() {
-    
-        $(this).remove();
-    });
+    $("#select-groups option:selected").remove();
 });
 
 $("#btn-add-group").on( "click", function() { 
