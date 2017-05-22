@@ -69,7 +69,38 @@ class ClientController extends Controller {
 
     public function actionList( $request, $response ) {
 
-        return $this->view->render( $response, "Radius/Client/list.html");
+        $nasName = $request->getQueryParam( "nome", "" );
+
+        $shortName = $request->getQueryParam( "apelido", "" );
+        
+        $type = $request->getQueryParam( "tipo", "" );
+
+        $page = ( int ) $request->getQueryParam( "pagina", 0 );
+    
+        if( $page < 0 ) {
+                     
+            $page = 0;
+        }
+
+        $take = 50;
+
+        $skip = $take * $page; 
+
+        $clients = NAS::where( "nasname", "like", "%" . $nasName . "%" )
+            ->where( "shortname", "like", "%" . $shortName . "%" )
+            ->where( "type", "like", "%" . $type . "%" )
+            ->skip( $skip )
+            ->take( $take )
+            ->get();
+
+        return $this->view->render( $response, "Radius/Client/list.html", [
+        
+            "clients"=>$clients,
+            "nasName"=>$nasName,
+            "shortName"=>$shortName,
+            "type"=>$type,
+            "page"=>$page,
+        ]);
     }
 
     public function actionUpdate( $request, $response ) {
