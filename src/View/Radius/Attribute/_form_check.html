@@ -9,7 +9,7 @@
         </tr>
     </thead>
                     
-    <tbody>
+    <tbody id="attributes-check" >
 
         {% for attribute in user.attributesCheck %}
    
@@ -35,38 +35,31 @@
                 </td> 
                 
                 <td>
-                    <button class="ls-btn ls-ico-remove"></button>
+                    <button type="button" class="ls-btn ls-ico-remove btn-remove-check"></button>
                 </td>
             </tr>
 
-        {% endfor %}
-
-        <tr>
-            <td>
-                <input type="text" id="atributo-verificacao-novo" value="" placeholder=""/>
-            </td>
-
-            <td>
-                <div class="ls-custom-select">
-                        
-                    <select id="operador-verificacao-novo" class="ls-select">
-                        {% for operator in operators %}                           
-                            <option value="{{operator}}">{{operator}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </td>
-                                
-            <td>
-                <input type="text" id="valor-verificacao-novo" value="" placeholder="" />
-            </td> 
-                                
-            <td>
-                <button class="ls-btn"> Adicionar</button>
-            </td>
-
-        </tr>
-                            
+        {% endfor %}                           
     </tbody>
 </table>
 
+<div id="template-check" class="ls-display-none">
+            
+    <input type="text" id="attribute-check-new" value="" placeholder=""/>
+
+    <div id="operator-check-new" class="ls-custom-select">
+                        
+        <select class="ls-select">
+            {% for operator in operators %}                           
+                <option value="{{operator}}">{{operator}}</option>
+            {% endfor %}
+        </select>
+    </div>
+   
+    <input type="text" id="value-check-new" value="" placeholder="" />
+    
+    <button type="button" id="btn-remove-check-new" class="ls-btn ls-ico-remove btn-remove-check"></button>
+
+</div>
+
+<input type="button" id="btn-add-check" class="ls-btn" value="Adicionar" />
