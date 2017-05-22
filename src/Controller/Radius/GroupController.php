@@ -54,7 +54,7 @@ class GroupController extends Controller {
 
     public function actionUpdate( $request, $response ) {
 
-        $name = $request->getQueryParam( "name", "" );
+        $name = $request->getQueryParam( "nome", "" );
         
         $group = Group::get( $name );
 
