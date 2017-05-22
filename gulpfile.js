@@ -51,6 +51,7 @@ gulp.task("app", function() {
 
         ["assets/private/js/*js", "assets/public/js/" ],
         ["assets/private/js/user/*js", "assets/public/js/user/" ],
+        ["assets/private/js/attribute/*js", "assets/public/js/attribute/" ],
         ["assets/private/js/statistic/*js", "assets/public/js/statistic/" ]
     ];
                                                                 
