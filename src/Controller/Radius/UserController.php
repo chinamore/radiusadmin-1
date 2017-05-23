@@ -31,7 +31,30 @@ class UserController extends Controller {
             "operators"=>$operators
         ]);
     }
-  
+   
+    public function actionStore( $request, $response ) {
+    
+        $data = $request->getParsedBody();
+
+        $validator = new Validator();
+
+        $validator->add( [
+
+            "name"=>"required | maxlength(64)",
+        ]);
+
+        $validator->validate( $data );
+
+        $errors = $validator->getMessages();
+
+        $name = $data["name"];
+
+        return $this->view->render( $response, "Radius/User/create.html", [
+            "name"=>$name,         
+            "errors"=>$errors
+        ]);
+    } 
+ 
     public function actionList( $request, $response ) {
 
         $name = $request->getQueryParam( "nome", "" );

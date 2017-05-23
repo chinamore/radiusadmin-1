@@ -27,5 +27,39 @@ class UserControllerTest extends BaseTestCase {
         $this->assertContains( "paulo", (string) $response->getBody() );
         $this->assertNotContains( "iago", (string) $response->getBody() );
     }
+    
+    public function testActionCreate() {
+
+        $response = $this->runApp( "GET", "/usuarios/criar");
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Criar usuário", (string) $response->getBody());
+        $this->assertNotContains( "Ver usuário", (string)$response->getBody());
+
+        $response = $this->runApp( "POST", "/usuarios/criar", [
+        
+            "name"=>date("zhmi"),
+            "groups"=>[
+
+                "grupo1"                   
+            ],
+            "attributes-check"=>[ "Auth-Type" ],
+            "operator-check"=>[ ":=" ],
+            "value-check"=>[ "Accept" ],
+            "attributes-reply"=>[ "Session-Timeout" ],
+            "operator-reply"=>[ ":=" ],
+            "value-reply"=>[ "7200" ],
+
+        ]);
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Ver usuário", (string) $response->getBody() );
+        $this->assertNotContains( "Criar usuário", (string) $response->getBody() );
+
+        $response = $this->runApp( "POST", "/usuarios/criar", [] );
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Criar usuário", (string) $response->getBody() );
+        $this->assertNotContains( "Ver usuário", (string) $response->getBody() );
+    }
 
 }

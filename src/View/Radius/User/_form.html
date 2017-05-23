@@ -17,7 +17,7 @@
                     <b class="ls-label-text">Nome</b>
                     <p class="ls-label-info">O <i>username</i> do usuário </p>
                     
-                    <input type="text" name="user[name]" value="{{user.name}}" placeholder="" required />
+                    <input type="text" name="name" value="{{user.name}}" placeholder=""/>
 
                     {% if errors["name"] is not empty %}
                         <p class="ls-error">
