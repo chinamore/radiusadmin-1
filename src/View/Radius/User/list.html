@@ -6,7 +6,7 @@
 
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/usuarios/listar" class="ls-form ls-form-inline">
+        <form action="{{dir}}/users/list" class="ls-form ls-form-inline">
             
             
             <input type="hidden" name="page" value="{{page}}" />
@@ -14,17 +14,17 @@
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Nome</b>
-                <input type="text" name="nome" value="{{name}}" placeholder="Nome" />
+                <input type="text" name="name" value="{{name}}" placeholder="Nome" />
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Atributo</b>
-                <input type="text" name="atributo" value="{{attribute}}" placeholder="Atributo" />
+                <input type="text" name="attribute" value="{{attribute}}" placeholder="Atributo" />
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Grupo</b>
-                <input type="text" name="grupo" value="{{group}}" placeholder="Grupo" />
+                <input type="text" name="group" value="{{group}}" placeholder="Grupo" />
             </label>
 
 
@@ -100,11 +100,11 @@
 
                         <td>
 
-                            <a href="{{dir}}/usuarios/estatistica?nome={{user.name}}" class="ls-btn ls-ico-stats"></a>
+                            <a href="{{dir}}/users/statistic?userName={{user.name}}" class="ls-btn ls-ico-stats"></a>
                     
-                            <a href="{{dir}}/usuarios/alterar?nome={{user.name}}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{dir}}/users/update?name={{user.name}}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                           <a href="{{dir}}/usuarios/apagar?nome={{user.name}}" class="ls-btn ls-ico-remove"></a>
+                           <a href="{{dir}}/users/delete?name={{user.name}}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 
@@ -125,7 +125,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/usuarios/listar?nome={{name}}&atributo={{attribute}}&pagina={{page - 1}}">
+                        <a href="{{dir}}/users/list?name={{name}}&attribute={{attribute}}&page={{page - 1}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -138,7 +138,7 @@
                 {% if users is not empty %}
                 
                     <li>
-                        <a href="{{dir}}/usuarios/listar?nome={{name}}&atributo={{attribute}}&pagina={{page + 1}}">
+                        <a href="{{dir}}/users/list?name={{name}}&attribute={{attribute}}&page={{page + 1}}">
                             Próximo &raquo;
                         </a>
                     </li>

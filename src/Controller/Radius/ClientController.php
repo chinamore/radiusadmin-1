@@ -69,13 +69,13 @@ class ClientController extends Controller {
 
     public function actionList( $request, $response ) {
 
-        $nasName = $request->getQueryParam( "nome", "" );
+        $nasName = $request->getQueryParam( "nasName", "" );
 
-        $shortName = $request->getQueryParam( "apelido", "" );
+        $shortName = $request->getQueryParam( "shortName", "" );
         
-        $type = $request->getQueryParam( "tipo", "" );
+        $type = $request->getQueryParam( "type", "" );
 
-        $page = ( int ) $request->getQueryParam( "pagina", 0 );
+        $page = ( int ) $request->getQueryParam( "page", 0 );
     
         if( $page < 0 ) {
                      

@@ -10,7 +10,7 @@ $app->group("/users", function () {
     $this->map( ["GET", "POST"], "/create", App\Controller\Radius\UserController::class . ":actionCreate" );
     $this->map( ["GET", "POST"], "/update", App\Controller\Radius\UserController::class . ":actionUpdate" );
     $this->map( ["GET", "POST"], "/delete", App\Controller\Radius\UserController::class . ":actionDelete" );
-    $this->map( ["GET", "POST"], "/statistics", App\Controller\Radius\UserController::class . ":actionStatistic" );
+    $this->map( ["GET", "POST"], "/statistic", App\Controller\Radius\UserController::class . ":actionStatistic" );
 });
 
 $app->group("/groups", function () {

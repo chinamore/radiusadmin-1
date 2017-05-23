@@ -22,9 +22,9 @@ $( "#btn-add-check" ).on( "click", function() {
     inputValue.attr( "id", "" );
     buttonRemove.attr( "id", "" );
 
-    inputAttribute.attr( "name", "atributo-verificacao[]" );
-    selectOperator.attr( "name", "operador-verificacao[]" );
-    inputValue.attr( "name", "valor-verificacao[]" );
+    inputAttribute.attr( "name", "attributes-check[]" );
+    selectOperator.attr( "name", "operators-check[]" );
+    inputValue.attr( "name", "values-check[]" );
 
     var attribute = $( "<td></td>" ).append( inputAttribute );
     var operator = $( "<td></td>" ).append( selectOperator );
@@ -53,9 +53,9 @@ $( "#btn-add-reply" ).on( "click", function() {
     inputValue.attr( "id", "" );
     buttonRemove.attr( "id", "" );
 
-    inputAttribute.attr( "name", "atributo-resposta[]" );
-    selectOperator.attr( "name", "operador-reposta[]" );
-    inputValue.attr( "name", "valor-reposta[]" );
+    inputAttribute.attr( "name", "attributes-reply[]" );
+    selectOperator.attr( "name", "operators-reply[]" );
+    inputValue.attr( "name", "values-reply[]" );
 
     var attribute = $( "<td></td>" ).append( inputAttribute );
     var operator = $( "<td></td>" ).append( selectOperator );

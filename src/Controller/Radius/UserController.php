@@ -57,11 +57,11 @@ class UserController extends Controller {
  
     public function actionList( $request, $response ) {
 
-        $name = $request->getQueryParam( "nome", "" );
+        $name = $request->getQueryParam( "name", "" );
 
-        $attribute = $request->getQueryParam( "atributo", "" );
+        $attribute = $request->getQueryParam( "attribute", "" );
 
-        $page = ( int ) $request->getQueryParam( "pagina", 0 );
+        $page = ( int ) $request->getQueryParam( "page", 0 );
     
         if( $page < 0 ) {
                      
@@ -86,7 +86,7 @@ class UserController extends Controller {
     public function actionUpdate( $request, $response ) {
 
 
-        $name = $request->getQueryParam( "nome", "" );
+        $name = $request->getQueryParam( "name", "" );
 
         $groups = Group::getAll();
 
@@ -110,17 +110,17 @@ class UserController extends Controller {
 
     public function actionStatistic( $request, $response ) {
  
-        $userName = $request->getQueryParam( "nome", "" );
+        $userName = $request->getQueryParam( "userName", "" );
         
         $mac = $request->getQueryParam( "mac", "" );
         
         $nas = $request->getQueryParam( "nas", "" );
         
-        $page = $request->getQueryParam( "pagina", 0 );
+        $page = $request->getQueryParam( "page", 0 );
         
-        $date1 = $request->getQueryParam( "data1", null );
+        $date1 = $request->getQueryParam( "date1", null );
         
-        $date2 = $request->getQueryParam( "data2", null );
+        $date2 = $request->getQueryParam( "date2", null );
         
         $devices = RadAcct::select(  "callingstationid as mac"  )
             ->where( "username", $userName )

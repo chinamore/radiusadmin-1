@@ -8,12 +8,12 @@ class ClientControllerTest extends BaseTestCase {
  
     public function testActionCreate() {
 
-        $response = $this->runApp( "GET", "/clientes/criar");
+        $response = $this->runApp( "GET", "/clients/create");
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar cliente", (string) $response->getBody());
         $this->assertNotContains( "Ver cliente", (string)$response->getBody());
 
-        $response = $this->runApp( "POST", "/clientes/criar", [
+        $response = $this->runApp( "POST", "/clients/create", [
             
             "nas"=>[
 
@@ -31,7 +31,7 @@ class ClientControllerTest extends BaseTestCase {
         $this->assertContains( "Ver cliente", (string) $response->getBody() );
         $this->assertNotContains( "Criar cliente", (string) $response->getBody() );
 
-        $response = $this->runApp( "POST", "/clientes/criar", [] );
+        $response = $this->runApp( "POST", "/clients/create", [] );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar cliente", (string) $response->getBody() );

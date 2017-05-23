@@ -6,9 +6,9 @@
 
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/usuarios/estatistica" class="ls-form ls-form-inline">
+        <form action="{{dir}}/users/statistic" class="ls-form ls-form-inline">
             
-            <input type="hidden" name="nome" value="{{userName}}" />           
+            <input type="hidden" name="userName" value="{{userName}}" />           
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Dispositivo</b>
@@ -49,7 +49,7 @@
                 <div class="ls-prefix-group">
                     
                     <input type="text" 
-                        name="data1" 
+                        name="date1" 
                         class="datepicker ls-daterange" 
                         placeholder="Data inicio" 
                         id="date1" 
@@ -64,7 +64,7 @@
                 <div class="ls-prefix-group">
                    
                     <input type="text" 
-                        name="data2" 
+                        name="date2" 
                         class="datepicker ls-daterange" 
                         placeholder="Data final" 
                         id="date2" 
@@ -217,7 +217,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/usuarios/estatistica?nome={{userName}}&pagina={{page - 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
+                        <a href="{{dir}}/users/statistic?userName={{userName}}&page={{page - 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -231,7 +231,7 @@
                 
                     <li>
 
-                        <a href="{{dir}}/usuarios/estatistica?nome={{userName}}&pagina={{page + 1}}&data1={{date1}}&data2={{date2}}&mac={{mac}}&nas={{nas}}">
+                        <a href="{{dir}}/users/statistic?userName={{userName}}&page={{page + 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
                             Próximo &raquo;
                         </a>
                     </li>

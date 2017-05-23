@@ -6,25 +6,25 @@
     
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/clientes/listar" class="ls-form ls-form-inline">
+        <form action="{{dir}}/clients/list" class="ls-form ls-form-inline">
             
             
-            <input type="hidden" name="pagina" value="{{page}}" />
+            <input type="hidden" name="page" value="{{page}}" />
 
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Nome</b>
-                <input type="text" name="nome" value="{{nasName}}" placeholder="Nome" />
+                <input type="text" name="nasName" value="{{nasName}}" placeholder="Nome" />
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Apelido</b>
-                <input type="text" name="apelido" value="{{shortName}}" placeholder="Apelido" />
+                <input type="text" name="shortName" value="{{shortName}}" placeholder="Apelido" />
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
                 <b class="ls-label-text">Tipo</b>
-                <input type="text" name="tipo" value="{{type}}" placeholder="Tipo" />
+                <input type="text" name="type" value="{{type}}" placeholder="Tipo" />
             </label>
 
 
@@ -59,9 +59,9 @@
 
                         <td>
                     
-                            <a href="{{dir}}/clientes/alterar?nome={{client.nasname}}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{dir}}/clients/update?name={{client.nasname}}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                           <a href="{{dir}}/clientes/apagar?nome={{client.nasname}}" class="ls-btn ls-ico-remove"></a>
+                           <a href="{{dir}}/clients/update?name={{client.nasname}}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 
@@ -82,7 +82,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/clientes/listar?nome={{nasName}}&apelido={{shortName}}&pagina={{page - 1}}">
+                        <a href="{{dir}}/clients/list?nasName={{nasName}}&shortName={{shortName}}&page={{page - 1}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -95,7 +95,7 @@
                 {% if users is not empty %}
                 
                     <li>
-                        <a href="{{dir}}/clientes/listar?nome={{nasName}}&atributo={{shortName}}&pagina={{page + 1}}">
+                        <a href="{{dir}}/clients/list?nasName={{nasName}}&shortName={{shortName}}&page={{page + 1}}">
                             Próximo &raquo;
                         </a>
                     </li>

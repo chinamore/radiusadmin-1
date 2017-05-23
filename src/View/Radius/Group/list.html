@@ -6,19 +6,19 @@
 
     <div class="ls-box-filter">
        
-       <form action="{{dir}}/grupos/listar" class="ls-form ls-form-inline">
+       <form action="{{dir}}/groups/list" class="ls-form ls-form-inline">
                       
-            <input type="hidden" name="pagina" value="{{page}}" />
+            <input type="hidden" name="page" value="{{page}}" />
 
 
             <label class="ls-label col-md-4 col-sm-4">
                 <b class="ls-label-text">Nome</b>
-                <input type="text" name="nome" value="{{name}}" placeholder="Nome"/>
+                <input type="text" name="name" value="{{name}}" placeholder="Nome"/>
             </label>
 
             <label class="ls-label col-md-4 col-sm-4">
                 <b class="ls-label-text">Atributo</b>
-                <input type="text" name="atributo" value="{{attribute}}" placeholder="Atributo"/>
+                <input type="text" name="attribute" value="{{attribute}}" placeholder="Atributo"/>
             </label>
 
             <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
@@ -75,9 +75,9 @@
 
                         <td>
                     
-                            <a href="{{dir}}/grupos/alterar?nome={{group.name}}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{dir}}/groups/update?name={{group.name}}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                            <a href="{{dir}}/grupos/apagar?nome={{group.name}}" class="ls-btn ls-ico-remove"></a>
+                            <a href="{{dir}}/groups/delete?name={{group.name}}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 
@@ -96,7 +96,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/grupos/listar?nome={{name}}&atributo={{attribute}}&pagina={{page - 1}}">
+                        <a href="{{dir}}/groups/list?name={{name}}&attribute={{attribute}}&page={{page - 1}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -109,7 +109,7 @@
                 {% if groups is not empty %}
                 
                     <li>
-                        <a href="{{dir}}/grupos/listar?nome={{name}}&atributo={{attribute}}&pagina={{page + 1}}">
+                        <a href="{{dir}}/groups/list?name={{name}}&attribute={{attribute}}&page={{page + 1}}">
                             Próximo &raquo;
                         </a>
                     </li>

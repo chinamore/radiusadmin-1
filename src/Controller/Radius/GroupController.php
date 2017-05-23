@@ -26,11 +26,11 @@ class GroupController extends Controller {
    
     public function actionList( $request, $response ) {
 
-        $name = $request->getQueryParam( "nome", "" );
+        $name = $request->getQueryParam( "name", "" );
 
-        $attribute = $request->getQueryParam( "atributo", "" );
+        $attribute = $request->getQueryParam( "attribute", "" );
 
-        $page = ( int ) $request->getQueryParam( "pagina", 0 );
+        $page = ( int ) $request->getQueryParam( "page", 0 );
     
         if( $page < 0 ) {
                      
@@ -54,7 +54,7 @@ class GroupController extends Controller {
 
     public function actionUpdate( $request, $response ) {
 
-        $name = $request->getQueryParam( "nome", "" );
+        $name = $request->getQueryParam( "name", "" );
         
         $group = Group::get( $name );
 
@@ -89,7 +89,7 @@ class GroupController extends Controller {
 
     public function actionExistJSON( $request, $response ) {
         
-        $name = $request->getQueryParam( "nome", "" );
+        $name = $request->getQueryParam( "name", "" );
         
         $group = Group::get( $name );
 

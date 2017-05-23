@@ -8,20 +8,20 @@ class GroupControllerTest extends BaseTestCase {
 
     public function testActionList() {
 
-        $response = $this->runApp( "GET", "/grupos/listar");
+        $response = $this->runApp( "GET", "/groups/list");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Listar grupo", (string) $response->getBody());
         $this->assertNotContains( "Ver grupo", (string) $response->getBody());
 
-        $response = $this->runApp( "GET", "/grupos/listar?nome=grupo1" );
+        $response = $this->runApp( "GET", "/groups/list?name=grupo1" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "grupo1", (string) $response->getBody() );
         $this->assertNotContains( "grupo2", (string) $response->getBody() );
 
 
-        $response = $this->runApp( "GET", "/grupos/listar?nome=grupo1&atributo=password");
+        $response = $this->runApp( "GET", "/groups/list?name=grupo1&attribute=password");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "grupo1", (string) $response->getBody() );
@@ -30,19 +30,19 @@ class GroupControllerTest extends BaseTestCase {
 
     public function testActionExistJSON() {
 
-        $response = $this->runApp( "GET", "/json/grupos/existe?nome=grupo1");
+        $response = $this->runApp( "GET", "/json/groups/exist?name=grupo1");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "true", (string) $response->getBody());
         $this->assertNotContains( "false", (string) $response->getBody());
 
-        $response = $this->runApp( "GET", "/json/grupos/existe?nome=grupoQueNaoExiste" );
+        $response = $this->runApp( "GET", "/json/groups/exist?name=grupoQueNaoExiste" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "false", (string) $response->getBody() );
         $this->assertNotContains( "true", (string) $response->getBody() );
 
-        $response = $this->runApp( "GET", "/json/grupos/existe" );
+        $response = $this->runApp( "GET", "/json/groups/exist" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "false", (string) $response->getBody() );
