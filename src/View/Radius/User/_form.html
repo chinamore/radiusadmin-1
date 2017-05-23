@@ -17,7 +17,7 @@
                     <b class="ls-label-text">Nome</b>
                     <p class="ls-label-info">O <i>username</i> do usuário </p>
                     
-                    <input type="text" name="usuario[nome]" value="{{user.name}}" placeholder="" required />
+                    <input type="text" name="user[name]" value="{{user.name}}" placeholder="" required />
 
                     {% if errors["name"] is not empty %}
                         <p class="ls-error">
@@ -44,7 +44,7 @@
                     <b class="ls-label-text">Grupos</b>
                     <p class="ls-label-info">A prioridade ocorre do mais alto para o mais baixo</p>
 
-                    <select id="select-groups" name="grupos[]" size=5 class="ls-input-text">
+                    <select id="select-groups" name="groups[]" size=5 class="ls-input-text">
     
                         {% for group in user.groups %}
 

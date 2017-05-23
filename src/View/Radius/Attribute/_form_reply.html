@@ -15,14 +15,14 @@
    
             <tr>
                 <td>
-                    <input type="text" name="atributo-resposta[]" value="{{attribute['attribute']}}" placeholder=""/>
+                    <input type="text" name="attributes-reply[]" value="{{attribute['attribute']}}" placeholder=""/>
                 </td>
                 
                 <td>
 
                     <div class="ls-custom-select">
                         
-                        <select name="operador-resposta[]" class="ls-select">
+                        <select name="operators-reply[]" class="ls-select">
                             {% for operator in operators %}                           
                                 <option value="{{operator}}">{{operator}}</option>
                             {% endfor %}
@@ -31,7 +31,7 @@
                 </td>
                                 
                 <td>
-                    <input type="text" name="valor-resposta[]" value="{{attribute['value']}}" placeholder="" />
+                    <input type="text" name="values-reply[]" value="{{attribute['value']}}" placeholder="" />
                 </td> 
                 
                 <td>

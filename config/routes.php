@@ -5,6 +5,7 @@ $app->map( ["GET"], "/", App\Controller\Radius\AppController::class . ":actionIn
 $app->group("/usuarios", function () {
 
     $this->map( ["GET"], "/[listar]", App\Controller\Radius\UserController::class . ":actionList" );
+    $this->map( ["POST"], "/armazenar", App\Controller\Radius\UserController::class . ":actionStore" );
     
     $this->map( ["GET", "POST"], "/criar", App\Controller\Radius\UserController::class . ":actionCreate" );
     $this->map( ["GET", "POST"], "/alterar", App\Controller\Radius\UserController::class . ":actionUpdate" );

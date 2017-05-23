@@ -15,14 +15,14 @@
    
             <tr>
                 <td>
-                    <input type="text" name="atributo-verificacao[]" value="{{attribute['attribute']}}" placeholder=""/>
+                    <input type="text" name="attributes-check[]" value="{{attribute['attribute']}}" placeholder=""/>
                 </td>
                 
                 <td>
 
                     <div class="ls-custom-select">
                         
-                        <select name="operador-verificacao[]" class="ls-select">
+                        <select name="operators-check[]" class="ls-select">
                             {% for operator in operators %}                           
                                 <option value="{{operator}}">{{operator}}</option>
                             {% endfor %}
@@ -31,7 +31,7 @@
                 </td>
                                 
                 <td>
-                    <input type="text" name="valor-verificacao[]" value="{{attribute['value']}}" placeholder="" />
+                    <input type="text" name="values-check[]" value="{{attribute['value']}}" placeholder="" />
                 </td> 
                 
                 <td>

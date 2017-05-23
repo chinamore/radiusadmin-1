@@ -9,6 +9,7 @@ use App\Model\Radius\Group;
 use App\Model\Radius\RadCheck;
 use App\Model\Radius\RadAcct;
 
+use \Sirius\Validation\Validator;
 use \DateTime;
 
 class UserController extends Controller {
@@ -30,7 +31,7 @@ class UserController extends Controller {
             "operators"=>$operators
         ]);
     }
-   
+  
     public function actionList( $request, $response ) {
 
         $name = $request->getQueryParam( "nome", "" );
