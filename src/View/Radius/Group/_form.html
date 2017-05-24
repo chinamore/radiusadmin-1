@@ -1,5 +1,15 @@
 
-<form action="{{dir}}/usuarios/armazenar" method="POST" class="ls-form">
+<form action="{{dir}}/groups/store" method="POST" class="ls-form">
+
+    {% if errors["main"] is not empty %}
+        <p class="ls-error">
+            {% for error in errors["main"] %}
+                <div class="ls-alert-danger">
+                    <strong>Erro:</strong> {{error}}
+                </div>
+            {% endfor %}
+        </p>
+    {% endif %}
 
     <ul class="ls-tabs-nav">
         <li class="ls-active"><a data-ls-module="tabs" href="#form-general">Geral</a></li>
@@ -16,7 +26,7 @@
                 <label class="ls-label col-md-4">
                     <b class="ls-label-text">Nome</b>
                     <p class="ls-label-info">O <i>groupname</i> do grupo</p>
-                    <input type="text" name="group[name]" value="{{group.name}}" placeholder="" required />
+                    <input type="text" name="name" value="{{group.name}}" placeholder="" />
 
                     {% if errors["name"] is not empty %}
                         <p class="ls-error">

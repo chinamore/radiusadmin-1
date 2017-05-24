@@ -68,8 +68,6 @@ class User {
 
             $radUserGroup->groupname = $group->name;
 
-            echo $group->name . " grupo <br/>";
-
             $radUserGroup->save();
         }
     
@@ -209,9 +207,11 @@ class User {
             $checks = ( isset( $attribute[ "check" ] ) ) ? $attribute[ "check" ] : [];
             $replies = ( isset( $attribute[ "reply" ] ) ) ? $attribute[ "reply" ] : [];
 
-            $users[] = new User( $userName, $checks, $replies );
+            $groups = self::loadGroups( $userName );
+            
+            $users[] = new User( $userName, $checks, $replies, $groups );
         }
-        
+       
         return $users;
     }
 

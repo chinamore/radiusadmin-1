@@ -16,6 +16,7 @@ $app->group("/users", function () {
 $app->group("/groups", function () {
 
     $this->map( ["GET"], "/[list]", App\Controller\Radius\GroupController::class . ":actionList" );
+    $this->map( ["POST"], "/store", App\Controller\Radius\GroupController::class . ":actionStore" );
 
     $this->map( ["GET", "POST"], "/create", App\Controller\Radius\GroupController::class . ":actionCreate" );
     $this->map( ["GET", "POST"], "/update", App\Controller\Radius\GroupController::class . ":actionUpdate" );

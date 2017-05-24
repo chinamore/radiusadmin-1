@@ -39,7 +39,7 @@ class Group {
     public function save() {
     
         foreach( $this->attributesCheck as $check ) {
-        
+                
             $check->save();
         } 
         

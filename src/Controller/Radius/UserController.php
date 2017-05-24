@@ -41,7 +41,7 @@ class UserController extends Controller {
     
         $data = $request->getParsedBody();
 
-        if( isset( $data["name"] ) && strlen( trim( $data["name"] ) ) ) {
+        if( isset( $data["name"] ) && strlen( trim( $data["name"] ) ) > 0 ) {
 
             $name = $data["name"];
 

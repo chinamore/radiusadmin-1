@@ -28,6 +28,36 @@ class GroupControllerTest extends BaseTestCase {
         $this->assertNotContains( "grupo2", (string) $response->getBody() );
     }
 
+    public function testActionCreate() {
+
+        $response = $this->runApp( "GET", "/groups/create");
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Criar grupo", (string) $response->getBody());
+        $this->assertNotContains( "Ver grupo", (string)$response->getBody());
+
+        $response = $this->runApp( "POST", "/groups/create", [
+        
+            "name"=>date("zhmi"),
+            "attributes-check"=>[ "Auth-Type" ],
+            "operators-check"=>[ ":=" ],
+            "values-check"=>[ "Accept" ],
+            "attributes-reply"=>[ "Session-Timeout" ],
+            "operators-reply"=>[ ":=" ],
+            "values-reply"=>[ "7200" ],
+        ]);
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Ver grupo", (string) $response->getBody() );
+        $this->assertNotContains( "Criar grupo", (string) $response->getBody() );
+
+        $response = $this->runApp( "POST", "/groups/create", [] );
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Criar grupo", (string) $response->getBody() );
+        $this->assertNotContains( "Ver grupo", (string) $response->getBody() );
+    }
+
     public function testActionExistJSON() {
 
         $response = $this->runApp( "GET", "/json/groups/exist?name=grupo1");
