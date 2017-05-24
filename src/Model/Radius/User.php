@@ -173,10 +173,12 @@ class User {
         
             $checks = ( isset( $attribute[ "check" ] ) ) ? $attribute[ "check" ] : [];
             $replies = ( isset( $attribute[ "reply" ] ) ) ? $attribute[ "reply" ] : [];
+            
+            $groups = self::loadGroups( $userName );
 
-            $users[] = new User( $userName, $checks, $replies );
+            $users[] = new User( $userName, $checks, $replies, $groups );
         }
-        
+     
         return $users;
     }
 
