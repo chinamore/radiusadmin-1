@@ -40,6 +40,32 @@
             </tr>
 
         {% endfor %}                           
+
+            <tr>
+                <td>
+                    <input type="text" name="attributes-check[]" value="" placeholder=""/>
+                </td>
+                
+                <td>
+
+                    <div class="ls-custom-select">
+                        
+                        <select name="operators-check[]" class="ls-select">
+                            {% for operator in operators %}                           
+                                <option value="{{operator}}">{{operator}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                                
+                <td>
+                    <input type="text" name="values-check[]" value="" placeholder="" />
+                </td> 
+                
+                <td>
+                    <button type="button" class="ls-btn ls-ico-remove btn-remove-attribute"></button>
+                </td>
+            </tr>
     </tbody>
 </table>
 

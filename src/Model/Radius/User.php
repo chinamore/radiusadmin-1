@@ -43,7 +43,9 @@ class User {
     }
  
     public function save() {
-    
+        
+        $this->delete();
+
         foreach( $this->attributesCheck as $check ) {
         
             $check->save();
@@ -53,12 +55,10 @@ class User {
         
             $reply->save();
         }
-    
-        RadUserGroup::where( "username", $this->name )->delete();
-        
+     
         foreach( $this->groups as $index => $group ) {
         
-            $group->save();
+            //$group->save();
 
             $radUserGroup = new RadUserGroup();
 
@@ -66,25 +66,20 @@ class User {
 
             $radUserGroup->username = $this->name;
 
-            $radUserGroup->groupname = $group->groupName;
+            $radUserGroup->groupname = $group->name;
+
+            echo $group->name . " grupo <br/>";
 
             $radUserGroup->save();
         }
+    
     }
 
     public function delete() {
-    
-         foreach( $this->attributesCheck as $check ) {
         
-            $check->delete();
-        } 
-        
-        foreach( $this->attributesReply as $reply ) {
-        
-            $reply->delete();
-        }        
-
-        RadUserGroup::where( "groupname", $this->name )->delete();  
+        RadCheck::where( "username", $this->name )->delete();
+        RadReply::where( "username", $this->name )->delete();
+        RadUserGroup::where( "username", $this->name )->delete();
     }
 
     public static function exists( $name ) {

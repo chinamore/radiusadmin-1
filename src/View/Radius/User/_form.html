@@ -1,6 +1,16 @@
 
-<form action="{{dir}}/users/store" method="POST" class="ls-form">
+<form action="{{dir}}/users/store" method="POST" id="form-user" class="ls-form">
 
+    {% if errors["main"] is not empty %}
+        <p class="ls-error">
+            {% for error in errors["main"] %}
+                <div class="ls-alert-danger">
+                    <strong>Erro:</strong> {{error}}
+                </div>
+            {% endfor %}
+        </p>
+    {% endif %}
+ 
     <ul class="ls-tabs-nav">
         <li class="ls-active"><a data-ls-module="tabs" href="#form-general">Geral</a></li>
         <li><a data-ls-module="tabs" href="#form-checks">Atributos de verificação</a></li>
@@ -39,13 +49,12 @@
 
                 </label>
 
-
                 <label class="ls-label col-md-4">
                     <b class="ls-label-text">Grupos</b>
                     <p class="ls-label-info">A prioridade ocorre do mais alto para o mais baixo</p>
 
-                    <select id="select-groups" name="groups[]" size=5 class="ls-input-text">
-    
+                    <select id="select-groups" name="groups[]" multiple size="5" class="ls-input-text">
+
                         {% for group in user.groups %}
 
                             <option value="{{group.name}}">{{group.name}}</option>        
@@ -96,7 +105,7 @@
 
         </div>
 
-       <button type="submit" class="ls-btn-dark ls-btn-lg">Salvar</button>
+       <button type="button" id="btn-submit" class="ls-btn-dark ls-btn-lg">Salvar</button>
 
     </div>
 

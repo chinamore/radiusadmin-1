@@ -40,7 +40,33 @@
             </tr>
 
         {% endfor %}
-                            
+             <tr>
+                <td>
+                    <input type="text" name="attributes-reply[]" value="" placeholder=""/>
+                </td>
+                
+                <td>
+
+                    <div class="ls-custom-select">
+                        
+                        <select name="operators-reply[]" class="ls-select">
+                            {% for operator in operators %}                           
+                                <option value="{{operator}}">{{operator}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                                
+                <td>
+                    <input type="text" name="values-reply[]" value="" placeholder="" />
+                </td> 
+                
+                <td>
+                    <button class="ls-btn ls-ico-remove btn-remove-attribute"></button>
+                </td>
+            </tr>
+
+                           
     </tbody>
 </table>
 

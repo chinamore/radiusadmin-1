@@ -164,7 +164,7 @@ class Group {
 
         foreach( $attributes as $groupName => $attribute ) {
 
-            $checks = ( isset( $attribute[ "check" ] ) ) ? $attribute[ "chekck" ] : [];
+            $checks = ( isset( $attribute[ "check" ] ) ) ? $attribute[ "check" ] : [];
             
             $replies = ( isset( $attribute[ "reply" ] ) ) ? $attribute[ "reply" ] : [];
     

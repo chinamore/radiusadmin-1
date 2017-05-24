@@ -50,8 +50,7 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase {
 
         // Set up a response object
         $response = new Response();
-
-        
+       
         $settings = [
             "settings" => [
                 "determineRouteBeforeAppMiddleware" => false,

@@ -67,3 +67,13 @@ $("#btn-remove-group").on( "click", function() {
     $("#select-groups option:selected").remove();
 });
 
+$("#btn-submit").on( "click", function() {
+
+        $("#select-groups option").attr( "selected", true );
+
+        $("#form-user").submit();       
+
+});
+
+
+

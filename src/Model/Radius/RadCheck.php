@@ -12,6 +12,14 @@ class RadCheck extends Model {
 
     protected $connection = "radius";
 
+    protected $fillable = [
+        "id",
+        "username",
+        "attribute",
+        "operator",
+        "value"
+    ];
+
     public function __construct() {
 
         parent::__construct();
