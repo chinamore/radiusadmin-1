@@ -19,6 +19,26 @@ class UserController extends Controller {
         parent::__construct( $container );
     }
 
+    public function actionView( $request, $response ) {
+    
+        $name = $request->getQueryParam( "name", null );
+
+        $user = User::get( $name );
+
+        if( $user == null ) {
+        
+            return $response->withRedirect( $this->router->pathFor("app_error", [
+                 
+                "error"=>"Usuário não encontrado"
+            ])); 
+        }
+
+        return $this->view->render( $response, "Radius/User/view.html",[
+            
+            "user"=>$user
+        ]);
+    }
+
     public function actionCreate( $request, $response ) {
  
         if( $request->isPost() ) {
@@ -82,10 +102,10 @@ class UserController extends Controller {
    
                 $user->save();
 
-                return $this->view->render( $response, "Radius/User/view.html", [
-
-                    "user"=>$user
-                ]);
+                return $response->withRedirect( $this->router->pathFor("user_view", [
+                 
+                    "name"=>$name
+                ])); 
             }
         }
 

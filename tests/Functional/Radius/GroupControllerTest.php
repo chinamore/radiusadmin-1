@@ -3,6 +3,9 @@
 namespace Tests\Functional\Radius;
 
 use Tests\Functional\BaseTestCase;
+use App\Model\Radius\Group;
+use App\Model\Radius\RadGroupCheck;
+use App\Model\Radius\RadGroupReply;
 
 class GroupControllerTest extends BaseTestCase {
 
@@ -56,6 +59,55 @@ class GroupControllerTest extends BaseTestCase {
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar grupo", (string) $response->getBody() );
         $this->assertNotContains( "Ver grupo", (string) $response->getBody() );
+    }
+
+    public function testActionDelete() {
+
+        $response = $this->runApp( "GET", "/groups/delete", [
+        
+            "name"=>"nao-existe-" . date("zhmi")
+        ]);
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Erro", (string) $response->getBody() );
+        $this->assertNotContains( "Apagar grupo", (string) $response->getBody() );
+
+        $groupName = "existe-" . date("zhmi");
+        
+        $check = new RadGroupCheck();
+        $check->groupname = $groupName;
+        $check->attribute = "Simultaneous-Use";
+        $check->op = ":=";
+        $check->value = "1";
+
+        $reply = new RadGroupReply();
+        $reply->groupname = $groupName;
+        $reply->attribute = "Session-Timeout";
+        $reply->op = ":=";
+        $reply->value = "7200";
+
+        $group = new Group( $groupName, [ $check ], [ $reply ] );
+
+        $group->save();
+
+        $response = $this->runApp( "GET", "/groups/delete", [
+        
+            "name"=>$groupName
+        ]);
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Apagar grupo", (string) $response->getBody() );
+        $this->assertNotContains( "Listar grupo", (string) $response->getBody() );
+ 
+        $response = $this->runApp( "POST", "/groups/delete", [
+        
+            "name"=>$groupName
+        ]);
+
+        $this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertContains( "Listar grupo", (string) $response->getBody() );
+        $this->assertNotContains( "Apagar grupo", (string) $response->getBody() );
+ 
     }
 
     public function testActionExistJSON() {

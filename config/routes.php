@@ -1,10 +1,15 @@
 <?php
 
 $app->map( ["GET"], "/", App\Controller\Radius\AppController::class . ":actionIndex" );
+$app->map( ["GET"], "/error", App\Controller\Radius\AppController::class . ":actionError" );
 
 $app->group("/users", function () {
 
     $this->map( ["GET"], "/[list]", App\Controller\Radius\UserController::class . ":actionList" );
+
+    $this->map( ["GET"], "/view", App\Controller\Radius\UserController::class . ":actionView" )
+        ->setName( "user_view" );
+    
     $this->map( ["POST"], "/store", App\Controller\Radius\UserController::class . ":actionStore" );
     
     $this->map( ["GET", "POST"], "/create", App\Controller\Radius\UserController::class . ":actionCreate" );

@@ -173,8 +173,30 @@ class GroupController extends Controller {
     }
 
     public function actionDelete( $request, $response ) {
+    
+        $name = $request->getParam( "name", null );
+ 
+        $group = Group::get( $name );
+    
+        if( $group == null ) {
+        
+            return $this->view->render( $response, "Radius/App/error.html", [
+            
+                "errors"=>[ "Grupo não encontrado." ]
+            ]);
+        }
 
-        return $this->view->render( $response, "Radius/Group/delete.html");
+        if( $request->isPost() ) { 
+
+            $group->delete();
+        
+            return $this->actionList( $request, $response );
+        }
+         
+        return $this->view->render( $response, "Radius/Group/delete.html", [
+        
+            "group"=>$group
+        ]);
     }
 
     private function createAttributesCheck( $groupName, $attributes, $operators, $values ) {

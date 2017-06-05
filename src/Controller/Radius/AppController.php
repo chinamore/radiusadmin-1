@@ -15,4 +15,11 @@ class AppController extends Controller {
 
         return $this->view->render( $response, "Radius/App/index.html");
     }
+
+    public function actionError( $request, $response ) {
+    
+        $error = $request->getQueryParam( "error", "Ocorreu um erro interno" );
+
+        return $this->view->render( $response, "Radius/App/error.html");
+    }
 }

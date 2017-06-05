@@ -32,7 +32,7 @@ class UserControllerTest extends BaseTestCase {
 
         $response = $this->runApp( "GET", "/users/create");
 
-        //$this->assertEquals( 200, $response->getStatusCode() );
+        $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar usuário", (string) $response->getBody());
         $this->assertNotContains( "Ver usuário", (string)$response->getBody());
 
@@ -52,9 +52,8 @@ class UserControllerTest extends BaseTestCase {
 
         ]);
 
-        $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "Ver usuário", (string) $response->getBody() );
-        $this->assertNotContains( "Criar usuário", (string) $response->getBody() );
+        $this->assertEquals( 302, $response->getStatusCode() );
+        $this->assertContains( "/user/view", (string) $response->getHeader("Location") );
 
         $response = $this->runApp( "POST", "/users/create", [] );
 

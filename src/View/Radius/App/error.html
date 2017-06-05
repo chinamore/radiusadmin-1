@@ -1,0 +1,15 @@
+{% extends "Radius/Layouts/layout.html" %} 
+
+{% block content %}
+    
+    <h1 class="ls-title-intro ls-ico-close">Erro</h1>
+    
+    <div class="ls-error">
+        {% for error in errors %}
+            <div class="ls-alert-danger">
+                <strong>Erro:</strong> {{error}}
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

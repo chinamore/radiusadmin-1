@@ -4,4 +4,17 @@
     
     <h1 class="ls-title-intro ls-ico-users">Apagar grupo</h1>
 
+    <form method="POST" action="{{dir}}/groups/delete">
+
+        <p class="ls-text-lg">
+            Deseja realmente apagar o grupo <strong>{{group.name}}</strong>?
+        </p>
+
+        <input type="hidden" name="name" value="{{group.name}}" />
+
+        <button type="submit" class="ls-btn ls-btn-dark ls-btn-lg">Apagar</button>
+
+    </form>
+
+
 {% endblock %}
