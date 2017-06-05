@@ -4,4 +4,76 @@
     
     <h1 class="ls-title-intro ls-ico-users">Ver grupo</h1>
 
+
+     <div class="ls-box">
+
+        <h2 class="ls-title-4">{{group.name}}</h2>
+        
+        <hr/>
+
+   
+        <h2 class="ls-title-5">Atributos de verificação</h2>
+
+        <div class="table-responsive">
+
+            <table class="ls-table">
+                
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Operador</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                    
+                <tbody>
+
+                {% for check in group.attributesCheck %}  
+        
+                    <tr>
+                        <td>{{check.attribute}}</td>
+                        <td>{{check.op}}</td>
+                        <td>{{check.value}}</td>
+                    </tr>
+                {% else %}
+                    <tr><td>Nenhum atributo de verificação encontrado</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <hr/>
+
+        <h2 class="ls-title-5">Atributos de resposta</h2>
+
+        <div class="table-responsive">
+
+            <table class="ls-table">
+                
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Operador</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                    
+                <tbody>
+
+                {% for reply in group.attributesReply %}  
+        
+                    <tr>
+                        <td>{{reply.attribute}}</td>
+                        <td>{{reply.op}}</td>
+                        <td>{{reply.value}}</td>
+                    </tr>
+                {% else %}
+                    <tr><td>Nenhum atributo de resposta encontrado</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
 {% endblock %}

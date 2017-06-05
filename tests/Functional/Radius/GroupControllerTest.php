@@ -50,9 +50,8 @@ class GroupControllerTest extends BaseTestCase {
             "values-reply"=>[ "7200" ],
         ]);
 
-        $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "Ver grupo", (string) $response->getBody() );
-        $this->assertNotContains( "Criar grupo", (string) $response->getBody() );
+        $this->assertEquals( 302, $response->getStatusCode() );
+        $this->assertContains( "/group/view", (string) $response->getHeader("Location") );
 
         $response = $this->runApp( "POST", "/groups/create", [] );
 
