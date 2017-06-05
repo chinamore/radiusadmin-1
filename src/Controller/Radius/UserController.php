@@ -27,7 +27,7 @@ class UserController extends Controller {
 
         if( $user == null ) {
         
-            return $response->withRedirect( $this->router->pathFor("app_error", [
+            return $response->withRedirect( $this->router->pathFor( "error", [
                  
                 "error"=>"Usuário não encontrado"
             ])); 
