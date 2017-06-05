@@ -22,12 +22,12 @@ class UserController extends Controller {
     public function actionView( $request, $response ) {
     
         $name = $request->getQueryParam( "name", null );
-
+    
         $user = User::get( $name );
 
         if( $user == null ) {
         
-            return $response->withRedirect( $this->router->pathFor( "error", [
+            return $response->withRedirect( $this->router->pathFor( "error", [], [
                  
                 "error"=>"Usuário não encontrado"
             ])); 
@@ -102,7 +102,7 @@ class UserController extends Controller {
    
                 $user->save();
 
-                return $response->withRedirect( $this->router->pathFor("user_view", [
+                return $response->withRedirect( $this->router->pathFor("user_view", [], [
                  
                     "name"=>$name
                 ])); 

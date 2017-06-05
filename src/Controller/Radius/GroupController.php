@@ -16,6 +16,26 @@ class GroupController extends Controller {
         parent::__construct( $container );
     }
 
+    public function actionView( $request, $response ) {
+    
+        $name = $request->getQueryParam( "name", null );
+
+        $group = Group::get( $name );
+
+        if( $group == null ) {
+        
+            return $response->withRedirect( $this->router->pathFor( "error", [], [
+                 
+                "error"=>"Grupo não encontrado"
+            ])); 
+        }
+
+        return $this->view->render( $response, "Radius/Group/view.html",[
+            
+            "group"=>$group
+        ]);
+    }
+
     public function actionCreate( $request, $response ) {
 
         if( $request->isPost() ) {
@@ -69,10 +89,11 @@ class GroupController extends Controller {
    
                 $group->save();
 
-                return $this->view->render( $response, "Radius/Group/view.html", [
+                return $response->withRedirect( $this->router->pathFor("group_view", [], [
+                 
+                    "name"=>$name
+                ])); 
 
-                    "group"=>$group
-                ]);
             }
         }   
 

@@ -35,6 +35,9 @@ $app->group("/groups", function () {
     $this->map( ["GET"], "/[list]", App\Controller\Radius\GroupController::class . ":actionList" )
         ->setName( "group_list" );
 
+    $this->map( ["GET"], "/view", App\Controller\Radius\GroupController::class . ":actionView" )
+        ->setName( "group_view" );
+    
     $this->map( ["POST"], "/store", App\Controller\Radius\GroupController::class . ":actionStore" )
         ->setName( "group_store" );
 
