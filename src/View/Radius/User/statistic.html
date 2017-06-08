@@ -110,7 +110,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong class="ls-color-theme">{{qtAccts}}</strong>
+                        <strong class="ls-color-theme">{{ qtAccts |  number_format( 0, ',', '.') }}</strong>
                         <small>Conexões</small>
                     </div>
             
@@ -126,7 +126,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong class="ls-color-theme">{{timeAvg|round}}</strong>
+                        <strong class="ls-color-theme">{{ ( timeAvg|round ) |  number_format( 0, ',', '.') }}</strong>
                         <small>Segundos</small>
                     </div>
             
@@ -150,9 +150,9 @@
                         </div>
 
                         <div class="ls-half-board-data">
-                            <strong class="ls-color-theme">{{downloadAvg|round}}</strong>
+                            <strong class="ls-color-theme">{{ ( downloadAvg|round ) | number_format( 0, ',', '.') }}</strong>
                             <small>Download</small>
-                            <strong class="ls-color-danger">{{uploadAvg|round}}</strong>
+                            <strong class="ls-color-danger">{{ ( uploadAvg|round ) |  number_format( 0, ',', '.') }}</strong>
                             <small>Upload</small>
                         </div>
 
