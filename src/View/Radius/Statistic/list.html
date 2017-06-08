@@ -6,31 +6,15 @@
 
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/users/statistic" class="ls-form ls-form-inline">
+        <form action="{{dir}}/statistics/list" class="ls-form ls-form-inline">
 
-            <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">NAS</b>
-                <div class="ls-custom-select">
-                    <select name="nas" class="ls-select">
 
-                        <option value="">Todos</option>
-                    
-                        {% for client in clients %}
-                            
-                            <option value="{{client.nasipaddress}}" {{ client.nasipaddress == nas ? 'selected' : '' }} >
-                                {{client.nasipaddress}}
-                            </option>
-                        {% endfor %}
-
-                    </select>
-                </div>
-            </label>
- 
-            <label class="ls-label col-lg-2 col-md-3 col-sm-12">
+            <label class="ls-label col-md-3 col-sm-12">
+                <b class="ls-label-text">Inicio</b>
                 <div class="ls-prefix-group">
                     
                     <input type="text" 
-                        name="data1" 
+                        name="date1" 
                         class="datepicker ls-daterange" 
                         placeholder="Data inicio" 
                         id="date1" 
@@ -41,11 +25,12 @@
                 </div>
             </label>
 
-            <label class="ls-label col-lg-2 col-md-3 col-sm-12">
+            <label class="ls-label col-md-3 col-sm-12">
                 <div class="ls-prefix-group">
                    
+                    <b class="ls-label-text">Final</b>
                     <input type="text" 
-                        name="data2" 
+                        name="date2" 
                         class="datepicker ls-daterange" 
                         placeholder="Data final" 
                         id="date2" 
@@ -64,7 +49,7 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-6">
-            <p>Resumo conexões do usuário por período.</p>
+            <p>Resumo conexões por período.</p>
         </div>
         <div class="col-md-6 col-sm-6">
 
@@ -90,7 +75,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong class="ls-color-theme">2340</strong>
+                        <strong class="ls-color-theme">{{qtAccts}}</strong>
                         <small>Conexões</small>
                     </div>
             
@@ -106,8 +91,8 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong class="ls-color-theme">245</strong>
-                        <small>Usuários</small>
+                        <strong class="ls-color-theme">{{qtUsers}}</strong>
+                        <small>Usuários diferentes</small>
                     </div>
             
                     <div class="ls-box-footer"></div>
@@ -193,36 +178,25 @@
                         <tr>
                             <th>Data e hora</th>
                             <th>Usuário</th>
-                            <th>Nas</th>
+                            <th>IP</th>
                         </tr>
                     </thead>
                     
                     <tbody>
+
+                        {% for auth in lastAuthsOk %}
+
                         <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
+                            <td>{{auth.authdate}}</td>
+                            <td>{{auth.username}}</td>
+                            <td>{{auth.ip}}</td>
                         </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
+
+                        {% else %}
+
+                            <tr><td colspan=3>Nenhum resultado encontrado</td></tr>
+
+                        {% endfor %}
 
                     </tbody>
                 </table>
@@ -241,38 +215,26 @@
                         <tr>
                             <th>Data e hora</th>
                             <th>Usuário</th>
-                            <th>Nas</th>
+                            <th>IP</th>
                         </tr>
                     </thead>
                     
                     <tbody>
+                        {% for auth in lastAuthsError %}
+
                         <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
-                        </tr>
-                        <tr>
-                            <td>10/01/2017 09:00:01</td>
-                            <td>paulo</td>
-                            <td>parada_uniandrade</td>
+                            <td>{{auth.authdate}}</td>
+                            <td>{{auth.username}}</td>
+                            <td>{{auth.ip}}</td>
                         </tr>
 
-                    </tbody>
+                        {% else %}
+
+                            <tr><td colspan=3>Nenhum resultado encontrado</td></tr>
+
+                        {% endfor %}
+
+                   </tbody>
                 </table>
                 </div>
 
@@ -288,4 +250,16 @@
 {% block js %}
 
     <script type="text/javascript" src="{{dir}}/assets/public/js/statistic/list.js"></script>
+
+    <script type="text/javascript">
+    
+        createSummaryConnectionsChart( 
+
+            {{ datesTextSummary | json_encode | raw }}, 
+            {{ connectionsSummary | json_encode | raw }}, 
+            {{ usersSummary | json_encode | raw }} 
+        );
+
+    </script>
+
 {% endblock %}
