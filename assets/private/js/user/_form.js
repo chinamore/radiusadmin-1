@@ -1,6 +1,7 @@
 $("#input-add-group").autocompleter({ 
     
-    source: dir + "/json/groups/"
+    source: dir + "/json/groups/",
+    cache: false
 });
 
 $("#btn-add-group").on( "click", function() { 
