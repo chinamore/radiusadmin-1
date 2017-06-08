@@ -201,17 +201,17 @@ class GroupController extends Controller {
     
         if( $group == null ) {
         
-            return $this->view->render( $response, "Radius/App/error.html", [
-            
-                "errors"=>[ "Grupo não encontrado." ]
-            ]);
+            return $response->withRedirect( $this->router->pathFor( "error", [], [
+                 
+                "error"=>"Grupo não encontrado"
+            ])); 
         }
 
         if( $request->isPost() ) { 
 
             $group->delete();
         
-            return $this->actionList( $request, $response );
+            return $response->withRedirect( $this->router->pathFor( "group_list" ) ); 
         }
          
         return $this->view->render( $response, "Radius/Group/delete.html", [
