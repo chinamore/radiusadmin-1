@@ -2,6 +2,8 @@ WebGUI administration tool for the FreeRADIUS server
 
 https://www.slimframework.com/
 
+https://github.com/bryanjhv/slim-session
+
 https://twig.sensiolabs.org/
 
 https://laravel.com/docs/5.4/eloquent
