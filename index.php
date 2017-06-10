@@ -14,6 +14,17 @@ $settings = require __DIR__ . "/config/settings.php";
 
 $app = new \Slim\App( $settings );
 
+
+$app->add(function ($request, $response, $next) {
+
+    $response->getBody()->write('BEFORE');
+    $response = $next($request, $response);
+    $response->getBody()->write('AFTER');
+
+    return $response;
+});
+
+
 require __DIR__ . "/config/dependencies.php";
 
 require __DIR__ . "/config/routes.php";
