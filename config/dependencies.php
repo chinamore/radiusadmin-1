@@ -2,6 +2,12 @@
 
 $container = $app->getContainer();
 
+//slim-session
+$container["session"] = function( $container ) {
+
+    return new \SlimSession\Helper;
+};
+
 //twig templates
 $container["view"] = function ($container) {
 

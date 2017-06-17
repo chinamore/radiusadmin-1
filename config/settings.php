@@ -2,7 +2,7 @@
 
 return [
     "settings" => [
-        "determineRouteBeforeAppMiddleware" => false,
+        "determineRouteBeforeAppMiddleware" => true,
         "displayErrorDetails" => true,
         "debug"=>true,
         "db" => [

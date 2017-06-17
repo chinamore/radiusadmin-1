@@ -22,4 +22,10 @@ class AppController extends Controller {
 
         return $this->view->render( $response, "Radius/App/error.html");
     }
+
+    public function actionLogin( $request, $response ) {
+
+        return $this->view->render( $response, "Radius/App/login.html");
+    }
+
 }

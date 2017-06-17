@@ -1,0 +1,61 @@
+{% extends "Radius/Layouts/login.html" %} 
+
+{% block content %}
+
+    <form class="ls-form ls-login-form" method="POST" action="{{dir}}/authenticate">
+
+        <h1 class="ls-login-logo">Radius</h1>   
+       
+       
+        <fieldset>
+
+            <label class="ls-label">
+                <b class="ls-label-text ls-hidden-accessible">Usuário</b>
+                <input type="text" name="user" class="ls-login-bg-user ls-field-lg" placeholder="Usuário" required autofocus />
+            
+                {% if errors["user"] is not empty %}
+                    <p class="ls-error">
+                        {% for error in errors["user"] %}
+                                <small class="ls-help-message">{{error}}</small>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+
+            </label>
+
+            <label class="ls-label">
+                <b class="ls-label-text ls-hidden-accessible">Senha</b>
+                <div class="ls-prefix-group ls-field-lg">
+                    <input type="password" name="password" id="password_field" class="ls-login-bg-password" placeholder="Senha" required/>
+                    <a class="ls-label-text-prefix ls-toggle-pass ls-ico-eye" data-toggle-class="ls-ico-eye, ls-ico-eye-blocked" data-target="#password_field" href="#">
+                    </a>
+                </div>
+               
+               {% if errors["password"] is not empty %}
+                    <p class="ls-error">
+                        {% for error in errors["password"] %}
+                            <small class="ls-help-message">{{error}}</small>
+                        {% endfor %}
+                    </p>
+                {% endif %}
+
+            </label>
+
+            {% if errors["main"] is not empty %}
+                <p class="ls-error">
+                    {% for error in errors["main"] %}
+                        <small class="ls-help-message">{{error}}</small>
+                    {% endfor %}
+                </p>
+            {% endif %}
+
+            <input type="submit" value="Entrar" class="ls-btn-primary ls-btn-block ls-btn-lg">
+
+        </fieldset>
+    </form>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+

@@ -14,16 +14,12 @@ $settings = require __DIR__ . "/config/settings.php";
 
 $app = new \Slim\App( $settings );
 
+$app->add( new \Slim\Middleware\Session( [
 
-$app->add(function ($request, $response, $next) {
-
-    $response->getBody()->write('BEFORE');
-    $response = $next($request, $response);
-    $response->getBody()->write('AFTER');
-
-    return $response;
-});
-
+    "name" => "RID",
+    "autorefresh" => true,
+    "lifetime" => "1 hour"
+]));
 
 require __DIR__ . "/config/dependencies.php";
 
