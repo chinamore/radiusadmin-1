@@ -13,7 +13,7 @@ class AuthMiddleware extends Middleware {
 
     public function __invoke($request, $response, $next) {
 
-        if( !isset( $_SESSION["auth"] ) ) {
+        if( !$this->auth->check() ) {
  
             return $response->withRedirect( $this->router->pathFor( "authenticate" ) ); 
         }

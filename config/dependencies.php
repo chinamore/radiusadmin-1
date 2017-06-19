@@ -3,10 +3,33 @@
 $container = $app->getContainer();
 
 //slim-session
-$container["session"] = function( $container ) {
+//$container["session"] = function( $container ) {
 
-    return new \SlimSession\Helper;
+//    return new \SlimSession\Helper;
+//};
+
+//auth radius
+$container["auth"] = function($container) {
+
+    return new App\Auth\Radius\Auth();
 };
+
+//eloquent orm
+$container["db"] = function ($container) {
+    
+    $capsule = new \Illuminate\Database\Capsule\Manager;
+    
+    $capsule->addConnection( $container["settings"]["db_radius"], "radius" );
+    $capsule->addConnection( $container["settings"]["db_admin"], "admin" );
+
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
+
+    return $capsule;
+};
+
+//init
+$db = $container->get( "db" );
 
 //twig templates
 $container["view"] = function ($container) {
@@ -23,22 +46,17 @@ $container["view"] = function ($container) {
     $env = $view->getEnvironment();
 
     $env->addGlobal( "dir", "/radiusadmin" );
+    
+    $env->addGlobal( "auth", [
+    
+        "check"=>$container->auth->check(),
+
+        "user"=>$container->auth->user()
+    ]);
 
     return $view;
 };
 
-//eloquent orm
-$container["db"] = function ($container) {
-    
-    $capsule = new \Illuminate\Database\Capsule\Manager;
-    
-    $capsule->addConnection($container["settings"]["db"], "radius");
-
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-
-    return $capsule;
-};
 
 $container["errorHandler"] = function ($container) {
     return function ($request, $response, $exception) use ($container) {

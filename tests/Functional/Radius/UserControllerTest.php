@@ -8,20 +8,20 @@ class UserControllerTest extends BaseTestCase {
     
     public function testActionList() {
 
-        $response = $this->runApp( "GET", "/users/list");
+        $response = $this->runApp( "GET", "/protected/users/list");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Listar usuário", (string) $response->getBody());
         $this->assertNotContains( "Ver usuário", (string) $response->getBody());
 
-        $response = $this->runApp( "GET", "/users/list?name=paulo" );
+        $response = $this->runApp( "GET", "/protected/users/list?name=paulo" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "paulo", (string) $response->getBody() );
         $this->assertNotContains( "iago", (string) $response->getBody() );
 
 
-        $response = $this->runApp( "GET", "/users/list?name=paulo&attribute=password");
+        $response = $this->runApp( "GET", "/protected/users/list?name=paulo&attribute=password");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "paulo", (string) $response->getBody() );
@@ -30,13 +30,13 @@ class UserControllerTest extends BaseTestCase {
     
     public function testActionCreate() {
 
-        $response = $this->runApp( "GET", "/users/create");
+        $response = $this->runApp( "GET", "/protected/users/create");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar usuário", (string) $response->getBody());
         $this->assertNotContains( "Ver usuário", (string)$response->getBody());
 
-        $response = $this->runApp( "POST", "/users/create", [
+        $response = $this->runApp( "POST", "/protected/users/create", [
         
             "name"=>date("zhmi"),
             "groups"=>[
@@ -53,9 +53,9 @@ class UserControllerTest extends BaseTestCase {
         ]);
 
         $this->assertEquals( 302, $response->getStatusCode() );
-        $this->assertContains( "/user/view", (string) $response->getHeader("Location") );
+        $this->assertContains( "/users/view", (string) $response->getHeaderLine("Location") );
 
-        $response = $this->runApp( "POST", "/users/create", [] );
+        $response = $this->runApp( "POST", "/protected/users/create", [] );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar usuário", (string) $response->getBody() );

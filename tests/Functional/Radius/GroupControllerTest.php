@@ -11,20 +11,20 @@ class GroupControllerTest extends BaseTestCase {
 
     public function testActionList() {
 
-        $response = $this->runApp( "GET", "/groups/list");
+        $response = $this->runApp( "GET", "/protected/groups/list");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Listar grupo", (string) $response->getBody());
         $this->assertNotContains( "Ver grupo", (string) $response->getBody());
 
-        $response = $this->runApp( "GET", "/groups/list?name=grupo1" );
+        $response = $this->runApp( "GET", "/protected/groups/list?name=grupo1" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "grupo1", (string) $response->getBody() );
         $this->assertNotContains( "grupo2", (string) $response->getBody() );
 
 
-        $response = $this->runApp( "GET", "/groups/list?name=grupo1&attribute=password");
+        $response = $this->runApp( "GET", "/protected/groups/list?name=grupo1&attribute=password");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "grupo1", (string) $response->getBody() );
@@ -33,13 +33,13 @@ class GroupControllerTest extends BaseTestCase {
 
     public function testActionCreate() {
 
-        $response = $this->runApp( "GET", "/groups/create");
+        $response = $this->runApp( "GET", "/protected/groups/create");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar grupo", (string) $response->getBody());
         $this->assertNotContains( "Ver grupo", (string)$response->getBody());
 
-        $response = $this->runApp( "POST", "/groups/create", [
+        $response = $this->runApp( "POST", "/protected/groups/create", [
         
             "name"=>date("zhmi"),
             "attributes-check"=>[ "Auth-Type" ],
@@ -51,9 +51,10 @@ class GroupControllerTest extends BaseTestCase {
         ]);
 
         $this->assertEquals( 302, $response->getStatusCode() );
-        $this->assertContains( "/group/view", (string) $response->getHeader("Location") );
 
-        $response = $this->runApp( "POST", "/groups/create", [] );
+        $this->assertContains( "/groups/view", (string) $response->getHeaderLine("Location") );
+
+        $response = $this->runApp( "POST", "/protected/groups/create", [] );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Criar grupo", (string) $response->getBody() );
@@ -62,14 +63,13 @@ class GroupControllerTest extends BaseTestCase {
 
     public function testActionDelete() {
 
-        $response = $this->runApp( "GET", "/groups/delete", [
+        $response = $this->runApp( "GET", "/protected/groups/delete", [
         
             "name"=>"nao-existe-" . date("zhmi")
         ]);
 
-        $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "Erro", (string) $response->getBody() );
-        $this->assertNotContains( "Apagar grupo", (string) $response->getBody() );
+        $this->assertEquals( 302, $response->getStatusCode() );
+        $this->assertContains( "error", (string) $response->getHeaderLine("Location") );
 
         $groupName = "existe-" . date("zhmi");
         
@@ -89,41 +89,41 @@ class GroupControllerTest extends BaseTestCase {
 
         $group->save();
 
-        $response = $this->runApp( "GET", "/groups/delete", [
+        $response = $this->runApp( "GET", "/protected/groups/delete", [
         
             "name"=>$groupName
         ]);
+        
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Apagar grupo", (string) $response->getBody() );
         $this->assertNotContains( "Listar grupo", (string) $response->getBody() );
  
-        $response = $this->runApp( "POST", "/groups/delete", [
+        $response = $this->runApp( "POST", "/protected/groups/delete", [
         
             "name"=>$groupName
         ]);
 
-        $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "Listar grupo", (string) $response->getBody() );
-        $this->assertNotContains( "Apagar grupo", (string) $response->getBody() );
+        $this->assertEquals( 302, $response->getStatusCode() );
+        $this->assertContains( "groups/list", (string) $response->getHeaderLine("Location") );
  
     }
 
     public function testActionExistJSON() {
 
-        $response = $this->runApp( "GET", "/json/groups/exist?name=grupo1");
+        $response = $this->runApp( "GET", "/protected/json/groups/exist?name=grupo1");
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "true", (string) $response->getBody());
         $this->assertNotContains( "false", (string) $response->getBody());
 
-        $response = $this->runApp( "GET", "/json/groups/exist?name=grupoQueNaoExiste" );
+        $response = $this->runApp( "GET", "/protected/json/groups/exist?name=grupoQueNaoExiste" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "false", (string) $response->getBody() );
         $this->assertNotContains( "true", (string) $response->getBody() );
 
-        $response = $this->runApp( "GET", "/json/groups/exist" );
+        $response = $this->runApp( "GET", "/protected/json/groups/exist" );
 
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "false", (string) $response->getBody() );

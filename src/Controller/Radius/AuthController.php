@@ -21,12 +21,8 @@ class AuthController extends Controller {
         
             $data = $request->getParsedBody();
 
-            $auth = new Auth();
+            if( $this->auth->attempt( $data["user"], $data["password"] ) ) {
 
-            if( $auth->attempt( $data["user"], $data["password"] ) ) {
-
-                $_SESSION["auth"] = $data["user"];
-        
                 return $response->withRedirect( $this->router->pathFor( "index" ) );        
             }
 
@@ -38,6 +34,14 @@ class AuthController extends Controller {
             "errors"=>$errors
         ]);
     }
+
+    public function actionLogout( $request, $response ) {
+    
+        $this->auth->logout();
+        
+        return $response->withRedirect( $this->router->pathFor( "authenticate" ) ); 
+    } 
+
 
 }
 

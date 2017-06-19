@@ -30,13 +30,13 @@
                 <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
                 
                     <a href="#" class="ls-ico-user">
-                        <span class="ls-name">Nome</span>
-                        (usuario)
+                        <span class="ls-name">{{auth.user.name}}</span>
+                        ({{ auth.user.login }})
                     </a>
 
                     <nav class="ls-dropdown-nav ls-user-menu">
                         <ul>
-                            <li><a href="#">Sair</a></li>
+                            <li><a href="{{dir}}/logout">Sair</a></li>
                         </ul>
                     </nav>
                 </div>

@@ -9,6 +9,9 @@ $app->map( ["GET"], "/error", "App\Controller\Radius\AppController:actionError" 
 $app->map( ["GET", "POST"], "/authenticate", "App\Controller\Radius\AuthController:actionAuthenticate" )
     ->setName( "authenticate" );
 
+$app->map( ["GET", "POST"], "/logout", "App\Controller\Radius\AuthController:actionLogout" )
+    ->setName( "logout" );
+
 $app->group( "/protected", function() {
 
     $this->group("/users", function () {

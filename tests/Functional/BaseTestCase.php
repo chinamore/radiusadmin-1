@@ -32,6 +32,10 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase {
      * @return \Slim\Http\Response
      */
     public function runApp($requestMethod, $requestUri, $requestData = null) {
+
+        //for auth 
+        $_SESSION = [ "auth_id"=>1 ];
+
         // Create a mock environment for testing with
         $environment = Environment::mock(
             [
@@ -53,13 +57,28 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase {
        
         $settings = [
             "settings" => [
-                "determineRouteBeforeAppMiddleware" => false,
+
+                "determineRouteBeforeAppMiddleware" => true,
+
                 "displayErrorDetails" => true,
+
                 "debug"=>true,
-                "db" => [
+
+                "db_radius" => [
                     "driver" => "mysql",
                     "host" => "localhost",
                     "database" => "radius_test",
+                    "username" => "root",
+                    "password" => "root",
+                    "charset"   => "utf8",
+                    "collation" => "utf8_unicode_ci",
+                    "prefix"    => "",
+                ],
+
+                "db_admin" => [
+                    "driver" => "mysql",
+                    "host" => "localhost",
+                    "database" => "admin_test",
                     "username" => "root",
                     "password" => "root",
                     "charset"   => "utf8",

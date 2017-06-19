@@ -1,5 +1,10 @@
 <?php
 
+if( PHP_SAPI === "cli" ) {
+
+    $_SESSION = array();
+}
+
 session_start();
 
 error_reporting(E_ALL);
