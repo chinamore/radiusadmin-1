@@ -23,8 +23,6 @@ How to use:
 
 Screenshots:
 
-User form Mobile
-![]( https://1.bp.blogspot.com/-3-2kOvckT80/WUmKL7ixKII/AAAAAAAAAok/qjw9q6J7SzgNB6hz8mZrM_0vPhGuWIzqgCLcBGAs/s1600/usuarioM.png )
 
 User form
 ![]( https://2.bp.blogspot.com/-BhuiBPG1hEs/WUmKLxRnAFI/AAAAAAAAAoo/IIh6jLWICY4XK6yfnFQKdBwPoD9ItxVTgCLcBGAs/s1600/usuario.png )
