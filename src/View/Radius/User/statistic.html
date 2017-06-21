@@ -6,7 +6,7 @@
 
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/users/statistic" class="ls-form ls-form-inline">
+        <form action="{{dir}}/protected/users/statistic" class="ls-form ls-form-inline">
             
             <input type="hidden" name="userName" value="{{userName}}" />           
 
@@ -217,7 +217,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/users/statistic?userName={{userName}}&page={{page - 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
+                        <a href="{{dir}}/protected/users/statistic?userName={{userName}}&page={{page - 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -231,7 +231,7 @@
                 
                     <li>
 
-                        <a href="{{dir}}/users/statistic?userName={{userName}}&page={{page + 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
+                        <a href="{{dir}}/protected/users/statistic?userName={{userName}}&page={{page + 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
                             Próximo &raquo;
                         </a>
                     </li>
