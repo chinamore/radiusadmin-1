@@ -18,7 +18,7 @@ class StatisticController extends Controller {
     public function actionList( $request, $response ) { 
 
         
-        $textDate1 = $request->getQueryParam( "date1", date( "01/01/Y" ) );
+        $textDate1 = $request->getQueryParam( "date1", date( "01/m/Y" ) );
 
         $textDate2 = $request->getQueryParam( "date2", date( "d/m/Y" ) );
         
