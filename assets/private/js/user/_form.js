@@ -1,6 +1,6 @@
 $("#input-add-group").autocompleter({ 
     
-    source: dir + "/json/groups/",
+    source: dir + "/protected/json/groups/",
     cache: false
 });
 
@@ -22,7 +22,7 @@ $("#btn-add-group").on( "click", function() {
     if( $.inArray( group, groupsSelect ) === -1 ) {
          
         $.ajax({
-            url: dir + "/json/groups/exist?name=" + group,
+            url: dir + "/protected/json/groups/exist?name=" + group,
             dataType: "json",
             success: function(data) {
 
