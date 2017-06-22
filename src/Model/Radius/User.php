@@ -42,8 +42,13 @@ class User {
         return isset( $this->properties[ $propertie ] );
     }
  
-    public function save() {
+    public function save( $nameOld = null ) {
         
+        if( $nameOld !== null ) {
+        
+            $this->deleteToUpdate( $nameOld ); 
+        }
+
         $this->delete();
 
         foreach( $this->attributesCheck as $check ) {
@@ -70,7 +75,6 @@ class User {
 
             $radUserGroup->save();
         }
-    
     }
 
     public function delete() {
@@ -89,6 +93,16 @@ class User {
         return ( $qtChecks + $qtReplies ) > 0 ;
     }    
 
+    private function deleteToUpdate( $name ) {
+    
+        $user = self::get( $name );
+
+        if( $user !== null ) {
+        
+            $user->delete();
+        }
+       
+    }
 
     private static function sortByName( $attributesCheck, $attributesReply ) {
     
@@ -182,11 +196,21 @@ class User {
 
 
     public static function get( $name ) {
-    
+ 
+        if( empty( $name ) ) {
+            
+            return null;
+        }
+
         $checks = RadCheck::where( "username", $name )->get();
         
         $replies = RadReply::where( "username", $name )->get();
         
+        if( count( $checks ) <= 0 && count( $replies ) <= 0 ) {
+        
+            return null;
+        }
+
         $groups = self::loadGroups( $name );
 
         return new User( $name, $checks, $replies, $groups );

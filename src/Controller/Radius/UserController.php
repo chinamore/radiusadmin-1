@@ -99,8 +99,10 @@ class UserController extends Controller {
             if( ( count( $checks ) > 0 || count( $replies ) > 0 ) ) {
         
                 $user = new User( $name, $checks, $replies, $groups );
-   
-                $user->save();
+
+                $nameOld = ( isset( $data["name-old"] ) ) ? $data["name-old"] : null;
+
+                $user->save( $nameOld );
 
                 return $response->withRedirect( $this->router->pathFor("user_view", [], [
                  
