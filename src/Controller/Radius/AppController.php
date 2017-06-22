@@ -12,8 +12,8 @@ class AppController extends Controller {
     }
     
     public function actionIndex( $request, $response ) {
-
-        return $this->view->render( $response, "Radius/App/index.html");
+    
+        return $response->withRedirect( $this->router->pathFor("user_list") ); 
     }
 
     public function actionError( $request, $response ) {
