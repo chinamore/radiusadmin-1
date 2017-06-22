@@ -87,7 +87,9 @@ class GroupController extends Controller {
         
                 $group = new Group( $name, $checks, $replies );
    
-                $group->save();
+                $nameOld = ( isset( $data["name-old"] ) ) ? $data["name-old"] : null;
+
+                $group->save( $nameOld );
 
                 return $response->withRedirect( $this->router->pathFor("group_view", [], [
                  

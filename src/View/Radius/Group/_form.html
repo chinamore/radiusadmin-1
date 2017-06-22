@@ -27,6 +27,7 @@
                     <b class="ls-label-text">Nome</b>
                     <p class="ls-label-info">O <i>groupname</i> do grupo</p>
                     <input type="text" name="name" value="{{group.name}}" placeholder="" />
+                    <input type="hidden" name="name-old" value="{{group.name}}"/>
 
                     {% if errors["name"] is not empty %}
                         <p class="ls-error">
