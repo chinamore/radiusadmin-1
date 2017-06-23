@@ -20,7 +20,10 @@ class AppController extends Controller {
     
         $error = $request->getQueryParam( "error", "Ocorreu um erro interno" );
 
-        return $this->view->render( $response, "Radius/App/error.html");
+        return $this->view->render( $response, "Radius/App/error.html", [
+            
+            "error"=>$error
+        ]);
     }
 
     public function actionLogin( $request, $response ) {

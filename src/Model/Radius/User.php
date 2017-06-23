@@ -41,40 +41,62 @@ class User {
 
         return isset( $this->properties[ $propertie ] );
     }
- 
-    public function save( $nameOld = null ) {
+       
+    public function validate() {
+    
+        if( empty( trim( $this->name ) ) ) {
+            
+            return false;
+        }
+    
+        if( empty( $this->attributesCheck ) && empty( $this->attributesReply ) ) {
         
-        if( $nameOld !== null ) {
-        
-            $this->deleteToUpdate( $nameOld ); 
+            return false;
         }
 
-        $this->delete();
+        //add test groups
 
-        foreach( $this->attributesCheck as $check ) {
+        return true;
+    }
+
+    public function save( $oldName = null ) {
         
-            $check->save();
-        } 
+        if( $this->validate() ) {
+
+            if( $oldName !== null ) {
         
-        foreach( $this->attributesReply as $reply ) {
+                $this->deleteToUpdate( $oldName ); 
+            }
+
+            $this->delete();
+
+            foreach( $this->attributesCheck as $check ) {
         
-            $reply->save();
-        }
+                $check->save();
+            }    
+        
+            foreach( $this->attributesReply as $reply ) {
+        
+                $reply->save();
+            }
      
-        foreach( $this->groups as $index => $group ) {
-        
-            //$group->save();
+            foreach( $this->groups as $index => $group ) {
 
-            $radUserGroup = new RadUserGroup();
+                $radUserGroup = new RadUserGroup();
 
-            $radUserGroup->priority = $index + 1;
+                $radUserGroup->priority = $index + 1;
 
-            $radUserGroup->username = $this->name;
+                $radUserGroup->username = $this->name;
 
-            $radUserGroup->groupname = $group->name;
+                $radUserGroup->groupname = $group->name;
 
-            $radUserGroup->save();
+                $radUserGroup->save();
+            }
+
+            return true;
         }
+
+        return false;
     }
 
     public function delete() {
@@ -84,6 +106,22 @@ class User {
         RadUserGroup::where( "username", $this->name )->delete();
     }
 
+    public function fill( $data ) {
+   
+        foreach( $this->properties as $key => $value ) {
+        
+            if( isset( $data[ $key ] ) ) {
+            
+                $this->proprerties[ $key ] = $data[ $key ];
+            }
+        }
+    }
+   
+    public static function create() {
+   
+        return new User( null, [], [], [] );
+    }
+           
     public static function exists( $name ) {
     
         $qtChecks = RadCheck::where( "username", $name )->count();
@@ -92,55 +130,7 @@ class User {
         
         return ( $qtChecks + $qtReplies ) > 0 ;
     }    
-
-    private function deleteToUpdate( $name ) {
-    
-        $user = self::get( $name );
-
-        if( $user !== null ) {
-        
-            $user->delete();
-        }
-       
-    }
-
-    private static function sortByName( $attributesCheck, $attributesReply ) {
-    
-        $attributes = [];
- 
-        foreach( $attributesCheck as $check ) {
-       
-            if( !isset( $attributes[ $check->username ] ) ) {
-            
-                $attributes[ $check->username ] = [];
-            }
-
-            if( !isset( $attributes[ $check->username ][ "check"] )  ) {
-            
-                $attributes[ $check->username ][ "check" ] = [];
-            }
-
-            $attributes[ $check->username ][ "check" ][] = $check;
-        }
-    
-        foreach( $attributesReply as $reply ) {
-
-            if( !isset( $attributes[ $reply->username ] ) ) {
-            
-                $attributes[ $reply->username ] = [];
-            }
-
-            if( !isset( $attributes[ $reply->username ][ "reply"] )  ) {
-            
-                $attributes[ $reply->username ][ "reply" ] = [];
-            }
-
-           $attributes[ $reply->username ][ "reply" ][] = $reply;
-        }   
-    
-        return $attributes;
-    }
-
+   
     public static function find( $name, $attribute = "", $skip = null, $take = 10 ) {
         
         $users = [];
@@ -194,7 +184,6 @@ class User {
         return $users;
     }
 
-
     public static function get( $name ) {
  
         if( empty( $name ) ) {
@@ -239,6 +228,16 @@ class User {
         return $users;
     }
 
+    private function deleteToUpdate( $name ) {
+    
+        $user = self::get( $name );
+
+        if( $user !== null ) {
+        
+            $user->delete();
+        }       
+    }
+
     private static function loadGroups( $userName ) {
     
         $groups = [];
@@ -253,6 +252,43 @@ class User {
         }
 
         return $groups;
+    }
+
+    private static function sortByName( $attributesCheck, $attributesReply ) {
+    
+        $attributes = [];
+ 
+        foreach( $attributesCheck as $check ) {
+       
+            if( !isset( $attributes[ $check->username ] ) ) {
+            
+                $attributes[ $check->username ] = [];
+            }
+
+            if( !isset( $attributes[ $check->username ][ "check"] )  ) {
+            
+                $attributes[ $check->username ][ "check" ] = [];
+            }
+
+            $attributes[ $check->username ][ "check" ][] = $check;
+        }
+    
+        foreach( $attributesReply as $reply ) {
+
+            if( !isset( $attributes[ $reply->username ] ) ) {
+            
+                $attributes[ $reply->username ] = [];
+            }
+
+            if( !isset( $attributes[ $reply->username ][ "reply"] )  ) {
+            
+                $attributes[ $reply->username ][ "reply" ] = [];
+            }
+
+           $attributes[ $reply->username ][ "reply" ][] = $reply;
+        }   
+    
+        return $attributes;
     }
 
 }

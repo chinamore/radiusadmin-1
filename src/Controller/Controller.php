@@ -20,4 +20,13 @@ class Controller {
     
         return $this->$atrib;
     }
+
+    public function redirect( $response, $routerName, $queryParam = [], $postData = [] ) {
+    
+        return $response->withRedirect( 
+            
+            $this->router->pathFor( $routerName, $postData, $queryParam  )
+        ); 
+    }
+
 }

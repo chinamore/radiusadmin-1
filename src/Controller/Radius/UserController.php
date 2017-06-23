@@ -22,15 +22,15 @@ class UserController extends Controller {
     public function actionView( $request, $response ) {
     
         $name = $request->getQueryParam( "name", null );
-    
+
         $user = User::get( $name );
 
-        if( $user == null ) {
+        if( $user === null ) {
         
-            return $response->withRedirect( $this->router->pathFor( "error", [], [
+            return $this->redirect( $response, "error", [
                  
                 "error"=>"Usuário não encontrado"
-            ])); 
+            ]); 
         }
 
         return $this->view->render( $response, "Radius/User/view.html",[
@@ -40,10 +40,27 @@ class UserController extends Controller {
     }
 
     public function actionCreate( $request, $response ) {
- 
+        
+        $user = User::create();
+
+        $errors = [];
+
         if( $request->isPost() ) {
             
-            return $this->actionStore( $request, $response );
+            $user = $this->createUser( $request->getParsedBody() );
+
+            if( $user !== null && $user->save() ) {
+
+                return $this->redirect( $response, "user_view", [
+                 
+                    "name"=>$user->name
+                ]); 
+            }
+
+            $errors = [ "main"=> [ 
+            
+                "Erro, você deve preencher o nome e no mínimo um atributo" 
+            ] ]; 
         }
 
         $groups = Group::getAll();
@@ -52,83 +69,60 @@ class UserController extends Controller {
 
         return $this->view->render( $response, "Radius/User/create.html", [
 
-            "groups" => $groups,
-            "operators"=>$operators
+            "user"=>$user,
+            "groups"=>$groups,
+            "operators"=>$operators,
+            "errors"=>$errors
         ]);
     }
    
-    public function actionStore( $request, $response ) {
-    
-        $data = $request->getParsedBody();
+    public function actionUpdate( $request, $response ) {
 
-        if( isset( $data["name"] ) && strlen( trim( $data["name"] ) ) > 0 ) {
+        $name = $request->getQueryParam( "name", "" );
 
-            $name = $data["name"];
+        $user = User::get( $name );
 
-            $checks = [];
-
-            if( isset( $data["attributes-check"] ) &&
-                isset( $data["operators-check"] ) &&
-                isset( $data["values-check"] ) ) {
-            
-                $checks = $this->createAttributesCheck( $name,
-                    $data["attributes-check"],
-                    $data["operators-check"],
-                    $data["values-check"] );           
-            }
-
-            $replies = [];
-
-            if( isset( $data["attributes-reply"] ) &&
-                isset( $data["operators-reply"] ) &&
-                isset( $data["values-reply"] ) ) {
-            
-                $replies = $this->createAttributesReply( $name,
-                    $data["attributes-reply"],
-                    $data["operators-reply"],
-                    $data["values-reply"] );           
-            }
-
-            $groups = [];
-
-            if( isset( $data["groups"] ) ) {
-
-                $groups = $this->createGroups( $data["groups"] );
-            }
-
-            if( ( count( $checks ) > 0 || count( $replies ) > 0 ) ) {
+        if( $user === null ) {
         
-                $user = new User( $name, $checks, $replies, $groups );
-
-                $nameOld = ( isset( $data["name-old"] ) ) ? $data["name-old"] : null;
-
-                $user->save( $nameOld );
-
-                return $response->withRedirect( $this->router->pathFor("user_view", [], [
+            return $this->redirect( $response, "error", [
                  
-                    "name"=>$name
-                ])); 
-            }
+                "error"=>"Usuário não encontrado"
+            ]); 
         }
 
-        $errors = [
-            "main"=>[
-                "Você deve preencher o campo nome e no minimo um atributo."
-            ]
-        ];
+        $errors = [];
+
+        if( $request->isPost() ) {
+            
+            $newUser = $this->createUser( $request->getParsedBody() );
+
+            if( $newUser !== null && $newUser->save( $user->name ) ) {
+
+                return $this->redirect( $response, "user_view", [
+                 
+                    "name"=>$newUser->name
+                ]); 
+            }
+
+            $errors = [ "main"=> [ 
+            
+                "Erro, você deve preencher o nome e no mínomo um atributo" 
+            ] ]; 
+        }
 
         $groups = Group::getAll();
 
         $operators = Radcheck::getOperators();
 
-        return $this->view->render( $response, "Radius/User/create.html", [
-
-            "groups"=>$groups,
+        return $this->view->render( $response, "Radius/User/update.html", [
+            
+            "user"=>$user,
+            "groups" => $groups,
             "operators"=>$operators,
             "errors"=>$errors
         ]);
-    } 
- 
+    }
+  
     public function actionList( $request, $response ) {
 
         $name = $request->getQueryParam( "name", "" );
@@ -157,23 +151,6 @@ class UserController extends Controller {
         ]);
     }
 
-    public function actionUpdate( $request, $response ) {
-
-        $name = $request->getQueryParam( "name", "" );
-
-        $groups = Group::getAll();
-
-        $user = User::get( $name );
-
-        $operators = Radcheck::getOperators();
-
-        return $this->view->render( $response, "Radius/User/update.html", [
-            
-            "user"=>$user,
-            "groups" => $groups,
-            "operators"=>$operators
-        ]);
-    }
 
     public function actionDelete( $request, $response ) {
 
@@ -244,69 +221,105 @@ class UserController extends Controller {
         ]);
     }
 
-    private function createAttributesCheck( $userName, $attributes, $operators, $values ) {
+    
+    private function createUser( $data ) {
+   
+        if( empty( $data["name"] ) ) {
+        
+            return null;
+        }
+
+        $name = $data["name"];
+
+        $checks = $this->createAttributesCheck( $data );           
+           
+        $replies = $this->createAttributesReply( $data );
+        
+        $groups = [];
+        
+        if( isset( $data["groups"] ) ) {
+
+            $groups = $this->createGroups( $data );
+        }
+
+        return new User( $name, $checks, $replies, $groups );
+    } 
+ 
+    private function createAttributesCheck( $data ) {
         
         $checks = [];
 
-        $qtAttributesCheck = max( count( $attributes ), count( $operators ), count( $values ) );
+        if( isset( $data["name"] ) && 
+            !empty( trim( $data["name"] ) ) && 
+            isset( $data["attributes-check"] ) ) {
+            
+            $qtChecks = count( $data["attributes-check"] );
+    
+            for( $i = 0; $i < $qtChecks; $i++ ) {
+                
+                if( isset( $data["attributes-check"][$i] ) &&
+                    !empty( trim( $data["attributes-check"][$i] ) ) &&
+                    isset( $data["operators-check"][$i] ) && 
+                    !empty( trim( $data["operators-check"][$i] ) ) &&
+                    isset( $data["values-check"][$i] ) && 
+                    !empty( trim( $data["values-check"][$i] ) ) ) {
+                       
+                    $check = new RadCheck();
+                    $check->username = $data["name"];
+                    $check->attribute = $data["attributes-check"][$i];
+                    $check->op = $data["operators-check"][$i];
+                    $check->value = $data["values-check"][$i];
 
-        for( $i = 0; $i < $qtAttributesCheck; $i++ ) {
-            
-            if( !isset( $attributes[$i] ) || empty( $attributes[$i] ) ||
-                !isset( $operators[$i] ) || empty( $operators[$i] ) ||
-                !isset( $values[$i] ) || empty( $values[$i] )  ) {
-            
-                continue;
+                    $checks[] = $check;                   
+                }
             }
-
-            $check = new RadCheck();
-            $check->username = $userName;
-            $check->attribute = $attributes[$i];
-            $check->op = $operators[$i];
-            $check->value = $values[$i];
-
-            $checks[] = $check;
         }
-   
+  
         return $checks;
     }
 
-    private function createAttributesReply( $userName, $attributes, $operators, $values ) {
+    private function createAttributesReply( $data ) {
         
         $replies = [];
 
-        $qtAttributesReply = max( count( $attributes ), count( $operators ), count( $values ) );
+        if( isset( $data["name"] ) && 
+            !empty( trim( $data["name"] ) ) && 
+            isset( $data["attributes-reply"] ) ) {
+            
+            $qtChecks = count( $data["attributes-reply"] );
+    
+            for( $i = 0; $i < $qtChecks; $i++ ) {
+                
+                if( isset( $data["attributes-reply"][$i] ) &&
+                    !empty( trim( $data["attributes-reply"][$i] ) ) &&
+                    isset( $data["operators-reply"][$i] ) && 
+                    !empty( trim( $data["operators-reply"][$i] ) ) &&
+                    isset( $data["values-reply"][$i] ) && 
+                    !empty( trim( $data["values-reply"][$i] ) ) ) {
+                       
+                    $reply = new RadReply();
+                    $reply->username = $data["name"];
+                    $reply->attribute = $data["attributes-reply"][$i];
+                    $reply->op = $data["operators-reply"][$i];
+                    $reply->value = $data["values-reply"][$i];
 
-        for( $i = 0; $i < $qtAttributesReply; $i++ ) {
-            
-            if( !isset( $attributes[$i] ) || empty( $attributes[$i] ) ||
-                !isset( $operators[$i] ) || empty( $operators[$i] ) ||
-                !isset( $values[$i] ) || empty( $values[$i] )  ) {
-            
-                continue;
+                    $replies[] = $reply;                   
+                }
             }
-
-            $reply = new RadReply();
-            $reply->username = $userName;
-            $reply->attribute = $attributes[$i];
-            $reply->op = $operators[$i];
-            $reply->value = $values[$i];
-
-            $replies[] = $reply;
         }
-   
+  
         return $replies;
     }
 
-    private function createGroups( $groupsName ) {
+    private function createGroups( $data ) {
     
         $groups = [];
 
-        foreach( $groupsName as $groupName ) {
+        foreach( $data["groups"] as $groupName ) {
         
             $group = Group::get( $groupName );
 
-            if( $group != null ) {
+            if( $group !== null ) {
 
                 $groups[] = $group;
             }
@@ -337,5 +350,4 @@ class UserController extends Controller {
   
         return $query;
     }
-
 }
