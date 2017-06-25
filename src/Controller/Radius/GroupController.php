@@ -37,80 +37,81 @@ class GroupController extends Controller {
     }
 
     public function actionCreate( $request, $response ) {
+ 
+        $group = Group::create();
+
+        $errors = [];
 
         if( $request->isPost() ) {
             
-            return $this->actionStore( $request, $response );
+            $group = $this->createGroup( $request->getParsedBody() );
+
+            if( $group !== null && $group->save() ) {
+
+                return $this->redirect( $response, "group_view", [
+                 
+                    "name"=>$group->name
+                ]); 
+            }
+
+            $errors = [ "main"=> [ 
+            
+                "Erro, você deve preencher o nome e no mínimo um atributo" 
+            ] ]; 
         }
 
-        $operators = RadCheck::getOperators();
-
-        return $this->view->render( $response, "Radius/Group/create.html", [
- 
-            "operators"=>$operators
-        ]);
-    }
- 
-    public function actionStore( $request, $response ) {
-    
-        $data = $request->getParsedBody();
-
-        if( isset( $data["name"] ) && strlen( trim( $data["name"] ) ) > 0 ) {
-
-            $name = $data["name"];
-
-            $checks = [];
-
-            if( isset( $data["attributes-check"] ) &&
-                isset( $data["operators-check"] ) &&
-                isset( $data["values-check"] ) ) {
-            
-                $checks = $this->createAttributesCheck( $name,
-                    $data["attributes-check"],
-                    $data["operators-check"],
-                    $data["values-check"] );           
-            }
-
-            $replies = [];
-
-            if( isset( $data["attributes-reply"] ) &&
-                isset( $data["operators-reply"] ) &&
-                isset( $data["values-reply"] ) ) {
-            
-                $replies = $this->createAttributesReply( $name,
-                    $data["attributes-reply"],
-                    $data["operators-reply"],
-                    $data["values-reply"] );           
-            }
-
-            if(  count( $checks ) > 0 || count( $replies ) > 0 ) {
-        
-                $group = new Group( $name, $checks, $replies );
-   
-                $nameOld = ( isset( $data["name-old"] ) ) ? $data["name-old"] : null;
-
-                $group->save( $nameOld );
-        
-                return $this->redirect( $response, "group_view", [
-                
-                    "name"=>$name
-                ]);
-            }
-        }   
-
-        $errors = [
-            "main"=>[
-                "Você deve preencher o campo nome e no minimo um atributo."
-            ]
-        ];
-
-        $operators = Radcheck::getOperators();
+        $operators = RadGroupCheck::getOperators();
 
         return $this->view->render( $response, "Radius/Group/create.html", [
 
+            "group"=>$group,
             "operators"=>$operators,
             "errors"=>$errors
-        ]);    
+        ]);
+    }
+
+    public function actionUpdate( $request, $response ) {
+
+        $name = $request->getQueryParam( "name", "" );
+
+        $group = Group::get( $name );
+
+        if( $group === null ) {
+        
+            return $this->redirect( $response, "error", [
+                 
+                "error"=>"Grupo não encontrado"
+            ]); 
+        }
+
+        $errors = [];
+
+        if( $request->isPost() ) {
+            
+            $newGroup = $this->createGroup( $request->getParsedBody() );
+
+            if( $newGroup !== null && $newGroup->save( $group->name ) ) {
+
+                return $this->redirect( $response, "group_view", [
+                 
+                    "name"=>$newGroup->name
+                ]); 
+            }
+
+            $errors = [ "main"=> [ 
+            
+                "Erro, você deve preencher o nome e no mínomo um atributo" 
+            ] ]; 
+        }
+
+        $operators = RadGroupcheck::getOperators();
+
+        return $this->view->render( $response, "Radius/Group/update.html", [
+            
+            "group"=>$group,
+            "operators"=>$operators,
+            "errors"=>$errors
+        ]);
     }
 
     public function actionList( $request, $response ) {
@@ -141,21 +142,6 @@ class GroupController extends Controller {
         ]);
     }
 
-    public function actionUpdate( $request, $response ) {
-
-        $name = $request->getQueryParam( "name", "" );
-        
-        $group = Group::get( $name );
-
-        $operators = RadCheck::getOperators();
-
-        return $this->view->render( $response, "Radius/Group/update.html", [
- 
-            "group"=>$group,
-            "operators"=>$operators
-        ]);
-    }
-
     public function actionListJSON( $request, $response ) {
         
         $json = [];
@@ -180,16 +166,9 @@ class GroupController extends Controller {
         
         $name = $request->getQueryParam( "name", "" );
         
-        $group = Group::get( $name );
-
         $obj = new StdClass();
         
-        $obj->result = true;
-
-        if( $group == null ) {
-            
-            $obj->result = false;
-        }
+        $obj->result = Group::exists( $name );
 
         $response->getBody()->write(  json_encode( $obj ) );
     }
@@ -221,57 +200,86 @@ class GroupController extends Controller {
         ]);
     }
 
-    private function createAttributesCheck( $groupName, $attributes, $operators, $values ) {
+    private function createAttributesCheck( $data ) {
         
         $checks = [];
 
-        $qtAttributesCheck = max( count( $attributes ), count( $operators ), count( $values ) );
+        if( isset( $data["name"] ) && 
+            !empty( trim( $data["name"] ) ) && 
+            isset( $data["attributes-check"] ) ) {
+            
+            $qtChecks = count( $data["attributes-check"] );
+    
+            for( $i = 0; $i < $qtChecks; $i++ ) {
+                
+                if( isset( $data["attributes-check"][$i] ) &&
+                    !empty( trim( $data["attributes-check"][$i] ) ) &&
+                    isset( $data["operators-check"][$i] ) && 
+                    !empty( trim( $data["operators-check"][$i] ) ) &&
+                    isset( $data["values-check"][$i] ) && 
+                    !empty( trim( $data["values-check"][$i] ) ) ) {
+                       
+                    $check = new RadGroupCheck();
+                    $check->groupname = $data["name"];
+                    $check->attribute = $data["attributes-check"][$i];
+                    $check->op = $data["operators-check"][$i];
+                    $check->value = $data["values-check"][$i];
 
-        for( $i = 0; $i < $qtAttributesCheck; $i++ ) {
-            
-            if( !isset( $attributes[$i] ) || empty( $attributes[$i] ) ||
-                !isset( $operators[$i] ) || empty( $operators[$i] ) ||
-                !isset( $values[$i] ) || empty( $values[$i] )  ) {
-            
-                continue;
+                    $checks[] = $check;                   
+                }
             }
-
-            $check = new RadGroupCheck();
-            $check->groupName = $groupName;
-            $check->attribute = $attributes[$i];
-            $check->op = $operators[$i];
-            $check->value = $values[$i];
-
-            $checks[] = $check;
         }
-   
+  
         return $checks;
     }
 
-    private function createAttributesReply( $groupName, $attributes, $operators, $values ) {
+    private function createAttributesReply( $data ) {
         
         $replies = [];
 
-        $qtAttributesReply = max( count( $attributes ), count( $operators ), count( $values ) );
+        if( isset( $data["name"] ) && 
+            !empty( trim( $data["name"] ) ) && 
+            isset( $data["attributes-reply"] ) ) {
+            
+            $qtChecks = count( $data["attributes-reply"] );
+    
+            for( $i = 0; $i < $qtChecks; $i++ ) {
+                
+                if( isset( $data["attributes-reply"][$i] ) &&
+                    !empty( trim( $data["attributes-reply"][$i] ) ) &&
+                    isset( $data["operators-reply"][$i] ) && 
+                    !empty( trim( $data["operators-reply"][$i] ) ) &&
+                    isset( $data["values-reply"][$i] ) && 
+                    !empty( trim( $data["values-reply"][$i] ) ) ) {
+                       
+                    $reply = new RadGroupReply();
+                    $reply->groupname = $data["name"];
+                    $reply->attribute = $data["attributes-reply"][$i];
+                    $reply->op = $data["operators-reply"][$i];
+                    $reply->value = $data["values-reply"][$i];
 
-        for( $i = 0; $i < $qtAttributesReply; $i++ ) {
-            
-            if( !isset( $attributes[$i] ) || empty( $attributes[$i] ) ||
-                !isset( $operators[$i] ) || empty( $operators[$i] ) ||
-                !isset( $values[$i] ) || empty( $values[$i] )  ) {
-            
-                continue;
+                    $replies[] = $reply;                   
+                }
             }
-
-            $reply = new RadGroupReply();
-            $reply->groupname = $groupName;
-            $reply->attribute = $attributes[$i];
-            $reply->op = $operators[$i];
-            $reply->value = $values[$i];
-
-            $replies[] = $reply;
         }
-   
+  
         return $replies;
     }
+
+     private function createGroup( $data ) {
+   
+        if( empty( $data["name"] ) ) {
+        
+            return null;
+        }
+
+        $name = $data["name"];
+
+        $checks = $this->createAttributesCheck( $data );           
+           
+        $replies = $this->createAttributesReply( $data );
+
+        return new Group( $name, $checks, $replies );
+    } 
+   
 }

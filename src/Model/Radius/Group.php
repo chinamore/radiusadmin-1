@@ -36,24 +36,46 @@ class Group {
         return isset( $this->properties[ $propertie ] );
     }
 
-    public function save( $nameOld = null ) {
+    public function validate() {
     
-        if( $nameOld !== null ) {
+        if( empty( trim( $this->name ) ) ) {
+            
+            return false;
+        }
+    
+        if( empty( $this->attributesCheck ) && empty( $this->attributesReply ) ) {
         
-            $this->deleteToUpdate( $nameOld );
+            return false;
         }
 
-        $this->delete();
+        return true;
+    }
 
-        foreach( $this->attributesCheck as $check ) {
+    public function save( $nameOld = null ) {
+ 
+        if( $this->validate() ) {
+
+            if( $nameOld !== null ) {
+        
+                $this->deleteToUpdate( $nameOld );
+            }
+
+            $this->delete();
+
+            foreach( $this->attributesCheck as $check ) {
                 
-            $check->save();
-        } 
+                $check->save();
+            } 
         
-        foreach( $this->attributesReply as $reply ) {
+            foreach( $this->attributesReply as $reply ) {
         
-            $reply->save();
-        }        
+                $reply->save();
+            }        
+
+            return true;
+        }
+
+        return false;
     }
 
     public function delete() {
@@ -71,54 +93,31 @@ class Group {
         RadUserGroup::where( "groupname", $this->name )->delete();  
     }
 
-    private function deleteToUpdate( $name ) {
-    
-        $user = self::get( $name );
-
-        if( $user !== null ) {
+    public function fill( $data ) {
+   
+        foreach( $this->properties as $key => $value ) {
         
-            $user->delete();
+            if( isset( $data[ $key ] ) ) {
+            
+                $this->proprerties[ $key ] = $data[ $key ];
+            }
         }
-       
     }
 
-    private static function sortByName( $attributesCheck, $attributesReply ) {
-    
-        $attributes = [];
- 
-        foreach( $attributesCheck as $check ) {
-       
-            if( !isset( $attributes[ $check->groupname ] ) ) {
-            
-                $attributes[ $check->groupname ] = [];
-            }
-
-            if( !isset( $attributes[ $check->groupname ][ "check"] )  ) {
-            
-                $attributes[ $check->groupname ][ "check" ] = [];
-            }
-
-            $attributes[ $check->groupname ][ "check" ][] = $check;
-        }
-    
-        foreach( $attributesReply as $reply ) {
-
-            if( !isset( $attributes[ $reply->groupname ] ) ) {
-            
-                $attributes[ $reply->groupname ] = [];
-            }
-
-            if( !isset( $attributes[ $reply->groupname ][ "reply"] )  ) {
-            
-                $attributes[ $reply->groupname ][ "reply" ] = [];
-            }
-
-           $attributes[ $reply->groupname ][ "reply" ][] = $reply;
-        }   
-    
-        return $attributes;
+    public static function create() {
+   
+        return new Group( null, [], [] );
     }
-
+   
+    public static function exists( $name ) {
+    
+        $qtChecks = RadGroupCheck::where( "groupname", $name )->count();
+        
+        $qtReplies = RadGroupReply::where( "groupname", $name )->count();
+        
+        return ( $qtChecks + $qtReplies ) > 0 ;
+    }    
+     
     public static function find( $name, $attribute = "", $skip = null, $take = null ) {
         
         $groups = [];
@@ -209,6 +208,53 @@ class Group {
         } 
 
         return new Group( $name, $attributesCheck, $attributesReply );
+    }
+
+    private function deleteToUpdate( $name ) {
+    
+        $user = self::get( $name );
+
+        if( $user !== null ) {
+        
+            $user->delete();
+        }   
+    }
+
+    private static function sortByName( $attributesCheck, $attributesReply ) {
+    
+        $attributes = [];
+ 
+        foreach( $attributesCheck as $check ) {
+       
+            if( !isset( $attributes[ $check->groupname ] ) ) {
+            
+                $attributes[ $check->groupname ] = [];
+            }
+
+            if( !isset( $attributes[ $check->groupname ][ "check"] )  ) {
+            
+                $attributes[ $check->groupname ][ "check" ] = [];
+            }
+
+            $attributes[ $check->groupname ][ "check" ][] = $check;
+        }
+    
+        foreach( $attributesReply as $reply ) {
+
+            if( !isset( $attributes[ $reply->groupname ] ) ) {
+            
+                $attributes[ $reply->groupname ] = [];
+            }
+
+            if( !isset( $attributes[ $reply->groupname ][ "reply"] )  ) {
+            
+                $attributes[ $reply->groupname ][ "reply" ] = [];
+            }
+
+           $attributes[ $reply->groupname ][ "reply" ][] = $reply;
+        }   
+    
+        return $attributes;
     }
 
 }
