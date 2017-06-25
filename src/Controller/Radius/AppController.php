@@ -12,8 +12,8 @@ class AppController extends Controller {
     }
     
     public function actionIndex( $request, $response ) {
-    
-        return $response->withRedirect( $this->router->pathFor("user_list") ); 
+ 
+        return $this->redirect( $response, "user_list" );
     }
 
     public function actionError( $request, $response ) {

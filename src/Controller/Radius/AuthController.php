@@ -23,7 +23,7 @@ class AuthController extends Controller {
 
             if( $this->auth->attempt( $data["user"], $data["password"] ) ) {
 
-                return $response->withRedirect( $this->router->pathFor( "index" ) );        
+                return $this->redirect( $response, "index" );
             }
 
             $errors["main"] = [ "Usuário e/ou senha incorretos" ];
@@ -39,9 +39,7 @@ class AuthController extends Controller {
     
         $this->auth->logout();
         
-        return $response->withRedirect( $this->router->pathFor( "authenticate" ) ); 
+        return $this->redirect( $response, "authenticate" );
     } 
-
-
 }
 

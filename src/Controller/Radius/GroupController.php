@@ -23,11 +23,11 @@ class GroupController extends Controller {
         $group = Group::get( $name );
 
         if( $group == null ) {
-        
-            return $response->withRedirect( $this->router->pathFor( "error", [], [
-                 
+            
+            return $this->redirect( $response, "error", [
+            
                 "error"=>"Grupo não encontrado"
-            ])); 
+            ]);       
         }
 
         return $this->view->render( $response, "Radius/Group/view.html",[
@@ -90,12 +90,11 @@ class GroupController extends Controller {
                 $nameOld = ( isset( $data["name-old"] ) ) ? $data["name-old"] : null;
 
                 $group->save( $nameOld );
-
-                return $response->withRedirect( $this->router->pathFor("group_view", [], [
-                 
+        
+                return $this->redirect( $response, "group_view", [
+                
                     "name"=>$name
-                ])); 
-
+                ]);
             }
         }   
 
@@ -202,18 +201,18 @@ class GroupController extends Controller {
         $group = Group::get( $name );
     
         if( $group == null ) {
-        
-            return $response->withRedirect( $this->router->pathFor( "error", [], [
-                 
+           
+            return $this->redirect( $response, "error" , [
+            
                 "error"=>"Grupo não encontrado"
-            ])); 
+            ]);
         }
 
         if( $request->isPost() ) { 
 
             $group->delete();
-        
-            return $response->withRedirect( $this->router->pathFor( "group_list" ) ); 
+            
+            return $this->redirect( $response, "group_list" );
         }
          
         return $this->view->render( $response, "Radius/Group/delete.html", [
@@ -275,6 +274,4 @@ class GroupController extends Controller {
    
         return $replies;
     }
-
-
 }
