@@ -63,10 +63,7 @@ class GroupControllerTest extends BaseTestCase {
 
     public function testActionDelete() {
 
-        $response = $this->runApp( "GET", "/protected/groups/delete", [
-        
-            "name"=>"nao-existe-" . date("zhmi")
-        ]);
+        $response = $this->runApp( "GET", "/protected/groups/delete?name=nao-existe-" . date("zhmi") );
 
         $this->assertEquals( 302, $response->getStatusCode() );
         $this->assertContains( "error", (string) $response->getHeaderLine("Location") );
@@ -89,20 +86,13 @@ class GroupControllerTest extends BaseTestCase {
 
         $group->save();
 
-        $response = $this->runApp( "GET", "/protected/groups/delete", [
+        $response = $this->runApp( "GET", "/protected/groups/delete?name=" . $groupName );
         
-            "name"=>$groupName
-        ]);
-        
-
         $this->assertEquals( 200, $response->getStatusCode() );
         $this->assertContains( "Apagar grupo", (string) $response->getBody() );
         $this->assertNotContains( "Listar grupo", (string) $response->getBody() );
  
-        $response = $this->runApp( "POST", "/protected/groups/delete", [
-        
-            "name"=>$groupName
-        ]);
+        $response = $this->runApp( "POST", "/protected/groups/delete?name=" . $groupName );
 
         $this->assertEquals( 302, $response->getStatusCode() );
         $this->assertContains( "groups/list", (string) $response->getHeaderLine("Location") );

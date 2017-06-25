@@ -100,7 +100,7 @@ class GroupController extends Controller {
 
             $errors = [ "main"=> [ 
             
-                "Erro, você deve preencher o nome e no mínomo um atributo" 
+                "Erro, você deve preencher o nome e no mínimo um atributo" 
             ] ]; 
         }
 
@@ -175,11 +175,11 @@ class GroupController extends Controller {
 
     public function actionDelete( $request, $response ) {
     
-        $name = $request->getParam( "name", null );
+        $name = $request->getQueryParam( "name", null );
  
         $group = Group::get( $name );
     
-        if( $group == null ) {
+        if( $group === null ) {
            
             return $this->redirect( $response, "error" , [
             

@@ -106,7 +106,7 @@ class UserController extends Controller {
 
             $errors = [ "main"=> [ 
             
-                "Erro, você deve preencher o nome e no mínomo um atributo" 
+                "Erro, você deve preencher o nome e no mínimo um atributo" 
             ] ]; 
         }
 
@@ -151,10 +151,31 @@ class UserController extends Controller {
         ]);
     }
 
-
     public function actionDelete( $request, $response ) {
+    
+        $name = $request->getQueryParam( "name", null );
+ 
+        $user = User::get( $name );
+    
+        if( $user === null ) {
+           
+            return $this->redirect( $response, "error" , [
+            
+                "error"=>"Usuário não encontrado"
+            ]);
+        }
 
-        return $this->view->render( $response, "Radius/User/delete.html");
+        if( $request->isPost() ) { 
+
+            $user->delete();
+            
+            return $this->redirect( $response, "user_list" );
+        }
+         
+        return $this->view->render( $response, "Radius/User/delete.html", [
+        
+            "user"=>$user
+        ]);
     }
 
     public function actionStatistic( $request, $response ) {
