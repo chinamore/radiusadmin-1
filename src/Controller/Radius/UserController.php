@@ -235,12 +235,7 @@ class UserController extends Controller {
            
         $replies = $this->createAttributesReply( $data );
         
-        $groups = [];
-        
-        if( isset( $data["groups"] ) ) {
-
-            $groups = $this->createGroups( $data );
-        }
+        $groups = $this->createGroups( $data );
 
         return new User( $name, $checks, $replies, $groups );
     } 
@@ -315,13 +310,16 @@ class UserController extends Controller {
     
         $groups = [];
 
-        foreach( $data["groups"] as $groupName ) {
+        if( isset( $data["groups"] ) ) {
         
-            $group = Group::get( $groupName );
+            foreach( $data["groups"] as $groupName ) {
+        
+                $group = Group::get( $groupName );
 
-            if( $group !== null ) {
+                if( $group !== null ) {
 
-                $groups[] = $group;
+                    $groups[] = $group;
+                }
             }
         }
 
