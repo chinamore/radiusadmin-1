@@ -6,7 +6,7 @@
     
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/protected/clients/list" class="ls-form ls-form-inline">
+        <form action="{{ path_for( client_list ) }}" class="ls-form ls-form-inline">
             
             
             <input type="hidden" name="page" value="{{page}}" />
@@ -59,9 +59,9 @@
 
                         <td>
                     
-                            <a href="{{dir}}/protected/clients/update?name={{client.nasname}}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{ path_for( 'client_update', { 'name': client.nasname  } ) }}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                           <a href="{{dir}}/protected/clients/update?name={{client.nasname}}" class="ls-btn ls-ico-remove"></a>
+                           <a href="{{ path_for( 'client_update', { 'name': client.nasname  } ) }}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 

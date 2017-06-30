@@ -44,8 +44,6 @@ $container["view"] = function ($container) {
     $view->addExtension( new Slim\Views\TwigExtension($container["router"], $basePath) );
 
     $env = $view->getEnvironment();
-
-    $env->addGlobal( "dir", "/radiusadmin" );
     
     $env->addGlobal( "auth", [
     

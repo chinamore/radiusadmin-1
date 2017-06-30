@@ -6,7 +6,7 @@
 
     <div class="ls-box-filter">
        
-       <form action="{{dir}}/protected/groups/list" class="ls-form ls-form-inline">
+       <form action="{{ path_for( 'group_list' ) }}" class="ls-form ls-form-inline">
                       
             <input type="hidden" name="page" value="{{page}}" />
 
@@ -75,9 +75,9 @@
 
                         <td>
                     
-                            <a href="{{dir}}/protected/groups/update?name={{group.name}}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{ path_for( 'group_update' ) }}?name={{group.name}}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                            <a href="{{dir}}/protected/groups/delete?name={{group.name}}" class="ls-btn ls-ico-remove"></a>
+                            <a href="{{ path_for( 'group_delete' ) }}?name={{group.name}}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 
@@ -96,7 +96,7 @@
                 {% if page - 1 >= 0 %}
 
                     <li>
-                        <a href="{{dir}}/protected/groups/list?name={{name}}&attribute={{attribute}}&page={{page - 1}}">
+                        <a href="{{ path_for( 'group_list' ) }}?name={{name}}&attribute={{attribute}}&page={{page - 1}}">
                             &laquo; Anterior
                         </a>
                     </li>
@@ -109,7 +109,7 @@
                 {% if groups is not empty %}
                 
                     <li>
-                        <a href="{{dir}}/protected/groups/list?name={{name}}&attribute={{attribute}}&page={{page + 1}}">
+                        <a href="{{ path_for( 'group_list' ) }}?name={{name}}&attribute={{attribute}}&page={{page + 1}}">
                             Próximo &raquo;
                         </a>
                     </li>

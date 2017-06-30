@@ -7,8 +7,8 @@
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     
-        <link href="{{dir}}/assets/public/css/vendor.css" rel="stylesheet"/>
-        <link href="{{dir}}/assets/public/css/app.css" rel="stylesheet"/>
+        <link href="{{ base_url() }}/assets/public/css/vendor.css" rel="stylesheet"/>
+        <link href="{{ base_url() }}/assets/public/css/app.css" rel="stylesheet"/>
     </head>
 
     <body>
@@ -36,7 +36,7 @@
 
                     <nav class="ls-dropdown-nav ls-user-menu">
                         <ul>
-                            <li><a href="{{dir}}/logout">Sair</a></li>
+                            <li><a href="{{ path_for( 'logout' ) }}">Sair</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -61,32 +61,32 @@
             <div class="ls-sidebar-inner">
                 <nav class="ls-menu">
                     <ul>
-                        <li><a href="{{dir}}/" class="ls-ico-home">Inicio</a></li>
+                        <li><a href="{{ base_url() }}/" class="ls-ico-home">Inicio</a></li>
                         <li>
                             <a href="#" class="ls-ico-user">Usuários</a>
                             <ul>
-                                <li><a href="{{dir}}/protected/users/list">Listar</a></li>
-                                <li><a href="{{dir}}/protected/users/create">Criar</a></li>
+                                <li><a href="{{ base_url() }}/protected/users/list">Listar</a></li>
+                                <li><a href="{{ base_url() }}/protected/users/create">Criar</a></li>
                             </ul>
                         </li>                        
                         <li>
                             <a href="#" class="ls-ico-users">Grupos</a>
                             <ul>
-                                <li><a href="{{dir}}/protected/groups/list">Listar</a></li>
-                                <li><a href="{{dir}}/protected/groups/create">Criar</a></li>
+                                <li><a href="{{ base_url() }}/protected/groups/list">Listar</a></li>
+                                <li><a href="{{ base_url() }}/protected/groups/create">Criar</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#" class="ls-ico-stats">Estatísticas</a>
                             <ul>
-                                <li><a href="{{dir}}/protected/statistics/list">Geral</a></li>
+                                <li><a href="{{ base_url() }}/protected/statistics/list">Geral</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#" class="ls-ico-ftp">Clientes ( NAS )</a>
                             <ul>
-                                <li><a href="{{dir}}/protected/clients/list">Listar</a></li>
-                                <li><a href="{{dir}}/protected/clients/create">Criar</a></li>
+                                <li><a href="{{ base_url() }}/protected/clients/list">Listar</a></li>
+                                <li><a href="{{ base_url() }}/protected/clients/create">Criar</a></li>
                             </ul>
                         </li>
 
@@ -123,10 +123,10 @@
             </nav>
         </aside>
 
-        <script src="{{dir}}/assets/public/js/vendor.js"></script>
-        <script src="{{dir}}/assets/public/js/app.js"></script>
+        <script src="{{ base_url() }}/assets/public/js/vendor.js"></script>
+        <script src="{{ base_url() }}/assets/public/js/app.js"></script>
         <script type="text/javascript">
-            var dir = "{{dir}}";
+            var dir = "{{ base_url() }}";
         </script>
         {% block js %}
         {% endblock %}

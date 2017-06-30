@@ -180,7 +180,7 @@ class UserController extends Controller {
 
     public function actionStatistic( $request, $response ) {
  
-        $userName = $request->getQueryParam( "userName", "" );
+        $userName = $request->getQueryParam( "name", "" );
         
         $mac = $request->getQueryParam( "mac", "" );
         

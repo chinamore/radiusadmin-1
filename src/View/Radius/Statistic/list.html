@@ -6,7 +6,7 @@
 
     <div class="ls-box-filter">
         
-        <form action="{{dir}}/protected/statistics/list" class="ls-form ls-form-inline">
+        <form action="{{ base_url() }}/protected/statistics/list" class="ls-form ls-form-inline">
 
 
             <label class="ls-label col-md-3 col-sm-12">
@@ -249,7 +249,7 @@
 
 {% block js %}
 
-    <script type="text/javascript" src="{{dir}}/assets/public/js/statistic/list.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}/assets/public/js/statistic/list.js"></script>
 
     <script type="text/javascript">
     
