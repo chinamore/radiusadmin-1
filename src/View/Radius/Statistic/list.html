@@ -249,7 +249,7 @@
 
 {% block js %}
 
-    <script type="text/javascript" src="{{ base_url() }}/assets/public/js/statistic/list.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}/assets/public/js/statistic/charts.js"></script>
 
     <script type="text/javascript">
     
@@ -258,6 +258,12 @@
             {{ datesTextSummary | json_encode | raw }}, 
             {{ connectionsSummary | json_encode | raw }}, 
             {{ usersSummary | json_encode | raw }} 
+        );
+
+        createAvgChart( 
+
+            {{ downloadAvg }}, 
+            {{ uploadAvg }} 
         );
 
     </script>

@@ -39,7 +39,7 @@ $( "#btn-add-check" ).on( "click", function() {
     $("#attributes-check").prepend( attributeLine );
 
     applyRemoveAttribute();
-})
+});
 
 $( "#btn-add-reply" ).on( "click", function() {
    
@@ -70,5 +70,5 @@ $( "#btn-add-reply" ).on( "click", function() {
     $("#attributes-reply").prepend( attributeLine );
 
     applyRemoveAttribute();
-})
+});
 

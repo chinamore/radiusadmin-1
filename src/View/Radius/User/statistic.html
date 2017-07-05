@@ -246,7 +246,17 @@
 
 {% block js %}
 
-    <script type="text/javascript" src="{{ base_url() }}/assets/public/js/user/user-statistic.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}/assets/public/js/statistic/charts.js"></script>
+
+    <script type="text/javascript">
+    
+        createAvgChart( 
+
+            {{ downloadAvg }}, 
+            {{ uploadAvg }} 
+        );
+
+    </script>
 
 {% endblock %}
  
