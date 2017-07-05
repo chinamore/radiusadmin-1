@@ -261,9 +261,8 @@
         );
 
         createAvgChart( 
-
-            {{ downloadAvg }}, 
-            {{ uploadAvg }} 
+            {{ downloadAvg ?: 0 }},
+            {{ uploadAvg ?: 0 }}
         );
 
     </script>
