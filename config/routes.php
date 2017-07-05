@@ -67,7 +67,7 @@ $app->group( "/protected", function() {
     });
 
     $this->group("/clients", function () {
-
+    
         $this->map( ["GET"], "/[list]", "App\Controller\Radius\ClientController:actionList" )
             ->setName( "client_list" );
 
