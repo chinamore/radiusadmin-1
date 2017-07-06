@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use \StdClass;
+
 class Controller {
 
     private $view;
@@ -28,5 +30,17 @@ class Controller {
             $this->router->pathFor( $routerName, $postData, $queryParam  )
         ); 
     }
+
+    public function getTokenCSRF( $request ) {
+    
+        $token = new StdClass();
+
+        $token->name = $request->getAttribute( "csrf_name" );
+        $token->value = $request->getAttribute( "csrf_value" );
+    
+        return $token;
+
+    } 
+
 
 }

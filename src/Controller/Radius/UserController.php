@@ -63,12 +63,15 @@ class UserController extends Controller {
             ] ]; 
         }
 
+        $token = $this->getTokenCSRF( $request );
+        
         $groups = Group::getAll();
 
         $operators = RadCheck::getOperators();
 
         return $this->view->render( $response, "Radius/User/create.html", [
 
+            "token"=>$token,
             "user"=>$user,
             "groups"=>$groups,
             "operators"=>$operators,
@@ -110,12 +113,15 @@ class UserController extends Controller {
             ] ]; 
         }
 
+        $token = $this->getTokenCSRF( $request );
+
         $groups = Group::getAll();
 
         $operators = Radcheck::getOperators();
 
         return $this->view->render( $response, "Radius/User/update.html", [
-            
+
+            "token"=>$token,
             "user"=>$user,
             "groups" => $groups,
             "operators"=>$operators,
@@ -172,8 +178,11 @@ class UserController extends Controller {
             return $this->redirect( $response, "user_list" );
         }
          
+        $token = $this->getTokenCSRF( $request );
+
         return $this->view->render( $response, "Radius/User/delete.html", [
         
+            "token"=>$token,
             "user"=>$user
         ]);
     }

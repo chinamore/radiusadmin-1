@@ -10,6 +10,10 @@
             Deseja realmente apagar o grupo <strong>{{group.name}}</strong>?
         </p>
 
+        <input type="hidden" name="csrf_name" value="{{ token.name }}"/>
+            
+        <input type="hidden" name="csrf_value" value="{{ token.value }}"/>
+
         <button type="submit" class="ls-btn ls-btn-dark ls-btn-lg">Apagar</button>
 
     </form>

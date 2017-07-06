@@ -14,7 +14,7 @@ class AuthController extends Controller {
     }
 
     public function actionAuthenticate( $request, $response ) {
-    
+
         $errors = [];
 
         if( $request->isPost() ) {
@@ -29,8 +29,11 @@ class AuthController extends Controller {
             $errors["main"] = [ "Usuário e/ou senha incorretos" ];
         }
 
+        $token = $this->getTokenCSRF( $request );
+
         return $this->view->render( $response, "Radius/Auth/authenticate.html", [
-        
+
+            "token"=>$token,
             "errors"=>$errors
         ]);
     }

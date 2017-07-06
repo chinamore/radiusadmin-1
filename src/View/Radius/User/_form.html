@@ -1,6 +1,10 @@
 
 <form method="POST" id="form-user" class="ls-form">
 
+    <input type="hidden" name="csrf_name" value="{{ token.name }}"/>
+            
+    <input type="hidden" name="csrf_value" value="{{ token.value }}"/>
+
     {% if errors["main"] is not empty %}
         <p class="ls-error">
             {% for error in errors["main"] %}

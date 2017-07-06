@@ -6,7 +6,10 @@
 
         <h1 class="ls-login-logo">Radius</h1>   
        
-       
+        <input type="hidden" name="csrf_name" value="{{ token.name }}"/>
+            
+        <input type="hidden" name="csrf_value" value="{{ token.value }}"/>
+
         <fieldset>
 
             <label class="ls-label">

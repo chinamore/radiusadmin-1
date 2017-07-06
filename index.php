@@ -19,6 +19,8 @@ $settings = require __DIR__ . "/config/settings.php";
 
 $app = new \Slim\App( $settings );
 
+$app->add( new \Slim\Csrf\Guard );
+
 $app->add( new \Slim\Middleware\Session( [
 
     "name" => "RID",

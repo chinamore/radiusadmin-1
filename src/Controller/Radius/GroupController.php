@@ -60,10 +60,13 @@ class GroupController extends Controller {
             ] ]; 
         }
 
+        $token = $this->getTokenCSRF( $request );
+
         $operators = RadGroupCheck::getOperators();
 
         return $this->view->render( $response, "Radius/Group/create.html", [
-
+            
+            "token"=>$token,
             "group"=>$group,
             "operators"=>$operators,
             "errors"=>$errors
@@ -104,10 +107,13 @@ class GroupController extends Controller {
             ] ]; 
         }
 
+        $token = $this->getTokenCSRF( $request );
+        
         $operators = RadGroupcheck::getOperators();
 
         return $this->view->render( $response, "Radius/Group/update.html", [
-            
+        
+            "token"=>$token,
             "group"=>$group,
             "operators"=>$operators,
             "errors"=>$errors
@@ -194,8 +200,11 @@ class GroupController extends Controller {
             return $this->redirect( $response, "group_list" );
         }
          
+        $token = $this->getTokenCSRF( $request );
+
         return $this->view->render( $response, "Radius/Group/delete.html", [
         
+            "token"=>$token,
             "group"=>$group
         ]);
     }
