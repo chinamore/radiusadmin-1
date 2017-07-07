@@ -15,7 +15,7 @@ class ClientControllerTest extends BaseTestCase {
 
         $response = $this->runApp( "POST", "/protected/clients/create", [
             
-            "nas"=>[
+            "client"=>[
 
                 "nasname"=>"192.168.0.10",
                 "shortname"=>"adm",
@@ -27,9 +27,8 @@ class ClientControllerTest extends BaseTestCase {
                 "description"=>"description"
         ]]);
 
-        $this->assertEquals( 200, $response->getStatusCode() );
-        $this->assertContains( "Ver cliente", (string) $response->getBody() );
-        $this->assertNotContains( "Criar cliente", (string) $response->getBody() );
+        $this->assertEquals( 302, $response->getStatusCode() );
+        $this->assertContains( "clients/view", (string) $response->getHeaderLine("Location") );
 
         $response = $this->runApp( "POST", "/protected/clients/create", [] );
 

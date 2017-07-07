@@ -4,7 +4,7 @@ namespace App\Controller\Radius;
 
 use App\Controller\Controller;
 use App\Model\Radius\NAS;
-use \Sirius\Validation\Validator;
+use App\Model\Radius\Client;
 
 class ClientController extends Controller {
     
@@ -12,60 +12,109 @@ class ClientController extends Controller {
     
         parent::__construct( $container );
     }
+  
+    public function actionView( $request, $response ) {
+    
+        $id = $request->getQueryParam( "id", null );
+
+        $client = Client::getId( $id );
+
+        if( $client === null ) {
+        
+            return $this->redirect( $response, "error", [
+                 
+                "error"=>"Cliente não encontrado"
+            ]); 
+        }
+
+        return $this->view->render( $response, "Radius/Client/view.html",[
+            
+            "client"=>$client
+        ]);
+    }
 
     public function actionCreate( $request, $response ) {
+        
+        $client = Client::create();
+
+        $errors = [];
 
         if( $request->isPost() ) {
             
-            return $this->actionStore( $request, $response );
-        }
+            $data = $request->getParsedBody();
 
-        return $this->view->render( $response, "Radius/Client/create.html" );
-    }
-    
-    public function actionStore( $request, $response ) {
-    
-        $data = $request->getParsedBody();
+            $client->fill( isset( $data["client"] ) ? $data["client"] : [] );
 
-        $nas = ( isset( $data["nas"] ) ) ? $data["nas"] : [];
-
-        $validator = new Validator();
-
-        $validator->add( [
-
-            "nasname"=>"required | maxlength(128)",
-            "shortname"=>"maxlength(32)",
-            "type"=>"maxlength(30)",
-            "ports"=>"integer",
-            "secret"=>"required | maxlength(60)",
-            "server"=>"maxlength(64)",
-            "community"=>"maxlength(50)",
-            "description"=>"maxlength(200)"
-        ]);
-
-        if( $validator->validate( $nas ) ) {
-        
-            $client = new NAS();
-
-            $client->fill( $nas );            
-            
             if( $client->save() ) {
-            
-                return $this->view->render( $response, "Radius/Client/view.html", [
-            
-                    "client"=>$client
-                ]);           
+
+                return $this->redirect( $response, "client_view", [
+                 
+                    "id"=>$client->id
+                ]); 
             }
+
+            $errors = [ "main"=> [ 
+            
+                "O campo IP deve ser preenchido com um endereço IP válido ",
+                "O campo Ports deve ser preenchido com um número inteiro "
+            ] ]; 
         }
 
-        $errors = $validator->getMessages();
+        $token = $this->getTokenCSRF( $request );
 
         return $this->view->render( $response, "Radius/Client/create.html", [
-            "nas"=>$nas,         
+
+            "token"=>$token,
+            "client"=>$client,
             "errors"=>$errors
         ]);
-    } 
+    }
 
+    public function actionUpdate( $request, $response ) {
+
+        $id = $request->getQueryParam( "id", null );
+
+        $client = Client::getId( $id );
+
+        if( $client === null ) {
+        
+            return $this->redirect( $response, "error", [
+                 
+                "error"=>"Cliente não encontrado"
+            ]); 
+        }
+
+        $errors = [];
+
+        if( $request->isPost() ) {
+
+            $data = $request->getParsedBody();
+            
+            $client->fill( isset( $data["client"] ) ? $data["client"] : [] );
+
+            if( $client->save() ) {
+
+                return $this->redirect( $response, "client_view", [
+                 
+                    "id"=>$client->id
+                ]); 
+            }
+
+            $errors = [ "main"=> [ 
+            
+                "Erro, você deve preencher o nome e no mínimo um atributo" 
+            ] ]; 
+        }
+
+        $token = $this->getTokenCSRF( $request );
+
+        return $this->view->render( $response, "Radius/Client/update.html", [
+
+            "token"=>$token,
+            "client"=>$client,
+            "errors"=>$errors
+        ]);
+    }
 
     public function actionList( $request, $response ) {
 
@@ -103,14 +152,33 @@ class ClientController extends Controller {
         ]);
     }
 
-    public function actionUpdate( $request, $response ) {
-
-        return $this->view->render( $response, "Radius/Client/update.html");
-    }
-
     public function actionDelete( $request, $response ) {
+    
+        $id = $request->getQueryParam( "id", null );
+ 
+        $client = Client::getId( $id );
+    
+        if( $client === null ) {
+           
+            return $this->redirect( $response, "error" , [
+            
+                "error"=>"Cliente não encontrado"
+            ]);
+        }
 
-        return $this->view->render( $response, "Radius/Client/delete.html");
+        if( $request->isPost() ) { 
+
+            $client->delete();
+            
+            return $this->redirect( $response, "client_list" );
+        }
+         
+        $token = $this->getTokenCSRF( $request );
+
+        return $this->view->render( $response, "Radius/Client/delete.html", [
+        
+            "token"=>$token,
+            "client"=>$client
+        ]);
     }
-
 }

@@ -1,12 +1,25 @@
 <div class="ls-box ls-lg-space">
-      
-    
-    <form action="{{ path_for( 'client_store' ) }}" method="POST" class="ls-form ls-form-horizontal row">
+     
+    {% if errors["main"] is not empty %}
+        <p class="ls-error">
+            {% for error in errors["main"] %}
+                <div class="ls-alert-danger">
+                    <strong>Erro:</strong> {{error}}
+                </div>
+            {% endfor %}
+        </p>
+    {% endif %}
+       
+    <form method="POST" class="ls-form ls-form-horizontal row">
+
+        <input type="hidden" name="csrf_name" value="{{ token.name }}"/>
+            
+        <input type="hidden" name="csrf_value" value="{{ token.value }}"/>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">IP</b>
+            <b class="ls-label-text">IP ( nasname )</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[nasname]" value="{{nas['nasname']}}" placeholder="" required />
+            <input type="text" name="client[nasname]" value="{{ client.nasname }}" placeholder="" required />
 
             {% if errors["nasname"] is not empty %}
                 <p class="ls-error">
@@ -18,9 +31,9 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Short Name</b>
+            <b class="ls-label-text">Apelido ( shortname )</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[shortname]" value="{{nas['shortname']}}" placeholder=""/>
+            <input type="text" name="client[shortname]" value="{{ client.shortname }}" placeholder=""/>
 
             {% if errors["shortname"] is not empty %}
                 <p class="ls-error">
@@ -32,10 +45,10 @@
         </label>
 
         <label class="ls-label col-md-2">
-            <b class="ls-label-text">Type</b>
+            <b class="ls-label-text">Tipo</b>
             <p class="ls-label-info"></p>
             <div class="ls-custom-select">
-                <select name="nas[type]" class="ls-select">
+                <select name="client[type]" class="ls-select">
                     <option value="other">Other</option>
                     <option value="cisco">Cisco</option>
                 </select>
@@ -51,9 +64,9 @@
         </label>
 
         <label class="ls-label col-md-2">
-            <b class="ls-label-text">Ports</b>
+            <b class="ls-label-text">Portas</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[ports]" value="{{nas['ports']}}"/>
+            <input type="text" name="client[ports]" value="{{ client.ports }}"/>
 
             {% if errors["ports"] is not empty %}
                 <p class="ls-error">
@@ -65,9 +78,9 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Secret</b>
+            <b class="ls-label-text">Senha ( secret )</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[secret]" value="{{nas['secret']}}"placeholder="" required />
+            <input type="text" name="client[secret]" value="{{ client.secret }}"placeholder="" required />
 
             {% if errors["secret"] is not empty %}
                 <p class="ls-error">
@@ -79,9 +92,9 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Server</b>
+            <b class="ls-label-text">Servidor</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[server]" value="{{nas['server']}}" placeholder="" />
+            <input type="text" name="client[server]" value="{{ client.server }}" placeholder="" />
 
             {% if errors["server"] is not empty %}
                 <p class="ls-error">
@@ -95,7 +108,7 @@
         <label class="ls-label col-md-4">
             <b class="ls-label-text">Community</b>
             <p class="ls-label-info"></p>
-            <input type="text" name="nas[community]" value="{{nas['community']}}" placeholder="" />
+            <input type="text" name="client[community]" value="{{ client.community }}" placeholder="" />
 
             {% if errors["community"] is not empty %}
                 <p class="ls-error">
@@ -107,9 +120,9 @@
         </label>
 
         <label class="ls-label col-md-12">
-            <b class="ls-label-text">Description</b>
+            <b class="ls-label-text">Descrição</b>
             <p class="ls-label-info"></p>
-            <textarea name="nas[description]" rows="4" data-ls-module="charCounter" maxlength="200">{{nas["description"]}}</textarea>
+            <textarea name="client[description]" rows="4" data-ls-module="charCounter" maxlength="200">{{client.description}}</textarea>
 
             {% if errors["description"] is not empty %}
                 <p class="ls-error">

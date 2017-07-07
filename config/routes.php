@@ -67,12 +67,12 @@ $app->group( "/protected", function() {
     });
 
     $this->group("/clients", function () {
-    
+
+        $this->map( ["GET"], "/view", "App\Controller\Radius\ClientController:actionView" )
+            ->setName( "client_view" );
+   
         $this->map( ["GET"], "/[list]", "App\Controller\Radius\ClientController:actionList" )
             ->setName( "client_list" );
-
-        $this->map( ["POST"], "/store", "App\Controller\Radius\ClientController:actionStore" )
-            ->setName( "client_store" );
 
         $this->map( ["GET", "POST"], "/create", "App\Controller\Radius\ClientController:actionCreate" )
             ->setName( "client_create" );

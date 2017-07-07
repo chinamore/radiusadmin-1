@@ -59,9 +59,9 @@
 
                         <td>
                     
-                            <a href="{{ path_for( 'client_update', { 'name': client.nasname  } ) }}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{ path_for( 'client_update' )}}?id={{ client.id }}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                           <a href="{{ path_for( 'client_update', { 'name': client.nasname  } ) }}" class="ls-btn ls-ico-remove"></a>
+                           <a href="{{ path_for( 'client_delete' ) }}?id={{ client.id }}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 

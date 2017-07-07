@@ -5,44 +5,56 @@
  
 <h1 class="ls-title-intro ls-ico-ftp">Ver cliente</h1>
 
-<div class="ls-box ls-lg-space">
-
-    <table class="ls-table ls-md-space">
+    <div class="ls-box">
     
-        <tr>
-            <td>IP</td><td>{{client.nasname}}</td>
-        </tr>
-          
-        <tr>
-            <td>Short Name</td><td>{{client.shortname}}</td>
-        </tr>
+        <h2 class="ls-title-4">{{client.nasname}}</h2>
+        
+        <hr/>
 
-        <tr>
-            <td>Type</td><td>{{client.type}}</td>
-        </tr>
+        <div class="table-responsive">
 
-        <tr>
-            <td>Ports</td><td>{{client.ports}}</td>
-        </tr>
-   
-        <tr>
-            <td>Secret</td><td>{{client.secret}}</td>
-        </tr>
-   
-        <tr>
-            <td>Server</td><td>{{client.server}}</td>
-        </tr>
-   
-        <tr>
-            <td>Community</td><td>{{client.community}}</td>
-        </tr>
-   
-        <tr>
-            <td>Description</td><td>{{client.description}}</td>
-        </tr>
+            <table class="ls-table">
+                
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                    
+                <tbody>
+         
+                    <tr>
+                        <td>Apelido ( shortname )</td><td>{{client.shortname}}</td>
+                    </tr>
 
-    </table>
+                    <tr>
+                        <td>Tipo</td><td>{{client.type}}</td>
+                    </tr>
 
+                    <tr>
+                        <td>Portas</td><td>{{client.ports}}</td>
+                    </tr>
+   
+                    <tr>
+                        <td>Senha ( secret )</td><td>{{client.secret}}</td>
+                    </tr>
+   
+                    <tr>
+                        <td>Servidor</td><td>{{client.server}}</td>
+                    </tr>
+   
+                    <tr>
+                        <td>Community</td><td>{{client.community}}</td>
+                    </tr>
+   
+                    <tr>
+                        <td>Descrição</td><td>{{client.description}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
 </div>
 
 {% endblock %}
