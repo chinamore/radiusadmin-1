@@ -5,6 +5,7 @@ namespace App\Model\Radius;
 use Illuminate\Database\Capsule\Manager;
 use Respect\Validation\Validator;
 use Respect\Validation\Exceptions\NestedValidationException;
+
 class Client {
 
     private $nas;
