@@ -2,12 +2,6 @@
 
 $container = $app->getContainer();
 
-//slim-session
-//$container["session"] = function( $container ) {
-
-//    return new \SlimSession\Helper;
-//};
-
 //auth radius
 $container["auth"] = function($container) {
 
@@ -54,7 +48,6 @@ $container["view"] = function ($container) {
 
     return $view;
 };
-
 
 $container["errorHandler"] = function ($container) {
     return function ($request, $response, $exception) use ($container) {

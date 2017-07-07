@@ -1,10 +1,5 @@
 <?php
 
-if( PHP_SAPI === "cli" ) {
-
-    $_SESSION = array();
-}
-
 session_start();
 
 error_reporting(E_ALL);
@@ -20,13 +15,6 @@ $settings = require __DIR__ . "/config/settings.php";
 $app = new \Slim\App( $settings );
 
 $app->add( new \Slim\Csrf\Guard );
-
-$app->add( new \Slim\Middleware\Session( [
-
-    "name" => "RID",
-    "autorefresh" => true,
-    "lifetime" => "1 hour"
-]));
 
 require __DIR__ . "/config/dependencies.php";
 
