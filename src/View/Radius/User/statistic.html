@@ -175,14 +175,12 @@
                 
                 <thead>
                     <tr>
-                        <th class="ls-text-sm">IP</th>
-                        <th class="ls-text-sm">Dispositivo</th>
-                        <th class="ls-text-sm">Inicio</th>
-                        <th class="ls-text-sm">Duração</th>
-                        <th class="ls-text-sm">Down</th>
-                        <th class="ls-text-sm">Up</th>
-                        <th class="ls-text-sm">NAS</th>
-                        <th class="ls-text-sm"></th>
+                        <th>IP</th>
+                        <th>Dispositivo</th>
+                        <th>Inicio</th>
+                        <th>Duração</th>
+                        <th>Cliente</th>
+                        <th></th>
                     </tr>
                 </thead>
                     
@@ -190,21 +188,19 @@
 
                 {% for acct in radAccts %}
                     <tr>                        
-                        <td class="ls-text-xs">{{acct.framedipaddress}}</td>
-                        <td class="ls-text-xs">{{acct.callingstationid}}</td>
-                        <td class="ls-text-xs">{{acct.acctstarttime | date( "d/m/Y H:i:s" )}}</td>
-                        <td class="ls-text-xs">{{acct.acctsessiontime}}</td>
-                        <td class="ls-text-xs">{{acct.acctinputoctets}}</td>
-                        <td class="ls-text-xs">{{acct.acctoutputoctets}}</td>
-                        <td class="ls-text-xs">{{acct.nasipaddress}}</td>
-                        <td class="ls-float-right">
+                        <td>{{acct.framedipaddress}}</td>
+                        <td>{{acct.callingstationid}}</td>
+                        <td>{{acct.acctstarttime | date( "d/m/Y H:i:s" )}}</td>
+                        <td>{{acct.acctsessiontime}}</td>
+                        <td>{{acct.nasipaddress}}</td>
+                        <td>
                             <a href="#" class="ls-btn ls-ico-zoomin"></a>      
                         </td>
                     </tr>
 
                 {% else %}
                     <tr>
-                        <td colspan=8>Nenhum registro para exibir</td>
+                        <td colspan=6>Nenhum registro para exibir</td>
                     </tr>
 
                 {% endfor %}
@@ -252,8 +248,8 @@
     
         createAvgChart( 
 
-            {{ downloadAvg }}, 
-            {{ uploadAvg }} 
+            {{ downloadAvg ?: 0 }}, 
+            {{ uploadAvg ?: 0 }} 
         );
 
     </script>
