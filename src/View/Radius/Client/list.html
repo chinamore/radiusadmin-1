@@ -44,6 +44,8 @@
                         <th>Nome</th>
                         <th>Apelido</th>
                         <th>Tipo</th>
+                        <th>Servidor</th>
+                        <th>Community</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -56,18 +58,20 @@
                         <td>{{client.nasname}}</td>
                         <td>{{client.shortname}}</td>
                         <td>{{client.type}}</td>
+                        <td>{{client.server}}</td>
+                        <td>{{client.community}}</td>
 
                         <td>
                     
                             <a href="{{ path_for( 'client_update' )}}?id={{ client.id }}" class="ls-btn ls-ico-edit-admin"></a>
                     
-                           <a href="{{ path_for( 'client_delete' ) }}?id={{ client.id }}" class="ls-btn ls-ico-remove"></a>
+                            <a href="{{ path_for( 'client_delete' ) }}?id={{ client.id }}" class="ls-btn ls-ico-remove"></a>
                         </td>
                     </tr>
 
                 {% else %}
                     <tr>
-                        <td colspan=5>Nenhum registro para exibir</td>
+                        <td colspan=6>Nenhum registro para exibir</td>
                     </tr>
 
                 {% endfor %}
