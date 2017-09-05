@@ -24,9 +24,9 @@
                         
                         <select name="operators-check[]" class="ls-select">
                             {% for operator in operators %}                           
-			    	<option value="{{operator}}" {{ operator == attribute["op"] ? "selected" }}>
-					{{operator}}
-				</option>
+                                <option value="{{operator}}" {{ operator == attribute["op"] ? "selected" }}>
+                                    {{operator}}
+                                </option>
                             {% endfor %}
                         </select>
                     </div>

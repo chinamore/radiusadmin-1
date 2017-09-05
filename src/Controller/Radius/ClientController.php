@@ -60,15 +60,15 @@ class ClientController extends Controller {
             ] ]; 
         }
 
-	$token = $this->getTokenCSRF( $request );
+    $token = $this->getTokenCSRF( $request );
 
-	$types = Client::getTypes();
+    $types = Client::getTypes();
 
         return $this->view->render( $response, "Radius/Client/create.html", [
 
             "token"=>$token,
-	    "client"=>$client,
-	    "types"=>$types,
+        "client"=>$client,
+        "types"=>$types,
             "errors"=>$errors
         ]);
     }
@@ -111,13 +111,13 @@ class ClientController extends Controller {
 
         $token = $this->getTokenCSRF( $request );
 
-	$types = Client::getTypes();
-	
-	return $this->view->render( $response, "Radius/Client/update.html", [
+        $types = Client::getTypes();
+    
+        return $this->view->render( $response, "Radius/Client/update.html", [
 
             "token"=>$token,
-	    "client"=>$client,
-	    "types"=>$types,
+            "client"=>$client,
+            "types"=>$types,
             "errors"=>$errors
         ]);
     }

@@ -19,14 +19,14 @@
                 </td>
                 
                 <td>
-		   
+           
                     <div class="ls-custom-select">
                         
                         <select name="operators-reply[]" class="ls-select">
                             {% for operator in operators %}                           
-			    	<option value="{{operator}}" {{ operator == attribute.op ? "selected" }} >
-					{{operator}}
-				</option>
+                                <option value="{{operator}}" {{ operator == attribute.op ? "selected" }} >
+                                    {{operator}}
+                                </option>
                             {% endfor %}
                         </select>
                     </div>
