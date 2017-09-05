@@ -49,8 +49,9 @@
             <p class="ls-label-info"></p>
             <div class="ls-custom-select">
                 <select name="client[type]" class="ls-select">
-                    <option value="other">Other</option>
-                    <option value="cisco">Cisco</option>
+			{% for type in types %}
+				<option value="{{type}}">{{type}}</option>
+			{% endfor %}
                 </select>
             </div>
 
