@@ -16,7 +16,7 @@ class RadCheck extends Model {
         "id",
         "username",
         "attribute",
-        "operator",
+        "op",
         "value"
     ];
 

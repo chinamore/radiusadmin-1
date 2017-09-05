@@ -50,7 +50,9 @@
             <div class="ls-custom-select">
                 <select name="client[type]" class="ls-select">
 			{% for type in types %}
-				<option value="{{type}}">{{type}}</option>
+				<option value="{{type}}" {{ type == client.type ? "selected" }} >
+					{{type}}
+				</option>
 			{% endfor %}
                 </select>
             </div>

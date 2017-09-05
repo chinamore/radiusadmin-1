@@ -12,6 +12,14 @@ class RadReply extends Model {
     
     protected $connection = "radius";
 
+    protected $fillable = [
+        "id",
+        "username",
+        "attribute",
+        "op",
+        "value"
+    ];
+
     public function __construct() {
 
         parent::__construct();

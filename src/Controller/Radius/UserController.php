@@ -117,13 +117,13 @@ class UserController extends Controller {
 
         $groups = Group::getAll();
 
-        $operators = Radcheck::getOperators();
+	$operators = Radcheck::getOperators();
 
         return $this->view->render( $response, "Radius/User/update.html", [
 
             "token"=>$token,
             "user"=>$user,
-            "groups" => $groups,
+            "groups"=>$groups,
             "operators"=>$operators,
             "errors"=>$errors
         ]);
