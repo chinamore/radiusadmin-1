@@ -14,19 +14,29 @@
     <body>
         <div class="ls-topbar ">
 
-            <!-- Barra de Notificações -->
             <div class="ls-notification-topbar">
 
-                <!-- Links de apoio -->
                 <div class="ls-alerts-list">
 
-                    <a href="#" class="ls-ico-bell-o" data-counter="8" data-ls-module="topbarCurtain" data-target="#ls-notification-curtain"><span>Notificações</span></a>
+                    <a href="#" 
+                        class="ls-ico-bell-o" 
+                        data-counter="8" 
+                        data-ls-module="topbarCurtain" 
+                        data-target="#ls-notification-curtain">
+                        
+                        <span>{% trans "Notificações" %}</span>
+                    </a>
 
-                    <a href="#" class="ls-ico-question" data-ls-module="topbarCurtain" data-target="#ls-feedback-curtain"><span>Sugestões</span></a>
+                    <a href="#" 
+                        class="ls-ico-question" 
+                        data-ls-module="topbarCurtain" 
+                        data-target="#ls-feedback-curtain">
+                        
+                        <span>{% trans "Sugestões" %}</span>
+                    </a>
 
                 </div>
 
-                <!-- Dropdown com detalhes da conta de usuário -->
                 <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
                 
                     <a href="#" class="ls-ico-user">
@@ -36,7 +46,11 @@
 
                     <nav class="ls-dropdown-nav ls-user-menu">
                         <ul>
-                            <li><a href="{{ path_for( 'logout' ) }}">Sair</a></li>
+                            <li>
+                                <a href="{{ path_for( 'logout' ) }}">
+                                    {% trans "Sair" %}
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -44,16 +58,12 @@
 
             <span class="ls-show-sidebar ls-ico-menu"></span>
 
-
-            <!-- Nome do produto/marca com sidebar -->
             <h1 class="ls-brand-name">
                 <a href="home" class="ls-ico-earth">
                     <small>freeradius interface</small>
                     Radius Admin
                 </a>
             </h1>
-
-            <!-- Nome do produto/marca sem sidebar quando for o pre-painel  -->
         </div>
 
         <aside class="ls-sidebar">
@@ -61,32 +71,76 @@
             <div class="ls-sidebar-inner">
                 <nav class="ls-menu">
                     <ul>
-                        <li><a href="{{ base_url() }}/" class="ls-ico-home">Inicio</a></li>
                         <li>
-                            <a href="#" class="ls-ico-user">Usuários</a>
+                            <a href="{{ base_url() }}/" class="ls-ico-home">
+                                {% trans "Inicio" %}
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="ls-ico-user">
+                                {% trans "Usuários" %}
+                            </a>
+                            
                             <ul>
-                                <li><a href="{{ base_url() }}/protected/users/list">Listar</a></li>
-                                <li><a href="{{ base_url() }}/protected/users/create">Criar</a></li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/users/list">
+                                        {% trans "Listar" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/users/create">
+                                        {% trans "Criar" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>                        
                         <li>
-                            <a href="#" class="ls-ico-users">Grupos</a>
+                            <a href="#" class="ls-ico-users">
+                                {% trans "Grupos" %}
+                            </a>
+
                             <ul>
-                                <li><a href="{{ base_url() }}/protected/groups/list">Listar</a></li>
-                                <li><a href="{{ base_url() }}/protected/groups/create">Criar</a></li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/groups/list">
+                                        {% trans "Listar" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/groups/create">
+                                        {% trans "Criar" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="ls-ico-stats">Estatísticas</a>
+                            <a href="#" class="ls-ico-stats">
+                                {% trans "Estatísticas" %}
+                            </a>
                             <ul>
-                                <li><a href="{{ base_url() }}/protected/statistics/list">Geral</a></li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/statistics/list">
+                                        {% trans "Geral" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="ls-ico-ftp">Clientes ( NAS )</a>
+                            <a href="#" class="ls-ico-ftp">
+                                {% trans "Clientes ( NAS )" %}
+                            </a>
+                            
                             <ul>
-                                <li><a href="{{ base_url() }}/protected/clients/list">Listar</a></li>
-                                <li><a href="{{ base_url() }}/protected/clients/create">Criar</a></li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/clients/list">
+                                        {% trans "Listar" %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ base_url() }}/protected/clients/create">
+                                        {% trans "Criar" %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -106,7 +160,7 @@
 
         <aside class="ls-notification">
             <nav class="ls-notification-list" id="ls-notification-curtain" style="left: 1716px;">
-                <h3 class="ls-title-2">Notificações</h3>
+                <h3 class="ls-title-2">{% trans "Notificações" %}</h3>
                 <ul>
                     <li class="ls-dismissable">
                         <a href="#">Exemplo</a>

@@ -9,26 +9,47 @@
         <form action="{{ path_for( 'user_list' ) }}" class="ls-form ls-form-inline">
             
             
-            <input type="hidden" name="page" value="{{page}}" />
+            <input type="hidden" name="page" value="{{ page }}" />
 
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Nome</b>
-                <input type="text" name="name" value="{{name}}" placeholder="Nome" />
+
+                <b class="ls-label-text">{% trans "Nome" %}</b>
+                
+                <input type="text" 
+                    name="name" 
+                    value="{{name}}" 
+                    placeholder="{% trans "Nome" %}" />
+
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Atributo</b>
-                <input type="text" name="attribute" value="{{attribute}}" placeholder="Atributo" />
+
+                <b class="ls-label-text">{% trans "Atributo" %}</b>
+
+                <input type="text" 
+                    name="attribute" 
+                    value="{{attribute}}" 
+                    placeholder="{% trans "Atributo" %}" />
+
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Grupo</b>
-                <input type="text" name="group" value="{{group}}" placeholder="Grupo" />
+
+                <b class="ls-label-text">{% trans "Grupo" %}</b>
+
+                <input type="text" 
+                    name="group" 
+                    value="{{group}}" 
+                    placeholder="{% trans "Grupo" %}" />
+
             </label>
 
 
-            <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
+            <input type="submit" 
+                value="{% trans "Pesquisar" %}" 
+                class="ls-btn ls-btn-primary ls-float-right"/>
+
         </form>
     </div>
 
@@ -39,10 +60,10 @@
                 
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Atributos de Verificação</th>
-                        <th>Atributos de Resposta</th>
-                        <th>Grupos</th>
+                        <th>{% trans "Nome" %}</th>
+                        <th>{% trans "Atributos de Verificação" %}</th>
+                        <th>{% trans "Atributos de Resposta" %}</th>
+                        <th>{% trans "Grupos" %}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -62,7 +83,7 @@
                                         <option value="1">{{radCheck.attribute}}</option>
                                     {% else %}
 
-                                        <option>Nenhum</option>
+                                        <option>{% trans "Nenhum" %}</option>
                                     {% endfor %}
                                 </select>
                              </div>
@@ -76,7 +97,7 @@
                                         <option>{{radReply.attribute}}</option>
                                     {% else %}
                                     
-                                        <option>Nenhum</option>
+                                        <option>{% trans "Nenhum" %}</option>
                                     {% endfor %}
                                 </select>
                              </div>
@@ -90,7 +111,7 @@
                                         <option>{{group.name}}</option>
                                     {% else %}
                                     
-                                        <option>Nenhum</option>
+                                        <option>{% trans "Nenhum" %}</option>
                                     {% endfor %}
                                 </select>
                              </div>
@@ -98,17 +119,23 @@
 
                         <td>
 
-                            <a href="{{ path_for( 'user_statistic' ) }}?name={{user.name}}" class="ls-btn ls-ico-stats"></a>
+                            <a href="{{ path_for( 'user_statistic' ) }}?name={{user.name}}" 
+                                class="ls-btn ls-ico-stats"></a>
                     
-                            <a href="{{ path_for( 'user_update' ) }}?name={{user.name}}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{ path_for( 'user_update' ) }}?name={{user.name}}" 
+                                class="ls-btn ls-ico-edit-admin"></a>
                     
-                           <a href="{{ path_for( 'user_delete' ) }}?name={{user.name}}" class="ls-btn ls-ico-remove"></a>
+                           <a href="{{ path_for( 'user_delete' ) }}?name={{user.name}}" 
+                                class="ls-btn ls-ico-remove"></a>
+
                         </td>
                     </tr>
 
                 {% else %}
                     <tr>
-                        <td colspan=5>Nenhum registro para exibir</td>
+                        <td colspan=5>
+                            {% trans "Nenhum registro para exibir" %}
+                        </td>
                     </tr>
 
                 {% endfor %}
@@ -122,20 +149,20 @@
 
                     <li>
                         <a href="{{ path_for( 'user_list' ) }}?name={{name}}&attribute={{attribute}}&page={{page - 1}}">
-                            &laquo; Anterior
+                            &laquo; {% trans "Anterior" %}
                         </a>
                     </li>
                 {% endif %}
 
                     <li class="counter">
-                        Pág. {{page + 1}}
+                        {% trans "Página" %} {{page + 1}}
                     </li>
 
                 {% if users is not empty %}
                 
                     <li>
                         <a href="{{ path_for( 'user_list' ) }}?name={{name}}&attribute={{attribute}}&page={{page + 1}}">
-                            Próximo &raquo;
+                            {% trans "Próximo" %} &raquo;
                         </a>
                     </li>
                 {% endif %}

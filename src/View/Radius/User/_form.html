@@ -16,9 +16,21 @@
     {% endif %}
  
     <ul class="ls-tabs-nav">
-        <li class="ls-active"><a data-ls-module="tabs" href="#form-general">Geral</a></li>
-        <li><a data-ls-module="tabs" href="#form-checks">Atributos de verificação</a></li>
-        <li><a data-ls-module="tabs" href="#form-replies">Atributos de resposta</a></li>
+        <li class="ls-active">
+            <a data-ls-module="tabs" href="#form-general">
+                {% trans "Geral" %}
+            </a>
+        </li>
+        <li>
+            <a data-ls-module="tabs" href="#form-checks">
+                {% trans "Atributos de verificação" %}
+            </a>
+        </li>
+        <li>
+            <a data-ls-module="tabs" href="#form-replies">
+                {% trans "Atributos de resposta" %}
+            </a>
+        </li>
     </ul>
     
     <div class="ls-tabs-container">
@@ -28,8 +40,10 @@
             <div class="row">
 
                 <label class="ls-label col-md-4">
-                    <b class="ls-label-text">Nome</b>
-                    <p class="ls-label-info">O <i>username</i> do usuário </p>
+                    <b class="ls-label-text">{% trans "Nome" %}</b>
+                    <p class="ls-label-info">
+                        {% trans "O username do usuário" %} 
+                    </p>
                     
                     <input type="text" name="name" value="{{user.name}}" placeholder=""/>
                     <input type="hidden" name="name-old" value="{{user.name}}"/>
@@ -44,8 +58,8 @@
                 </label>
 
                 <label class="ls-label col-md-4">
-                    <b class="ls-label-text">Adicionar grupo</b>
-                    <p class="ls-label-info">O <i>groupname</i> do grupo</p>
+                    <b class="ls-label-text">{% trans "Adicionar grupo" %}</b>
+                    <p class="ls-label-info">{% trans "O groupname do grupo" %}</p>
                     
                     <div class="ls-prefix-group">
                         <input type="text" id="input-add-group" />
@@ -56,7 +70,9 @@
 
                 <label class="ls-label col-md-4">
                     <b class="ls-label-text">Grupos</b>
-                    <p class="ls-label-info">A prioridade ocorre do mais alto para o mais baixo</p>
+                    <p class="ls-label-info">
+                        {% trans "A prioridade ocorre do mais alto para o mais baixo" %}
+                    </p>
 
                     <select id="select-groups" name="groups[]" multiple size="5" class="ls-input-text">
 
@@ -110,7 +126,13 @@
 
         </div>
 
-       <button type="button" id="btn-submit" class="ls-btn-dark ls-btn-lg">Salvar</button>
+       <button type="button" 
+            id="btn-submit" 
+            class="ls-btn-dark ls-btn-lg">
+        
+            {% trans "Salvar" %}
+        
+        </button>
 
     </div>
 

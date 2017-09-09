@@ -11,11 +11,11 @@
             <input type="hidden" name="userName" value="{{userName}}" />           
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Dispositivo</b>
+                <b class="ls-label-text">{% trans "Dispositivo" %}</b>
                 <div class="ls-custom-select">
                     <select name="mac" class="ls-select">
 
-                        <option value="">Todos</option>
+                        <option value="">{% trans "Todos" %}</option>
 
                         {% for device in devices %}
                             
@@ -33,7 +33,7 @@
                 <div class="ls-custom-select">
                     <select name="nas" class="ls-select">
 
-                        <option value="">Todos</option>
+                        <option value="">{% trans "Todos" %}</option>
                     
                         {% for client in clients %}
                             
@@ -51,7 +51,7 @@
                     <input type="text" 
                         name="date1" 
                         class="datepicker ls-daterange" 
-                        placeholder="Data inicio" 
+                        placeholder="{% trans "Data inicio" %}" 
                         id="date1" 
                         value="{{date1}}"
                         data-ls-daterange="#date2"/>
@@ -66,7 +66,7 @@
                     <input type="text" 
                         name="date2" 
                         class="datepicker ls-daterange" 
-                        placeholder="Data final" 
+                        placeholder="{% trans "Data final" %}" 
                         id="date2" 
                         value="{{date2}}"/>
                     
@@ -75,7 +75,10 @@
             </label>
 
 
-            <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
+            <input type="submit" 
+                value="{% trans "Pesquisar" %}" 
+                class="ls-btn ls-btn-primary ls-float-right"/>
+
         </form>
     </div>
 
@@ -84,12 +87,12 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-6">
-            <p>Resumo conexões do usuário por período.</p>
+            <p>{% trans "Resumo conexões do usuário por período." %}</p>
         </div>
         <div class="col-md-6 col-sm-6">
 
                 <p class="ls-float-right ls-float-none-xs">
-                    Período selecionado: 
+                    {% trans "Período selecionado" %}: 
                     <strong>
                         {{ date1 ?: '' }} até {{ date2 ?: 'Agora' }}
                     </strong>
@@ -106,12 +109,12 @@
                 <div class="ls-box">
                    
                     <div class="ls-box-head">
-                        <h6 class="ls-title-4">Conexões</h6>
+                        <h6 class="ls-title-4">{% trans "Conexões" %}</h6>
                     </div>
                    
                    <div class="ls-box-body">
                         <strong class="ls-color-theme">{{ qtAccts |  number_format( 0, ',', '.') }}</strong>
-                        <small>Conexões</small>
+                        <small>{% trans "Conexões" %}</small>
                     </div>
             
                     <div class="ls-box-footer"></div>
@@ -122,12 +125,12 @@
                 <div class="ls-box">
                    
                     <div class="ls-box-head">
-                        <h6 class="ls-title-4">Tempo médio</h6>
+                        <h6 class="ls-title-4">{% trans "Tempo médio" %}</h6>
                     </div>
                    
                    <div class="ls-box-body">
                         <strong class="ls-color-theme">{{ ( timeAvg|round ) |  number_format( 0, ',', '.') }}</strong>
-                        <small>Segundos</small>
+                        <small>{% trans "Segundos" %}</small>
                     </div>
             
                     <div class="ls-box-footer"></div>
@@ -139,7 +142,7 @@
                 <div class="ls-box">
                    
                     <div class="ls-box-head">
-                        <h6 class="ls-title-4">Comsumo médio</h6>
+                        <h6 class="ls-title-4">{% trans "Comsumo médio" %}</h6>
                     </div>
                    
                    <div class="ls-box-body">
@@ -175,11 +178,11 @@
                 
                 <thead>
                     <tr>
-                        <th>IP</th>
-                        <th>Dispositivo</th>
-                        <th>Inicio</th>
-                        <th>Duração</th>
-                        <th>Cliente</th>
+                        <th>{% trans "IP" %}</th>
+                        <th>{% trans "Dispositivo" %}</th>
+                        <th>{% trans "Inicio" %}</th>
+                        <th>{% trans "Duração" %}</th>
+                        <th>{% trans "Cliente" %}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -200,7 +203,7 @@
 
                 {% else %}
                     <tr>
-                        <td colspan=6>Nenhum registro para exibir</td>
+                        <td colspan=6>{% trans "Nenhum registro para exibir." %}</td>
                     </tr>
 
                 {% endfor %}
@@ -214,13 +217,13 @@
 
                     <li>
                         <a href="{{ path_for( 'user_statistic' ) }}?userName={{userName}}&page={{page - 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
-                            &laquo; Anterior
+                            &laquo; {% trans "Anterior" %}
                         </a>
                     </li>
                 {% endif %}
 
                     <li class="counter">
-                        Pág. {{page + 1}}
+                        {% trans "Página" %} {{page + 1}}
                     </li>
 
                 {% if radAccts is not empty %}
@@ -228,7 +231,7 @@
                     <li>
 
                         <a href="{{ path_for( 'user_statistic' ) }}?userName={{userName}}&page={{page + 1}}&date1={{date1}}&date2={{date2}}&mac={{mac}}&nas={{nas}}">
-                            Próximo &raquo;
+                            {% trans "Próximo" %} &raquo;
                         </a>
                     </li>
                 {% endif %}

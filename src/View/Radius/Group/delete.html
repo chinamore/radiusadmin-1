@@ -2,19 +2,26 @@
 
 {% block content %}
     
-    <h1 class="ls-title-intro ls-ico-users">Apagar grupo</h1>
+    <h1 class="ls-title-intro ls-ico-users">{% trans "Apagar grupo" %}</h1>
 
     <form method="POST">
 
         <p class="ls-text-lg">
-            Deseja realmente apagar o grupo <strong>{{group.name}}</strong>?
+            
+            {% set name = group.name %}
+
+            {% trans %}
+                "Deseja realmente apagar o grupo {{ name }} ?" 
+            {% endtrans %}
         </p>
 
         <input type="hidden" name="csrf_name" value="{{ token.name }}"/>
             
         <input type="hidden" name="csrf_value" value="{{ token.value }}"/>
 
-        <button type="submit" class="ls-btn ls-btn-dark ls-btn-lg">Apagar</button>
+        <button type="submit" class="ls-btn ls-btn-dark ls-btn-lg">
+            {% trans "Apagar" %}
+        </button>
 
     </form>
 

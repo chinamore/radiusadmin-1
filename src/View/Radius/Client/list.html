@@ -13,22 +13,42 @@
 
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Nome</b>
-                <input type="text" name="nasName" value="{{nasName}}" placeholder="Nome" />
+
+                <b class="ls-label-text">{% trans "Nome" %}</b>
+
+                <input type="text" 
+                    name="nasName" 
+                    value="{{nasName}}" 
+                    placeholder="{% trans "Nome" %}" />
+
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Apelido</b>
-                <input type="text" name="shortName" value="{{shortName}}" placeholder="Apelido" />
+                
+                <b class="ls-label-text">{% trans "Apelido" %}</b>
+                
+                <input type="text" 
+                    name="shortName" 
+                    value="{{shortName}}" 
+                    placeholder="{% trans "Apelido" %}" />
+
             </label>
 
             <label class="ls-label col-md-3 col-sm-3">
-                <b class="ls-label-text">Tipo</b>
-                <input type="text" name="type" value="{{type}}" placeholder="Tipo" />
+                
+                <b class="ls-label-text">{% trans "Tipo" %}</b>
+               
+                <input type="text" 
+                    name="type" 
+                    value="{{type}}" 
+                    placeholder="{% trans "Tipo" %}" />
+
             </label>
 
+            <input type="submit" 
+                value="{% trans "Pesquisar" %}" 
+                class="ls-btn ls-btn-primary ls-float-right"/>
 
-            <input type="submit" value="Pesquisar" class="ls-btn ls-btn-primary ls-float-right"/>
         </form>
     </div>
 
@@ -39,11 +59,11 @@
                 
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Apelido</th>
-                        <th>Tipo</th>
-                        <th>Servidor</th>
-                        <th>Community</th>
+                        <th>{% trans "IP ( nasname)" %}</th>
+                        <th>{% trans "Apelido" %}</th>
+                        <th>{% trans "Tipo" %}</th>
+                        <th>{% trans "Servidor" %}</th>
+                        <th>{% trans "Comunidade" %}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -61,15 +81,20 @@
 
                         <td>
                     
-                            <a href="{{ path_for( 'client_update' )}}?id={{ client.id }}" class="ls-btn ls-ico-edit-admin"></a>
+                            <a href="{{ path_for( 'client_update' )}}?id={{ client.id }}" 
+                                class="ls-btn ls-ico-edit-admin"></a>
                     
-                            <a href="{{ path_for( 'client_delete' ) }}?id={{ client.id }}" class="ls-btn ls-ico-remove"></a>
+                            <a href="{{ path_for( 'client_delete' ) }}?id={{ client.id }}" 
+                                class="ls-btn ls-ico-remove"></a>
+
                         </td>
                     </tr>
 
                 {% else %}
                     <tr>
-                        <td colspan=6>Nenhum registro para exibir</td>
+                        <td colspan=6>
+                            {% trans "Nenhum registro para exibir" %}
+                        </td>
                     </tr>
 
                 {% endfor %}
@@ -83,20 +108,20 @@
 
                     <li>
                         <a href="{{dir}}/protected/clients/list?nasName={{nasName}}&shortName={{shortName}}&page={{page - 1}}">
-                            &laquo; Anterior
+                            &laquo; {% trans "Anterior" %}
                         </a>
                     </li>
                 {% endif %}
 
                     <li class="counter">
-                        Pág. {{page + 1}}
+                        {% trans "Página" %} {{page + 1}}
                     </li>
 
                 {% if users is not empty %}
                 
                     <li>
                         <a href="{{dir}}/protected/clients/list?nasName={{nasName}}&shortName={{shortName}}&page={{page + 1}}">
-                            Próximo &raquo;
+                            {% trans "Próximo" %} &raquo;
                         </a>
                     </li>
                 {% endif %}

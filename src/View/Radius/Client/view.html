@@ -17,39 +17,46 @@
                 
                 <thead>
                     <tr>
-                        <th>Atributo</th>
-                        <th>Valor</th>
+                        <th>{% trans "Atributo" %}</th>
+                        <th>{% trans "Valor" %}</th>
                     </tr>
                 </thead>
                     
                 <tbody>
          
                     <tr>
-                        <td>Apelido ( shortname )</td><td>{{client.shortname}}</td>
+                        <td>{% trans "Apelido ( shortname )" %}</td>
+                        <td>{{client.shortname}}</td>
                     </tr>
 
                     <tr>
-                        <td>Tipo</td><td>{{client.type}}</td>
+                        <td>{% trans "Tipo" %}</td>
+                        <td>{{client.type}}</td>
                     </tr>
 
                     <tr>
-                        <td>Portas</td><td>{{client.ports}}</td>
+                        <td>{% trans "Portas" %}</td>
+                        <td>{{client.ports}}</td>
                     </tr>
    
                     <tr>
-                        <td>Senha ( secret )</td><td>{{client.secret}}</td>
+                        <td>{% trans "Senha ( secret )" %}</td>
+                        <td>{{client.secret}}</td>
                     </tr>
    
                     <tr>
-                        <td>Servidor</td><td>{{client.server}}</td>
+                        <td>{% trans "Servidor" %}</td>
+                        <td>{{client.server}}</td>
                     </tr>
    
                     <tr>
-                        <td>Community</td><td>{{client.community}}</td>
+                        <td>{% trans "Comunidade" %}</td>
+                        <td>{{client.community}}</td>
                     </tr>
    
                     <tr>
-                        <td>Descrição</td><td>{{client.description}}</td>
+                        <td>{% trans "Descrição" %}</td>
+                        <td>{{client.description}}</td>
                     </tr>
 
                 </tbody>

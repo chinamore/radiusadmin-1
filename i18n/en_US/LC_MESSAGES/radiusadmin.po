@@ -1,0 +1,447 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:46
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:125
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:326
+msgid "Inicio"
+msgstr "Start"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:55
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:135
+msgid "Data inicio"
+msgstr "Start date"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:73
+msgid "Final"
+msgstr "End"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:80
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:156
+msgid "Data final"
+msgstr "End date"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:95
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:172
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:112
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:90
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:111
+msgid "Pesquisar"
+msgstr "Search"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:111
+msgid "Resumo conexões por período."
+msgstr "Summary of connections by period."
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:119
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:197
+msgid "Período selecionado"
+msgstr "Selected period"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:144
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:155
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:222
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:233
+msgid "Conexões"
+msgstr "Connections"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:169
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:134
+msgid "Usuários"
+msgstr "Users"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:180
+msgid "Usuários diferentes"
+msgstr "Different users"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:194
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:247
+msgid "Tempo médio"
+msgstr "Average time"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:205
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:258
+msgid "Segundos"
+msgstr "Seconds"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:220
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:273
+msgid "Comsumo médio"
+msgstr "Average Consuption"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:238
+msgid "Download"
+msgstr "Download"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:246
+msgid "Upload"
+msgstr "Upload"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:269
+msgid "Resumo conexões"
+msgstr "Summary connections"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:289
+msgid "Ultimos logins realizados"
+msgstr "Latest logged in"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:297
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:377
+msgid "Data e hora"
+msgstr "Date and Time"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:301
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:381
+msgid "Usuário"
+msgstr "User"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:305
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:385
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:318
+msgid "IP"
+msgstr "IP"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:345
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:424
+msgid "Nenhum resultado encontrado"
+msgstr "No results found"
+
+#: 00/00a50dc48f2a48caa78138f11664fc04b72fb7b30a11ff2b9f9f862736a19ac5.php:369
+msgid "Ultimos logins rejeitados"
+msgstr "latest rejected logins"
+
+#: 0e/0ec195c3fc0f8130953806dd17bfaff44ca142aa6005c4021c485c74a9499858.php:25
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:117
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:192
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:51
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:72
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:83
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:71
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:82
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:60
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:135
+#: a0/a0942e1f0c74d0b6b4b534824517a90aeb6a63ed184dec08a0133a973b25e708.php:25
+msgid "Atributo"
+msgstr "Attribute"
+
+#: 0e/0ec195c3fc0f8130953806dd17bfaff44ca142aa6005c4021c485c74a9499858.php:29
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:121
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:196
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:64
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:139
+#: a0/a0942e1f0c74d0b6b4b534824517a90aeb6a63ed184dec08a0133a973b25e708.php:29
+msgid "Operador"
+msgstr "Operator"
+
+#: 0e/0ec195c3fc0f8130953806dd17bfaff44ca142aa6005c4021c485c74a9499858.php:33
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:125
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:200
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:55
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:68
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:143
+#: a0/a0942e1f0c74d0b6b4b534824517a90aeb6a63ed184dec08a0133a973b25e708.php:33
+msgid "Valor"
+msgstr "Value"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:64
+msgid "IP ( nasname )"
+msgstr "IP ( nasname )"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:101
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:65
+msgid "Apelido ( shortname )"
+msgstr "Alias ( shortname )"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:138
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:76
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:92
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:103
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:135
+msgid "Tipo"
+msgstr "Type"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:197
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:87
+msgid "Portas"
+msgstr "Ports"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:234
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:98
+msgid "Senha ( secret )"
+msgstr "Secret"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:271
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:109
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:139
+msgid "Servidor"
+msgstr "Server"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:308
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:120
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:143
+msgid "Comunidade"
+msgstr "Community"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:346
+#: 29/297a6ef15975ab5ad1124d72b71a00684dd4faa0aa6b121563db1ec76ce4d596.php:131
+msgid "Descrição"
+msgstr "Description"
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:394
+msgid "Os campos marcados com * são obrigatórios."
+msgstr "Fields marked with * are required."
+
+#: 16/16a01b11487d14416086fdfeb7dcbbad753685ba0f6bc5a6f0f9f8110c679ff4.php:405
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:262
+#: 68/6811c5ba1beb2ba7567133eecf5d694721cd7ead683accb034bf741d098d84df.php:176
+msgid "Salvar"
+msgstr "Save"
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:35
+msgid "Ver usuário"
+msgstr "View User"
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:58
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:96
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:52
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:63
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:128
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:51
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:62
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:106
+#: 68/6811c5ba1beb2ba7567133eecf5d694721cd7ead683accb034bf741d098d84df.php:98
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:52
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:63
+msgid "Nome"
+msgstr "Name"
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:86
+msgid "Nenhum grupo encontrado"
+msgstr "No groups found"
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:105
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:73
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:110
+#: 68/6811c5ba1beb2ba7567133eecf5d694721cd7ead683accb034bf741d098d84df.php:74
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:48
+msgid "Atributos de verificação"
+msgstr "Check attributes"
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:163
+msgid "Nenhum atributo de verificação encontrado."
+msgstr "No check attributes found."
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:181
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:81
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:114
+#: 68/6811c5ba1beb2ba7567133eecf5d694721cd7ead683accb034bf741d098d84df.php:82
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:124
+msgid "Atributos de resposta"
+msgstr "Reply attributes"
+
+#: 16/16cc6bee7e4d38a8d3cd5437d6c7494dd8a77229fb611c585eea0783a2dd0f65.php:238
+msgid "Nenhum atributo de resposta encontrado."
+msgstr "No reply attributes found."
+
+#: 1a/1a82191a5f12d3d8746d334be82cf570416ed88da031e480578d2254afcee355.php:35
+msgid "Apagar usuário"
+msgstr "Delete user"
+
+#: 1a/1a82191a5f12d3d8746d334be82cf570416ed88da031e480578d2254afcee355.php:50
+msgid "\"Deseja realmente apagar o usuário %name% ?\""
+msgstr " \"Do you really want to delete user %name% ? \""
+
+#: 1a/1a82191a5f12d3d8746d334be82cf570416ed88da031e480578d2254afcee355.php:68
+#: 5c/5ced3dbd2bec3ce1566eeb5b1fd3fe648b896934e80394f9c543d8718ab30cc1.php:74
+#: 7c/7c48860fb19acac759b0ac47d27c6946b6f5230dd97be9acd5f9a90263dd4e83.php:66
+msgid "Apagar"
+msgstr "Delete"
+
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:65
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:211
+#: 68/6811c5ba1beb2ba7567133eecf5d694721cd7ead683accb034bf741d098d84df.php:66
+msgid "Geral"
+msgstr "General"
+
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:101
+msgid "O username do usuário"
+msgstr "The username of user"
+
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:143
+msgid "Adicionar grupo"
+msgstr "Add group"
+
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:147
+#: 68/6811c5ba1beb2ba7567133eecf5d694721cd7ead683accb034bf741d098d84df.php:104
+msgid "O groupname do grupo"
+msgstr "The groupname of group"
+
+#: 20/20c8d3c1305d87034118cef68874e1a16602e262ce5b2024f0f2c405b539d4d8.php:162
+msgid "A prioridade ocorre do mais alto para o mais baixo"
+msgstr "Priority is from highest to lowest"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:55
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:271
+msgid "Notificações"
+msgstr "notifications"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:66
+msgid "Sugestões"
+msgstr "suggestions"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:94
+msgid "Sair"
+msgstr "Exit"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:146
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:179
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:233
+msgid "Listar"
+msgstr "List"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:157
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:190
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:244
+msgid "Criar"
+msgstr "Create"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:167
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:140
+msgid "Grupos"
+msgstr "Groups"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:200
+msgid "Estatísticas"
+msgstr "Statistic"
+
+#: 23/237db142979ec6e478c35e0fd3331682145659fb517733277d1eee39f56431c7.php:221
+msgid "Clientes ( NAS )"
+msgstr "Client ( NAS )"
+
+#: 2b/2b04a9aa9fcb0f150653443806c8b8b1bc9833f9565a20779daf8b04f9bda805.php:34
+msgid "Alterar cliente"
+msgstr "Change client"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:50
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:322
+msgid "Dispositivo"
+msgstr "Device"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:57
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:96
+msgid "Todos"
+msgstr "All"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:189
+msgid "Resumo conexões do usuário por período."
+msgstr "Summary User connections by period."
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:330
+msgid "Duração"
+msgstr "Duration"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:334
+msgid "Cliente"
+msgstr "Client"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:383
+msgid "Nenhum registro para exibir."
+msgstr "No records to display."
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:423
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:340
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:269
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:246
+msgid "Anterior"
+msgstr "Previous"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:434
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:351
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:280
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:257
+msgid "Página"
+msgstr "Page"
+
+#: 43/4320b0abbf18f22b21053699c654059875aad3afd464a8ee004ad09b3a126755.php:465
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:375
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:304
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:281
+msgid "Próximo"
+msgstr "Next"
+
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:92
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:103
+msgid "Grupo"
+msgstr "Group"
+
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:132
+msgid "Atributos de Verificação"
+msgstr "Check attributes"
+
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:136
+msgid "Atributos de Resposta"
+msgstr "Reply attributes"
+
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:185
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:220
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:255
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:158
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:193
+msgid "Nenhum"
+msgstr "None"
+
+#: 45/453415ffdbc6d8c27ce5b2054a85157d4de60dc3e94576d97db0632a754eee4b.php:305
+#: 62/6207bdc19b32f5eced4d5f8a569102bc1a16afcc89eaaa38895743cb9f672b60.php:234
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:211
+msgid "Nenhum registro para exibir"
+msgstr ""
+
+#: 5c/5ced3dbd2bec3ce1566eeb5b1fd3fe648b896934e80394f9c543d8718ab30cc1.php:36
+msgid "Apagar cliente"
+msgstr "Delete client"
+
+#: 5c/5ced3dbd2bec3ce1566eeb5b1fd3fe648b896934e80394f9c543d8718ab30cc1.php:55
+msgid "Deseja realmente apagar o cliente %nasname% ( %shortname% ) ?"
+msgstr "Do you really want to delete the client %nasname% ( %shortname% ) ?"
+
+#: 7c/7c48860fb19acac759b0ac47d27c6946b6f5230dd97be9acd5f9a90263dd4e83.php:34
+msgid "Apagar grupo"
+msgstr "Delete group"
+
+#: 7c/7c48860fb19acac759b0ac47d27c6946b6f5230dd97be9acd5f9a90263dd4e83.php:48
+msgid "\"Deseja realmente apagar o grupo %name% ?\""
+msgstr "Do you really want to delete the group %name%?"
+
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:72
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:83
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:131
+msgid "Apelido"
+msgstr "Alias"
+
+#: 8f/8ff9ccf2b391040b77476fb0d7ff3c2701e50a4c9624f83acb9120cf5b7cb81b.php:127
+msgid "IP ( nasname)"
+msgstr "IP ( nasname )"
+
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:106
+msgid "Nenhum atributo de verificação encontrado"
+msgstr ""
+
+#: 95/95b637142ed42e16455a0fea4899cee8bd6b3a2c8c09780cb848dbf3a7153c9f.php:181
+msgid "Nenhum atributo de resposta encontrado"
+msgstr ""
+
+#: a4/a4c555ee59d1be3ad3a8c871e3ee8478139e3f095af5ddd004d0a680d58479da.php:36
+msgid "Criar usuário"
+msgstr "Create user"
+
+#: dd/ddb98e1ee0702d384555e29b4bfe180424f3eb377dc257d8616d702d39e92b8d.php:35
+msgid "Alterar grupo"
+msgstr "Change group"
+
+#: f7/f7671b412fe688435da5ecfc62bd00a90da683be7ada8984ba000af3f6814627.php:36
+msgid "Alterar usuário"
+msgstr "Change user"

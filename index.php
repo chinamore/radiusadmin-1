@@ -8,17 +8,19 @@ ini_set("display_startup_errors","On");
 
 date_default_timezone_set("America/Sao_Paulo");
 
-setlocale( LC_ALL, "en_US.UTF8" );
-
 require "vendor/autoload.php";
 
-bindtextdomain( "radiusadmin", "i18n" );
+$settings = require __DIR__ . "/config/settings.php";
 
-bind_textdomain_codeset( "radiusamdin", "UTF-8" );
+putenv("LANGUAGE=en_US" );
+
+setlocale( LC_ALL, "en_US.UTF-8" );
+
+bindtextdomain("radiusadmin", "./i18n/");
+
+bind_textdomain_codeset( "radiusadmin", "UTF-8" );
 
 textdomain( "radiusadmin" );
-
-$settings = require __DIR__ . "/config/settings.php";
 
 $app = new \Slim\App( $settings );
 

@@ -12,7 +12,9 @@
         <hr/>
 
    
-        <h2 class="ls-title-6">Atributos de verificação</h2>
+        <h2 class="ls-title-6">
+            {% trans "Atributos de verificação" %}
+        </h2>
 
         <div class="table-responsive">
 
@@ -20,9 +22,9 @@
                 
                 <thead>
                     <tr>
-                        <th>Atributo</th>
-                        <th>Operador</th>
-                        <th>Valor</th>
+                        <th>{% trans "Atributo" %}</th>
+                        <th>{% trans "Operador" %}</th>
+                        <th>{% trans "Valor" %}</th>
                     </tr>
                 </thead>
                     
@@ -36,7 +38,11 @@
                         <td>{{check.value}}</td>
                     </tr>
                 {% else %}
-                    <tr><td>Nenhum atributo de verificação encontrado</td></tr>
+                    <tr>
+                        <td>
+                            {% trans "Nenhum atributo de verificação encontrado" %}
+                        </td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>
@@ -44,7 +50,7 @@
 
         <hr/>
 
-        <h2 class="ls-title-6">Atributos de resposta</h2>
+        <h2 class="ls-title-6">{% trans "Atributos de resposta" %}</h2>
 
         <div class="table-responsive">
 
@@ -52,9 +58,9 @@
                 
                 <thead>
                     <tr>
-                        <th>Atributo</th>
-                        <th>Operador</th>
-                        <th>Valor</th>
+                        <th>{% trans "Atributo" %}</th>
+                        <th>{% trans "Operador" %}</th>
+                        <th>{% trans "Valor" %}</th>
                     </tr>
                 </thead>
                     
@@ -68,7 +74,11 @@
                         <td>{{reply.value}}</td>
                     </tr>
                 {% else %}
-                    <tr><td>Nenhum atributo de resposta encontrado</td></tr>
+                    <tr>
+                        <td>
+                            {% trans "Nenhum atributo de resposta encontrado" %}
+                        </td>
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>

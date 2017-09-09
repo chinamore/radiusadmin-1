@@ -9,6 +9,10 @@ return [
 
         "debug"=>true,
 
+        "locale"=>"en_US",
+
+        "encode"=>"UTF-8",
+
         "db_radius" => [
             "driver" => "mysql",
             "host" => "localhost",

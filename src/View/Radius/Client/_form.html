@@ -17,7 +17,7 @@
         <input type="hidden" name="csrf_value" value="{{ token.value }}"/>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">IP ( nasname )*</b>
+            <b class="ls-label-text">{% trans "IP ( nasname )" %}*</b>
             <p class="ls-label-info"></p>
             <input type="text" name="client[nasname]" value="{{ client.nasname }}" placeholder="" required />
 
@@ -31,7 +31,7 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Apelido ( shortname )</b>
+            <b class="ls-label-text">{% trans "Apelido ( shortname )" %}</b>
             <p class="ls-label-info"></p>
             <input type="text" name="client[shortname]" value="{{ client.shortname }}" placeholder=""/>
 
@@ -45,7 +45,7 @@
         </label>
 
         <label class="ls-label col-md-2">
-            <b class="ls-label-text">Tipo</b>
+            <b class="ls-label-text">{% trans "Tipo" %}</b>
             <p class="ls-label-info"></p>
             <div class="ls-custom-select">
                 <select name="client[type]" class="ls-select">
@@ -67,7 +67,7 @@
         </label>
 
         <label class="ls-label col-md-2">
-            <b class="ls-label-text">Portas</b>
+            <b class="ls-label-text">{% trans "Portas" %}</b>
             <p class="ls-label-info"></p>
             <input type="text" name="client[ports]" value="{{ client.ports }}"/>
 
@@ -81,7 +81,7 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Senha ( secret )*</b>
+            <b class="ls-label-text">{% trans "Senha ( secret )" %}*</b>
             <p class="ls-label-info"></p>
             <input type="text" name="client[secret]" value="{{ client.secret }}"placeholder="" required />
 
@@ -95,7 +95,7 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Servidor</b>
+            <b class="ls-label-text">{% trans "Servidor" %}</b>
             <p class="ls-label-info"></p>
             <input type="text" name="client[server]" value="{{ client.server }}" placeholder="" />
 
@@ -109,7 +109,7 @@
         </label>
 
         <label class="ls-label col-md-4">
-            <b class="ls-label-text">Community</b>
+            <b class="ls-label-text">{% trans "Comunidade" %}</b>
             <p class="ls-label-info"></p>
             <input type="text" name="client[community]" value="{{ client.community }}" placeholder="" />
 
@@ -123,9 +123,19 @@
         </label>
 
         <label class="ls-label col-md-12">
-            <b class="ls-label-text">Descrição</b>
+
+            <b class="ls-label-text">{% trans "Descrição" %}</b>
+
             <p class="ls-label-info"></p>
-            <textarea name="client[description]" rows="4" data-ls-module="charCounter" maxlength="200">{{client.description}}</textarea>
+
+            <textarea name="client[description]" 
+                rows="4" 
+                data-ls-module="charCounter" 
+                maxlength="200">
+            
+                {{client.description}}
+            
+            </textarea>
 
             {% if errors["description"] is not empty %}
                 <p class="ls-error">
@@ -139,14 +149,16 @@
         <div class="col-md-12">
             <p>
                 <small class="ls-help-message">
-                    Os campos marcados com * são obrigatórios.
+                    {% trans "Os campos marcados com * são obrigatórios." %}
                 </small>
             </p>
         </div>
 
         <div class="ls-actions-btn">
        
-            <button type="submit" class="ls-btn-dark ls-btn-lg">Salvar</button>
+            <button type="submit" class="ls-btn-dark ls-btn-lg">
+                {% trans "Salvar" %}
+            </button>
         </div>
     </form>
 
