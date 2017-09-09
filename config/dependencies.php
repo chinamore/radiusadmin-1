@@ -25,6 +25,7 @@ $container["db"] = function ($container) {
 //init
 $db = $container->get( "db" );
 
+
 //twig templates
 $container["view"] = function ($container) {
 
@@ -36,6 +37,8 @@ $container["view"] = function ($container) {
     $basePath = rtrim( str_ireplace( "index.php", "", $container["request"]->getUri()->getBasePath()), "/");
     
     $view->addExtension( new Slim\Views\TwigExtension($container["router"], $basePath) );
+
+    $view->addExtension( new Twig_Extensions_Extension_I18n() );
 
     $env = $view->getEnvironment();
     
