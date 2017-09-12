@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1 class="ls-title-intro ls-ico-user">Estatisticas usuário</h1>
+    <h1 class="ls-title-intro ls-ico-user">{% trans "Estatísticas usuário" %}</h1>
 
     <div class="ls-box-filter">
         
@@ -87,7 +87,7 @@
 
     <div class="row">
         <div class="col-md-6 col-sm-6">
-            <p>{% trans "Resumo conexões do usuário por período." %}</p>
+            <p>{% trans "Resumo conexões do usuário por período" %}</p>
         </div>
         <div class="col-md-6 col-sm-6">
 
@@ -203,7 +203,7 @@
 
                 {% else %}
                     <tr>
-                        <td colspan=6>{% trans "Nenhum registro para exibir." %}</td>
+                        <td colspan=6>{% trans "Nenhum registro para exibir" %}</td>
                     </tr>
 
                 {% endfor %}
