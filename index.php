@@ -6,23 +6,27 @@ error_reporting(E_ALL);
 ini_set("display_errors","On");
 ini_set("display_startup_errors","On");
 
-date_default_timezone_set("America/Sao_Paulo");
 
 require "vendor/autoload.php";
 
 $settings = require __DIR__ . "/config/settings.php";
 
-putenv("LANGUAGE=en_US" );
+date_default_timezone_set( $settings["timezone"] );
 
-setlocale( LC_ALL, "en_US.UTF-8" );
+putenv("LANGUAGE=" . $settings["locale"] );
+
+setlocale( LC_ALL, $settings["locale"] . "." . $settings["encode"] );
 
 bindtextdomain("radiusadmin", "./i18n/");
 
-bind_textdomain_codeset( "radiusadmin", "UTF-8" );
+bind_textdomain_codeset( "radiusadmin", $settings["encode"] );
 
 textdomain( "radiusadmin" );
 
-$app = new \Slim\App( $settings );
+$app = new \Slim\App( [ 
+    
+    "settings" => $settings 
+]);
 
 $app->add( new \Slim\Csrf\Guard );
 
