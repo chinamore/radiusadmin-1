@@ -113,7 +113,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong class="ls-color-theme">{{ qtAccts |  number_format( 0, ',', '.') }}</strong>
+                        <strong class="ls-color-theme">{{ qtAccts |  integer_format_locale }}</strong>
                         <small>{% trans "Conexões" %}</small>
                     </div>
             
@@ -129,7 +129,7 @@
                     </div>
                    
                    <div class="ls-box-body">
-                        <strong class="ls-color-theme">{{ ( timeAvg|round ) |  number_format( 0, ',', '.') }}</strong>
+                        <strong class="ls-color-theme">{{ ( timeAvg|round ) |  integer_format_locale }}</strong>
                         <small>{% trans "Segundos" %}</small>
                     </div>
             
@@ -153,9 +153,9 @@
                         </div>
 
                         <div class="ls-half-board-data">
-                            <strong class="ls-color-theme">{{ ( downloadAvg|round ) | number_format( 0, ',', '.') }}</strong>
+                            <strong class="ls-color-theme">{{ ( downloadAvg|round ) | integer_format_locale }}</strong>
                             <small>Download</small>
-                            <strong class="ls-color-danger">{{ ( uploadAvg|round ) |  number_format( 0, ',', '.') }}</strong>
+                            <strong class="ls-color-danger">{{ ( uploadAvg|round ) |  integer_format_locale }}</strong>
                             <small>Upload</small>
                         </div>
 

@@ -49,6 +49,21 @@ $container["view"] = function ($container) {
         "user"=>$container->auth->user()
     ]);
 
+    $filterNumberFormatLocale = new Twig_Filter( "integer_format_locale", function( $number ) {
+    
+        $locale = localeconv();
+        
+        $decimals = 0;        
+
+        return number_format( $number, 
+            $decimals,
+            $locale["decimal_point"],
+            $locale["thousands_sep"]
+        );
+    });
+        
+    $env->addFilter( $filterNumberFormatLocale );
+
     return $view;
 };
 

@@ -9,19 +9,19 @@ function createSummaryConnectionsChart( dates, connections, users ) {
             labels: dates,
                 datasets: [
                     {
-                        label: "Total de conexões",
+                        label: connections.label,
                         fill: false,
                         backgroundColor: "#49739C",
                         borderColor: "#49739C",
-                        data: connections,
+                        data: connections.data,
                         spanGaps: false,
                     },
                     {
-                        label: "Total de usuários",
+                        label: users.label,
                         fill: false,
                         backgroundColor: "#D75553",
                         borderColor: "#D75553",
-                        data: users,
+                        data: users.data,
                         spanGaps: false,
                     }
                 ]

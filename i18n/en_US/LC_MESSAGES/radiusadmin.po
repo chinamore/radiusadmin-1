@@ -275,4 +275,10 @@ msgstr "View Client"
 msgid "Adicionar"
 msgstr "Add"
 
+msgid "Total de conexões"
+msgstr "Total connections"
+
+msgid "Total de usuários"
+msgstr "Total users"
+
 
