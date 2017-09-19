@@ -122,22 +122,22 @@ class Client {
     }
 
     public static function getTypes() {
-    
-    	return [
-		"cisco",
-		"computone",
-		"livingstone",
-		"juniper",
-		"max40xx",
-		"multitech",
-		"netserver",
-		"pathras",
-		"patton",
-		"portslave",
-		"tc",
-		"usrhiper",
-		"other"
-	];
+
+        return [
+            "cisco",
+            "computone",
+            "livingstone",
+            "juniper",
+            "max40xx",
+            "multitech",
+            "netserver",
+            "pathras",
+            "patton",
+            "portslave",
+            "tc",
+            "usrhiper",
+            "other"
+        ];
     }
    
 }

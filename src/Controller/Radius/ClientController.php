@@ -55,8 +55,8 @@ class ClientController extends Controller {
 
             $errors = [ "main"=> [ 
             
-                "O campo IP deve ser preenchido com um endereço IP válido ",
-                "O campo Ports deve ser preenchido com um número inteiro "
+                "O campo IP deve ser preenchido com um endereço IP válido",
+                "O campo Ports deve ser preenchido com um número inteiro"
             ] ]; 
         }
 

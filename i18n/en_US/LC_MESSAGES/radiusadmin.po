@@ -281,4 +281,27 @@ msgstr "Total connections"
 msgid "Total de usuários"
 msgstr "Total users"
 
+msgid "Ocorreu um erro interno"
+msgstr "An internal error occurred"
+
+msgid "Usuário e/ou senha incorretos"
+msgstr "User and/or password incorrects"
+
+msgid "Cliente não encontrado"
+msgstr "Client not found"
+
+msgid "Erro, você deve preencher o nome e no mínimo um atributo"
+msgstr "Error, you must fill in the name and at least one attribute"
+
+msgid "Grupo não encontrado"
+msgstr "Group not found"
+
+msgid "Usuário não encontrado"
+msgstr "User not found"
+
+msgid "O campo IP deve ser preenchido com um endereço IP válido"
+msgstr "The IP field must be filled in with a valid IP address"
+
+msgid "O campo Ports deve ser preenchido com um número inteiro"
+msgstr "The Ports field must be filled with an integer"
 
