@@ -10,7 +10,7 @@
         <p class="ls-error">
             {% for error in errors["main"] %}
                 <div class="ls-alert-danger">
-                    <strong>Erro:</strong> {{error}}
+                    {% trans error %}
                 </div>
             {% endfor %}
         </p>
@@ -54,7 +54,7 @@
                     {% if errors["name"] is not empty %}
                         <p class="ls-error">
                             {% for error in errors["name"] %}
-                                    <small class="ls-help-message">{{error}}</small>
+                                    <small class="ls-help-message">{% trans error %}</small>
                             {% endfor %}
                         </p>
                     {% endif %}

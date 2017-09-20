@@ -7,7 +7,7 @@
     <div class="ls-error">
         {% for error in errors %}
             <div class="ls-alert-danger">
-                <strong>Erro:</strong> {{error}}
+                {% trans error %}
             </div>
         {% endfor %}
     </div>

@@ -4,7 +4,7 @@
         <p class="ls-error">
             {% for error in errors["main"] %}
                 <div class="ls-alert-danger">
-                    <strong>Erro:</strong> {{error}}
+                    <strong>Erro:</strong> {% trans error %}
                 </div>
             {% endfor %}
         </p>
@@ -24,7 +24,7 @@
             {% if errors["nasname"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["nasname"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -38,7 +38,7 @@
             {% if errors["shortname"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["shortname"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -60,7 +60,7 @@
             {% if errors["type"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["type"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -74,7 +74,7 @@
             {% if errors["ports"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["ports"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -88,7 +88,7 @@
             {% if errors["secret"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["secret"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -102,7 +102,7 @@
             {% if errors["server"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["server"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -116,7 +116,7 @@
             {% if errors["community"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["community"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
@@ -140,7 +140,7 @@
             {% if errors["description"] is not empty %}
                 <p class="ls-error">
                     {% for error in errors["description"] %}
-                            <small class="ls-help-message">{{error}}</small>
+                            <small class="ls-help-message">{% trans error %}</small>
                     {% endfor %}
                 </p>
             {% endif %}
