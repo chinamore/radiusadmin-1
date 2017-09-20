@@ -5,6 +5,7 @@
     "locawebstyle": "^3.10.0",
     "chart.js": "^2.5.0",
     "ibn-sina": "fahim-autocomplete#^3.0.1",
-    "jquery-autocompleter": "Autocompleter#^0.1.9"
+    "jquery-autocompleter": "Autocompleter#^0.1.9",
+    "air-datepicker": "^2.2.3"
   }
 }

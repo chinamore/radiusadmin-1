@@ -305,3 +305,6 @@ msgstr "The IP field must be filled in with a valid IP address"
 msgid "O campo Ports deve ser preenchido com um número inteiro"
 msgstr "The Ports field must be filled with an integer"
 
+msgid "pt-BR"
+msgstr "en"
+

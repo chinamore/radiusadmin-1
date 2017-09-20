@@ -50,13 +50,14 @@
                     
                     <input type="text" 
                         name="date1" 
-                        class="datepicker ls-daterange" 
+                        class="dtpicker" 
                         placeholder="{% trans "Data inicio" %}" 
                         id="date1" 
+                        data-language="{% trans "pt-BR" %}"
                         value="{{date1}}"
-                        data-ls-daterange="#date2"/>
+                        readonly />
                     
-                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#date1" href="#"></a>
+                    <span class="ls-label-text-prefix ls-ico-calendar btn-calendar"></span>
                 </div>
             </label>
 
@@ -65,12 +66,14 @@
                    
                     <input type="text" 
                         name="date2" 
-                        class="datepicker ls-daterange" 
+                        class="dtpicker" 
                         placeholder="{% trans "Data final" %}" 
                         id="date2" 
-                        value="{{date2}}"/>
+                        data-language="{% trans "pt-BR" %}"
+                        value="{{date2}}"
+                        readonly />
                     
-                    <a class="ls-label-text-prefix ls-ico-calendar" data-trigger-calendar="#date2" href="#"></a>
+                    <span class="ls-label-text-prefix ls-ico-calendar btn-calendar"></span>
                 </div>
             </label>
 

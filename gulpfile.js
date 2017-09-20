@@ -17,13 +17,17 @@ gulp.task( "vendor", function() {
         "assets/private/bower_components/jquery/dist/jquery.js",    
         "assets/private/bower_components/locawebstyle/dist/javascripts/locastyle.js",
         "assets/private/bower_components/chart.js/dist/Chart.min.js",
-        "assets/private/bower_components/jquery-autocompleter/jquery.autocompleter.js"
+        "assets/private/bower_components/jquery-autocompleter/jquery.autocompleter.js",
+        "assets/private/bower_components/air-datepicker/dist/js/datepicker.js",
+        "assets/private/bower_components/air-datepicker/dist/js/i18n/datepicker.pt-BR.js",
+        "assets/private/bower_components/air-datepicker/dist/js/i18n/datepicker.en.js"
     ];
 
     var filesCSS = [
     
         "assets/private/bower_components/locawebstyle/dist/stylesheets/locastyle.css",
         "assets/private/bower_components/jquery-autocompleter/jquery.autocompleter.css",
+        "assets/private/bower_components/air-datepicker/dist/css/datepicker.css"
     ];
 
     var folderFonts = "assets/public/css/fonts/";

@@ -127,3 +127,11 @@
     border: 1px solid #dddddd;
   }
 }
+
+.datepicker--day-name {
+    color: #4E7AA6;
+}
+
+.btn-calendar {
+    cursor: pointer;
+}

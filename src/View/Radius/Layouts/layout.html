@@ -180,7 +180,14 @@
         <script src="{{ base_url() }}/assets/public/js/vendor.js"></script>
         <script src="{{ base_url() }}/assets/public/js/app.js"></script>
         <script type="text/javascript">
+
             var dir = "{{ base_url() }}";
+
+            $( ".dtpicker" ).datepicker( {
+
+                autoClose: true
+            });
+
         </script>
         {% block js %}
         {% endblock %}
